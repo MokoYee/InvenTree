@@ -665,7 +665,7 @@ msgstr "可选项"
 #: part/models.py:1247 part/serializers.py:1696 part/serializers.py:1715
 #: stock/api.py:638
 msgid "Assembly"
-msgstr "装配件"
+msgstr "可装配"
 
 #: build/api.py:453
 msgid "Tracked"
@@ -673,7 +673,7 @@ msgstr "可追溯"
 
 #: build/api.py:456 build/serializers.py:1412 part/models.py:1265
 msgid "Testable"
-msgstr "需检测"
+msgstr "需要检测"
 
 #: build/api.py:466 order/api.py:1002 order/api.py:1370
 msgid "Order Outstanding"
@@ -1390,7 +1390,7 @@ msgstr "产品分类名称"
 
 #: build/serializers.py:1415 common/setting/system.py:494 part/models.py:1259
 msgid "Trackable"
-msgstr "可追踪"
+msgstr "按单件追踪"
 
 #: build/serializers.py:1418
 msgid "Inherited"
@@ -1638,7 +1638,7 @@ msgstr "此网络钩子的名称"
 #: part/models.py:1282 plugin/models.py:69 stock/api.py:641 users/models.py:195
 #: users/models.py:554 users/serializers.py:319
 msgid "Active"
-msgstr "激活"
+msgstr "启用"
 
 #: common/models.py:1443
 msgid "Is this webhook active"
@@ -1948,7 +1948,7 @@ msgstr "选择列表的描述"
 
 #: common/models.py:2265 part/models.py:1287
 msgid "Locked"
-msgstr "已锁定"
+msgstr "锁定"
 
 #: common/models.py:2266
 msgid "Is this selection list locked?"
@@ -2060,7 +2060,7 @@ msgstr "参数名称"
 
 #: common/models.py:2527 part/models.py:1240
 msgid "Units"
-msgstr "单位"
+msgstr "计量单位"
 
 #: common/models.py:2528
 msgid "Physical units for this parameter"
@@ -2830,7 +2830,7 @@ msgstr "默认情况下，元件可由其他产品组装而成"
 #: common/setting/system.py:476 part/models.py:1253 part/serializers.py:1724
 #: part/serializers.py:1731
 msgid "Component"
-msgstr "组件"
+msgstr "可作为子件"
 
 #: common/setting/system.py:477
 msgid "Parts can be used as sub-components by default"
@@ -2838,7 +2838,7 @@ msgstr "默认情况下，产品可用作子部件"
 
 #: common/setting/system.py:482 part/models.py:1271
 msgid "Purchaseable"
-msgstr "可购买"
+msgstr "可采购"
 
 #: common/setting/system.py:483
 msgid "Parts are purchaseable by default"
@@ -2858,7 +2858,7 @@ msgstr "默认情况下可跟踪产品"
 
 #: common/setting/system.py:500 part/models.py:1293
 msgid "Virtual"
-msgstr "虚拟的"
+msgstr "虚拟产品"
 
 #: common/setting/system.py:501
 msgid "Parts are virtual by default"
@@ -4186,7 +4186,7 @@ msgstr "选择制造商"
 #: company/models.py:542 company/serializers.py:486 order/serializers.py:703
 #: part/serializers.py:498
 msgid "MPN"
-msgstr "制造商产品编号"
+msgstr "制造商料号（MPN）"
 
 #: company/models.py:543 stock/serializers.py:575
 msgid "Manufacturer Part Number"
@@ -4226,7 +4226,7 @@ msgstr "选择供应商"
 
 #: company/models.py:781 part/serializers.py:483
 msgid "Supplier stock keeping unit"
-msgstr "供应商库存管理单位"
+msgstr "供应商料号（SKU）"
 
 #: company/models.py:787
 msgid "Is this supplier part active?"
@@ -5428,7 +5428,7 @@ msgstr "将相同产品、目的地和目标日期的项目合并为一条明细
 
 #: order/serializers.py:696 part/serializers.py:482
 msgid "SKU"
-msgstr "库存量单位"
+msgstr "供应商料号（SKU）"
 
 #: order/serializers.py:710 part/models.py:1151 part/serializers.py:348
 msgid "Internal Part Number"
@@ -5773,7 +5773,7 @@ msgstr "产品分类"
 
 #: part/models.py:111 part/models.py:1187
 msgid "Default Location"
-msgstr "默认位置"
+msgstr "默认库位"
 
 #: part/models.py:112
 msgid "Default location for parts in this category"
@@ -5905,23 +5905,23 @@ msgstr "产品名称"
 
 #: part/models.py:1106
 msgid "Is Template"
-msgstr "是模板"
+msgstr "模板产品"
 
 #: part/models.py:1107
 msgid "Is this part a template part?"
-msgstr "这个产品是一个模版产品吗?"
+msgstr "该产品是否为模板产品？"
 
 #: part/models.py:1117
 msgid "Is this part a variant of another part?"
-msgstr "这个产品是另一产品的变体吗？"
+msgstr "该产品是否为其他产品的变体？"
 
 #: part/models.py:1118
 msgid "Variant Of"
-msgstr "变体"
+msgstr "变体来源"
 
 #: part/models.py:1125
 msgid "Part description (optional)"
-msgstr "产品描述(可选)"
+msgstr "产品说明（选填）"
 
 #: part/models.py:1132
 msgid "Keywords"
@@ -5929,7 +5929,7 @@ msgstr "关键词"
 
 #: part/models.py:1133
 msgid "Part keywords to improve visibility in search results"
-msgstr "提高搜索结果可见性的产品关键字"
+msgstr "用于提升搜索命中率的产品关键词"
 
 #: part/models.py:1143
 msgid "Part category"
@@ -5942,31 +5942,31 @@ msgstr "内部产品号 IPN"
 
 #: part/models.py:1158
 msgid "Part revision or version number"
-msgstr "产品修订版本或版本号"
+msgstr "产品版本号或修订号"
 
 #: part/models.py:1159 report/models.py:228
 msgid "Revision"
-msgstr "版本"
+msgstr "版本号"
 
 #: part/models.py:1168
 msgid "Is this part a revision of another part?"
-msgstr "这产品是另一产品的修订版本吗？"
+msgstr "该产品是否为其他产品的版本修订？"
 
 #: part/models.py:1169
 msgid "Revision Of"
-msgstr "修订版本"
+msgstr "版本来源"
 
 #: part/models.py:1185
 msgid "Where is this item normally stored?"
-msgstr "该物品通常存放在哪里？"
+msgstr "该产品默认入库到哪个库位？"
 
 #: part/models.py:1222
 msgid "Default Expiry"
-msgstr "默认到期"
+msgstr "默认有效期"
 
 #: part/models.py:1223
 msgid "Expiry time (in days) for stock items of this part"
-msgstr "此产品库存项的过期时间 (天)"
+msgstr "该产品库存的默认有效期，单位为天"
 
 #: part/models.py:1231 part/serializers.py:889
 msgid "Minimum Stock"
@@ -5974,47 +5974,47 @@ msgstr "最低库存"
 
 #: part/models.py:1232
 msgid "Minimum allowed stock level"
-msgstr "允许的最小库存量"
+msgstr "库存低于该值时将触发低库存提醒"
 
 #: part/models.py:1241
 msgid "Units of measure for this part"
-msgstr "此产品的计量单位"
+msgstr "该产品的计量单位"
 
 #: part/models.py:1248
 msgid "Can this part be built from other parts?"
-msgstr "这个产品可由其他产品加工而成吗？"
+msgstr "该产品是否可由其他产品装配或生产得到？"
 
 #: part/models.py:1254
 msgid "Can this part be used to build other parts?"
-msgstr "这个产品可用于创建其他产品吗？"
+msgstr "该产品是否可作为子件参与装配或生产？"
 
 #: part/models.py:1260
 msgid "Does this part have tracking for unique items?"
-msgstr "此产品是否有唯一物品的追踪功能"
+msgstr "该产品是否需要按单件进行唯一标识追踪？"
 
 #: part/models.py:1266
 msgid "Can this part have test results recorded against it?"
-msgstr "这一部件能否记录到测试结果？"
+msgstr "该产品是否需要记录检测结果？"
 
 #: part/models.py:1272
 msgid "Can this part be purchased from external suppliers?"
-msgstr "这个产品可从外部供应商购买吗？"
+msgstr "该产品是否支持向供应商采购？"
 
 #: part/models.py:1278
 msgid "Can this part be sold to customers?"
-msgstr "此产品可以销售给客户吗?"
+msgstr "该产品是否支持对外销售？"
 
 #: part/models.py:1282
 msgid "Is this part active?"
-msgstr "这个产品是否已激活？"
+msgstr "该产品是否启用？"
 
 #: part/models.py:1288
 msgid "Locked parts cannot be edited"
-msgstr "无法编辑锁定的产品"
+msgstr "锁定后该产品将不可编辑"
 
 #: part/models.py:1294
 msgid "Is this a virtual part, such as a software product or license?"
-msgstr "这是一个虚拟产品，例如一个软件产品或许可证吗？"
+msgstr "该产品是否为虚拟产品，例如软件、授权或服务？"
 
 #: part/models.py:1299
 msgid "BOM Validated"
@@ -6523,47 +6523,47 @@ msgstr "从原始产品复制测试模板"
 
 #: part/serializers.py:446
 msgid "Initial Stock Quantity"
-msgstr "初始化库存数量"
+msgstr "初始库存数量"
 
 #: part/serializers.py:448
 msgid "Specify initial stock quantity for this Part. If quantity is zero, no stock is added."
-msgstr "指定此产品的初始库存数量。如果数量为零，则不添加任何库存。"
+msgstr "设置产品创建时的初始库存数量；填写 0 则不自动建库存"
 
 #: part/serializers.py:455
 msgid "Initial Stock Location"
-msgstr "初始化库存地点"
+msgstr "初始入库库位"
 
 #: part/serializers.py:456
 msgid "Specify initial stock location for this Part"
-msgstr "初始化指定此产品的库存地点"
+msgstr "设置初始库存的入库库位"
 
 #: part/serializers.py:473
 msgid "Select supplier (or leave blank to skip)"
-msgstr "选择供应商(或为空以跳过)"
+msgstr "选择供应商；留空则跳过"
 
 #: part/serializers.py:489
 msgid "Select manufacturer (or leave blank to skip)"
-msgstr "选择制造商(或为空)"
+msgstr "选择制造商；留空则跳过"
 
 #: part/serializers.py:499
 msgid "Manufacturer part number"
-msgstr "制造商产品号"
+msgstr "制造商料号（MPN）"
 
 #: part/serializers.py:506
 msgid "Selected company is not a valid supplier"
-msgstr "所选公司不是一个有效的供应商"
+msgstr "所选公司不是有效的供应商"
 
 #: part/serializers.py:515
 msgid "Selected company is not a valid manufacturer"
-msgstr "所选公司不是一个有效的制造商"
+msgstr "所选公司不是有效的制造商"
 
 #: part/serializers.py:526
 msgid "Manufacturer part matching this MPN already exists"
-msgstr "与此制造商产品编号 (MPN) 的相匹配的制造商产品已存在"
+msgstr "该制造商下已存在相同的制造商料号（MPN）"
 
 #: part/serializers.py:533
 msgid "Supplier part matching this SKU already exists"
-msgstr "匹配此库存单位 (SKU) 的供应商产品已存在"
+msgstr "该供应商下已存在相同的供应商料号（SKU）"
 
 #: part/serializers.py:804
 msgid "Category Name"
@@ -6588,7 +6588,7 @@ msgstr "库存项"
 
 #: part/serializers.py:865
 msgid "Revisions"
-msgstr "修订"
+msgstr "版本记录"
 
 #: part/serializers.py:869 part/serializers.py:1161
 #: templates/email/low_stock_notification.html:16
@@ -6606,43 +6606,43 @@ msgstr "变体库存"
 
 #: part/serializers.py:941
 msgid "Duplicate Part"
-msgstr "重复产品"
+msgstr "复制已有产品"
 
 #: part/serializers.py:942
 msgid "Copy initial data from another Part"
-msgstr "从另一个产品复制初始数据"
+msgstr "从其他产品复制基础资料"
 
 #: part/serializers.py:948
 msgid "Initial Stock"
-msgstr "初始库存"
+msgstr "初始库存设置"
 
 #: part/serializers.py:949
 msgid "Create Part with initial stock quantity"
-msgstr "创建具有初始库存数量的产品"
+msgstr "创建产品时同步建立初始库存"
 
 #: part/serializers.py:955
 msgid "Supplier Information"
-msgstr "供应商信息"
+msgstr "供应商资料"
 
 #: part/serializers.py:956
 msgid "Add initial supplier information for this part"
-msgstr "添加此产品的初始供应商信息"
+msgstr "为该产品补充初始供应商资料"
 
 #: part/serializers.py:965
 msgid "Copy Category Parameters"
-msgstr "复制类别参数"
+msgstr "带出分类参数"
 
 #: part/serializers.py:966
 msgid "Copy parameter templates from selected part category"
-msgstr "从选择的产品复制参数模版"
+msgstr "从所选产品分类带出参数模板"
 
 #: part/serializers.py:971
 msgid "Existing Image"
-msgstr "现有的图片"
+msgstr "已有图片"
 
 #: part/serializers.py:972
 msgid "Filename of an existing part image"
-msgstr "现有产品图片的文件名"
+msgstr "选择系统中已有的产品图片文件"
 
 #: part/serializers.py:989
 msgid "Image file does not exist"

@@ -2955,7 +2955,7 @@ msgstr "日期"
 #: src/tables/settings/UserTable.tsx:401
 #: src/tables/stock/StockItemTable.tsx:176
 msgid "Active"
-msgstr "激活"
+msgstr "启用"
 
 #: src/components/plugins/PluginDrawer.tsx:99
 #: src/pages/company/CompanyDetail.tsx:100
@@ -3087,7 +3087,7 @@ msgstr "未激活"
 #: src/tables/part/PartTable.tsx:282
 #: src/tables/part/PartVariantTable.tsx:25
 msgid "Virtual"
-msgstr "虚拟"
+msgstr "虚拟产品"
 
 #: src/components/render/Part.tsx:34
 #: src/tables/bom/BomTable.tsx:301
@@ -4867,7 +4867,7 @@ msgstr "备注"
 #: src/pages/company/SupplierPartDetail.tsx:139
 #: src/tables/purchasing/SupplierPriceBreakTable.tsx:49
 msgid "SKU"
-msgstr "库存单位  (SKU)"
+msgstr "供应商料号（SKU）"
 
 #: src/forms/PurchaseOrderForms.tsx:889
 #: src/tables/part/PartPurchaseOrdersTable.tsx:127
@@ -7083,7 +7083,7 @@ msgstr "该装配件可能未定义物料清单（BOM），或BOM为空。"
 #: src/tables/build/BuildOrderTable.tsx:87
 #: src/tables/stock/StockItemTable.tsx:66
 msgid "Revision"
-msgstr "版本"
+msgstr "版本号"
 
 #: src/pages/build/BuildDetail.tsx:247
 #: src/pages/purchasing/PurchaseOrderDetail.tsx:175
@@ -7126,7 +7126,7 @@ msgstr "生产数量"
 #: src/tables/bom/BomTable.tsx:359
 #: src/tables/bom/BomTable.tsx:401
 msgid "Can Build"
-msgstr "可以创建"
+msgstr "可装配"
 
 #: src/pages/build/BuildDetail.tsx:303
 #: src/pages/build/BuildDetail.tsx:494
@@ -7833,17 +7833,17 @@ msgstr "验证人"
 
 #: src/pages/part/PartDetail.tsx:442
 msgid "Variant of"
-msgstr "变体于"
+msgstr "变体来源"
 
 #: src/pages/part/PartDetail.tsx:450
 msgid "Revision of"
-msgstr "修订"
+msgstr "版本来源"
 
 #: src/pages/part/PartDetail.tsx:471
 #: src/tables/ColumnRenderers.tsx:390
 #: src/tables/ColumnRenderers.tsx:399
 msgid "Default Location"
-msgstr "默认位置"
+msgstr "默认库位"
 
 #: src/pages/part/PartDetail.tsx:478
 msgid "Category Default Location"
@@ -7851,7 +7851,7 @@ msgstr "类别默认位置"
 
 #: src/pages/part/PartDetail.tsx:485
 msgid "Units"
-msgstr "单位"
+msgstr "计量单位"
 
 #: src/pages/part/PartDetail.tsx:492
 #: src/tables/settings/PendingTasksTable.tsx:51
@@ -7906,7 +7906,7 @@ msgstr "模板产品"
 #: src/pages/part/PartDetail.tsx:609
 #: src/tables/bom/BomTable.tsx:428
 msgid "Assembled Part"
-msgstr "组装产品"
+msgstr "可装配产品"
 
 #: src/pages/part/PartDetail.tsx:613
 #~ msgid "Scheduling"
@@ -7914,7 +7914,7 @@ msgstr "组装产品"
 
 #: src/pages/part/PartDetail.tsx:614
 msgid "Component Part"
-msgstr "组件产品"
+msgstr "可作为子件"
 
 #: src/pages/part/PartDetail.tsx:619
 #: src/tables/bom/BomTable.tsx:413
@@ -7977,7 +7977,7 @@ msgstr "选择产品版本"
 
 #: src/pages/part/PartDetail.tsx:790
 msgid "Variants"
-msgstr "变体"
+msgstr "产品变体"
 
 #: src/pages/part/PartDetail.tsx:797
 #: src/pages/stock/StockDetail.tsx:542
@@ -7990,11 +7990,11 @@ msgstr "物料清单"
 
 #: src/pages/part/PartDetail.tsx:816
 msgid "Used In"
-msgstr "用于"
+msgstr "被哪些产品使用"
 
 #: src/pages/part/PartDetail.tsx:823
 msgid "Part Pricing"
-msgstr "产品价格"
+msgstr "产品定价"
 
 #: src/pages/part/PartDetail.tsx:893
 msgid "Test Templates"
@@ -8037,7 +8037,7 @@ msgstr "不足"
 #: src/tables/part/PartTable.tsx:398
 #: src/tables/part/PartTable.tsx:452
 msgid "Add Part"
-msgstr "添加产品"
+msgstr "新增产品"
 
 #: src/pages/part/PartDetail.tsx:1095
 msgid "Delete Part"
@@ -8211,7 +8211,7 @@ msgstr "总价"
 #: src/tables/bom/UsedInTable.tsx:59
 #: src/tables/part/PartTable.tsx:228
 msgid "Component"
-msgstr "组件"
+msgstr "子件"
 
 #: src/pages/part/pricing/BomPricingPanel.tsx:80
 #: src/pages/part/pricing/VariantPricingPanel.tsx:35
@@ -9794,7 +9794,7 @@ msgstr "无法编辑材料清单，因为产品已锁定"
 #: src/tables/part/PartTable.tsx:210
 #: src/tables/stock/StockItemTable.tsx:187
 msgid "Assembly"
-msgstr "装配"
+msgstr "可装配"
 
 #: src/tables/bom/UsedInTable.tsx:96
 msgid "Show active assemblies"
@@ -9804,7 +9804,7 @@ msgstr "显示活动装配体"
 #: src/tables/part/PartTable.tsx:240
 #: src/tables/part/PartVariantTable.tsx:30
 msgid "Trackable"
-msgstr "可追踪"
+msgstr "按单件追踪"
 
 #: src/tables/bom/UsedInTable.tsx:101
 msgid "Show trackable assemblies"
@@ -9921,7 +9921,7 @@ msgstr "显示可选项目"
 #: src/tables/build/BuildLineTable.tsx:218
 #: src/tables/part/PartTable.tsx:234
 msgid "Testable"
-msgstr "可测试"
+msgstr "需要检测"
 
 #: src/tables/build/BuildLineTable.tsx:223
 #: src/tables/stock/StockItemTable.tsx:242
@@ -10807,7 +10807,7 @@ msgstr "仅显示我订阅的分类"
 
 #: src/tables/part/PartCategoryTable.tsx:106
 msgid "New Part Category"
-msgstr "新建产品分类"
+msgstr "新增产品分类"
 
 #: src/tables/part/PartCategoryTable.tsx:133
 msgid "Set Parent Category"
@@ -10944,7 +10944,7 @@ msgstr "仅筛选库存不足的产品"
 
 #: src/tables/part/PartTable.tsx:270
 msgid "Purchaseable"
-msgstr "可购买"
+msgstr "可采购"
 
 #: src/tables/part/PartTable.tsx:271
 msgid "Filter by parts which are purchaseable"
@@ -10968,7 +10968,7 @@ msgstr "仅筛选虚拟产品"
 
 #: src/tables/part/PartTable.tsx:288
 msgid "Is Template"
-msgstr "是模板"
+msgstr "模板产品"
 
 #: src/tables/part/PartTable.tsx:289
 msgid "Filter by parts which are templates"
@@ -11020,7 +11020,7 @@ msgstr "仅筛选我已订阅的产品"
 
 #: src/tables/part/PartTable.tsx:378
 msgid "Import Parts"
-msgstr "批量导入产品"
+msgstr "导入产品"
 
 #: src/tables/part/PartTable.tsx:467
 #: src/tables/part/PartTable.tsx:515
@@ -11041,11 +11041,11 @@ msgstr "新增产品"
 
 #: src/tables/part/PartTable.tsx:543
 msgid "Create Part"
-msgstr "新建产品"
+msgstr "新增产品"
 
 #: src/tables/part/PartTable.tsx:545
 msgid "Create a new part"
-msgstr "新建一条产品资料"
+msgstr "新增一条产品资料"
 
 #: src/tables/part/PartTable.tsx:551
 msgid "Import parts from a file"
@@ -11477,7 +11477,7 @@ msgstr "已安装"
 #: src/tables/purchasing/ManufacturerPartTable.tsx:100
 #: src/tables/purchasing/SupplierPartTable.tsx:122
 msgid "MPN"
-msgstr "制造商产品编号 (MPN)"
+msgstr "制造商料号（MPN）"
 
 #: src/tables/purchasing/ManufacturerPartParametricTable.tsx:43
 #: src/tables/purchasing/ManufacturerPartTable.tsx:155
