@@ -133,7 +133,7 @@ RUN cd "${INVENTREE_HOME}/src/frontend" && yarn install --frozen-lockfile
 COPY src ${INVENTREE_HOME}/src
 COPY tasks.py ${INVENTREE_HOME}/tasks.py
 
-RUN cd "${INVENTREE_HOME}" && invoke int.frontend-compile --extract
+RUN cd "${INVENTREE_HOME}" && invoke backend-trans && invoke int.frontend-compile --extract
 
 # InvenTree production image:
 # - Copies required files from local directory
