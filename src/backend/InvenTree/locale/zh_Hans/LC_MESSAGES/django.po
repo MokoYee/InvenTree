@@ -987,7 +987,7 @@ msgstr "产出 {serial} 未通过所有必要测试"
 
 #: build/models.py:1203
 msgid "Allocated stock items are still in production"
-msgstr ""
+msgstr "已分配的库存项仍在生产中"
 
 #: build/models.py:1211
 msgid "Cannot partially complete a build output with allocated items"
@@ -1332,7 +1332,7 @@ msgstr "分配可选的物料清单给生产订单"
 
 #: build/serializers.py:1121
 msgid "All Items"
-msgstr ""
+msgstr "全部项目"
 
 #: build/serializers.py:1122
 msgid "Untracked Items"
@@ -3006,7 +3006,7 @@ msgstr "允许BOM数量为零"
 
 #: common/setting/system.py:643
 msgid "Accept a zero quantity for BOM item for part. Enables using setup quantity to define a quantity required per build, independent of build quantity"
-msgstr ""
+msgstr "允许 BOM 项数量为 0。可用于通过准备数量定义每次构建所需数量，而不受构建数量影响。"
 
 #: common/setting/system.py:649
 msgid "Enable label printing"
@@ -3541,7 +3541,7 @@ msgstr "排除外部地点"
 
 #: common/setting/system.py:1120
 msgid "Exclude stock items in external locations from stocktake calculations"
-msgstr ""
+msgstr "盘点计算时排除外部库位中的库存项"
 
 #: common/setting/system.py:1126
 msgid "Automatic Stocktake Period"
@@ -3549,39 +3549,39 @@ msgstr "自动盘点周期"
 
 #: common/setting/system.py:1127
 msgid "Number of days between automatic stocktake recording"
-msgstr ""
+msgstr "自动生成盘点记录的天数间隔"
 
 #: common/setting/system.py:1133
 msgid "Delete Old Stocktake Entries"
-msgstr ""
+msgstr "删除旧盘点记录"
 
 #: common/setting/system.py:1135
 msgid "Delete stocktake entries older than the specified number of days"
-msgstr ""
+msgstr "删除早于指定天数的盘点记录"
 
 #: common/setting/system.py:1141
 msgid "Stocktake Deletion Interval"
-msgstr ""
+msgstr "盘点记录删除间隔"
 
 #: common/setting/system.py:1143
 msgid "Stocktake entries will be deleted after specified number of days"
-msgstr ""
+msgstr "盘点记录将在指定天数后删除"
 
 #: common/setting/system.py:1150
 msgid "Delete Old Stock Tracking Entries"
-msgstr ""
+msgstr "删除旧库存跟踪记录"
 
 #: common/setting/system.py:1152
 msgid "Delete stock tracking entries older than the specified number of days"
-msgstr ""
+msgstr "删除早于指定天数的库存跟踪记录"
 
 #: common/setting/system.py:1158
 msgid "Stock Tracking Deletion Interval"
-msgstr ""
+msgstr "库存跟踪记录删除间隔"
 
 #: common/setting/system.py:1160
 msgid "Stock tracking entries will be deleted after specified number of days"
-msgstr ""
+msgstr "库存跟踪记录将在指定天数后删除"
 
 #: common/setting/system.py:1167
 msgid "Display Users full names"
@@ -4238,7 +4238,7 @@ msgstr "主要的"
 
 #: company/models.py:793
 msgid "Is this the primary supplier part for the linked Part?"
-msgstr ""
+msgstr "这是否为关联零件的主供应商料号？"
 
 #: company/models.py:803
 msgid "Select manufacturer part"
@@ -4809,7 +4809,7 @@ msgstr "有配送"
 
 #: order/api.py:1438
 msgid "Shipment not found"
-msgstr ""
+msgstr "未找到发货记录"
 
 #: order/api.py:1834 order/models.py:564 order/models.py:1951
 #: order/models.py:2077
@@ -4980,7 +4980,7 @@ msgstr "数量必须是正数"
 
 #: order/models.py:1059
 msgid "Serial numbers cannot be assigned to virtual parts"
-msgstr ""
+msgstr "虚拟零件不能分配序列号"
 
 #: order/models.py:1349 order/models.py:2747 stock/models.py:1085
 #: stock/models.py:1086 stock/serializers.py:1364
@@ -5361,7 +5361,7 @@ msgstr "复制参数"
 
 #: order/serializers.py:96
 msgid "Copy order parameters from the original order"
-msgstr ""
+msgstr "从原订单复制订单参数"
 
 #: order/serializers.py:111
 #: report/templates/report/inventree_purchase_order_report.html:29
@@ -5740,7 +5740,7 @@ msgstr "元器件已激活"
 
 #: part/api.py:1297
 msgid "Component part is trackable"
-msgstr ""
+msgstr "组件零件可追踪"
 
 #: part/api.py:1301
 msgid "Component part is testable"
@@ -5748,11 +5748,11 @@ msgstr "组件部份是可测试的"
 
 #: part/api.py:1305
 msgid "Component part is an assembly"
-msgstr ""
+msgstr "组件零件为装配件"
 
 #: part/api.py:1309
 msgid "Component part is virtual"
-msgstr ""
+msgstr "组件零件为虚拟件"
 
 #: part/api.py:1313
 msgid "Has available stock"
@@ -5865,7 +5865,7 @@ msgstr "零件不能是对自身的修订"
 
 #: part/models.py:783
 msgid "Revision code must be specified for a part marked as a revision"
-msgstr ""
+msgstr "标记为修订版本的零件必须填写修订号"
 
 #: part/models.py:791
 msgid "Revisions are only allowed for assembly parts"
@@ -6682,23 +6682,23 @@ msgstr "零件描述"
 
 #: part/serializers.py:1306
 msgid "Select a part to generate stocktake information for that part (and any variant parts)"
-msgstr ""
+msgstr "选择一个零件，为该零件及其变体生成盘点信息"
 
 #: part/serializers.py:1316
 msgid "Select a category to include all parts within that category (and subcategories)"
-msgstr ""
+msgstr "选择一个分类，包含该分类及其子分类下的全部零件"
 
 #: part/serializers.py:1326
 msgid "Select a location to include all parts with stock in that location (including sub-locations)"
-msgstr ""
+msgstr "选择一个库位，包含该库位及其子库位中有库存的全部零件"
 
 #: part/serializers.py:1333
 msgid "Generate Stocktake Entries"
-msgstr ""
+msgstr "生成盘点记录"
 
 #: part/serializers.py:1334
 msgid "Save stocktake entries for the selected parts"
-msgstr ""
+msgstr "为所选零件保存盘点记录"
 
 #: part/serializers.py:1341
 msgid "Generate Report"
@@ -6706,7 +6706,7 @@ msgstr "生成报告"
 
 #: part/serializers.py:1342
 msgid "Generate a stocktake report for the selected parts"
-msgstr ""
+msgstr "为所选零件生成盘点报告"
 
 #: part/serializers.py:1445
 msgid "Minimum Price"
@@ -6755,7 +6755,7 @@ msgstr "最高价格不能低于最低价格"
 
 #: part/serializers.py:1684
 msgid "Quantity must be greater than or equal to zero"
-msgstr ""
+msgstr "数量必须大于或等于 0"
 
 #: part/serializers.py:1697
 msgid "Select the parent assembly"
@@ -8268,15 +8268,15 @@ msgstr "没有结果"
 
 #: report/templatetags/report.py:166
 msgid "Invalid media file path"
-msgstr ""
+msgstr "媒体文件路径无效"
 
 #: report/templatetags/report.py:185
 msgid "Invalid static file path"
-msgstr ""
+msgstr "静态文件路径无效"
 
 #: report/templatetags/report.py:287
 msgid "Asset file not found"
-msgstr ""
+msgstr "未找到资源文件"
 
 #: report/templatetags/report.py:345 report/templatetags/report.py:461
 msgid "Image file not found"
@@ -8284,7 +8284,7 @@ msgstr "找不到图片文件"
 
 #: report/templatetags/report.py:430
 msgid "No image file specified"
-msgstr ""
+msgstr "未指定图片文件"
 
 #: report/templatetags/report.py:455
 msgid "part_image tag requires a Part instance"
@@ -9622,4 +9622,3 @@ msgstr "请使用密码重置功能登录"
 #: users/serializers.py:452
 msgid "Welcome to InvenTree"
 msgstr "欢迎使用 InvenTree"
-

@@ -10,60 +10,129 @@ import { useServerApiState } from '../states/ServerApiState';
 import { useStoredTableState } from '../states/StoredTableState';
 import { fetchGlobalStates } from '../states/states';
 
-export const defaultLocale = 'en';
+export const defaultLocale = 'zh_Hans';
+
+const supportedLanguages = {
+  ar: 'العربية',
+  bg: 'Български',
+  cs: 'Čeština',
+  da: 'Dansk',
+  de: 'Deutsch',
+  el: 'Ελληνικά',
+  en: 'English',
+  es: 'Español',
+  es_MX: 'Español (México)',
+  et: 'Eesti',
+  fa: 'فارسی',
+  fi: 'Suomi',
+  fr: 'Français',
+  he: 'עברית',
+  hi: 'हिन्दी',
+  hu: 'Magyar',
+  it: 'Italiano',
+  ja: '日本語',
+  ko: '한국어',
+  lt: 'Lietuvių',
+  lv: 'Latviešu',
+  nl: 'Nederlands',
+  no: 'Norsk',
+  pl: 'Polski',
+  pt: 'Português',
+  pt_BR: 'Português (Brasil)',
+  ro: 'Română',
+  ru: 'Русский',
+  sk: 'Slovenčina',
+  sl: 'Slovenščina',
+  sr: 'Српски',
+  sv: 'Svenska',
+  th: 'ไทย',
+  tr: 'Türkçe',
+  uk: 'Українська',
+  vi: 'Tiếng Việt',
+  zh_Hans: '中文（简体）',
+  zh_Hant: '中文（繁體）'
+} as const;
+
+const localeAliases: Record<string, string> = {
+  'en-us': 'en',
+  'en-gb': 'en',
+  'es-mx': 'es_MX',
+  'pt-br': 'pt_BR',
+  zh: 'zh_Hans',
+  'zh-cn': 'zh_Hans',
+  'zh-sg': 'zh_Hans',
+  'zh-hans': 'zh_Hans',
+  'zh-tw': 'zh_Hant',
+  'zh-hk': 'zh_Hant',
+  'zh-hant': 'zh_Hant'
+};
 
 /*
  * Function which returns a record of supported languages.
  * Note that this is not a constant, as it is used in the LanguageSelect component
  */
 export const getSupportedLanguages = (): Record<string, string> => {
-  return {
-    ar: 'العربية',
-    bg: 'Български',
-    cs: 'Čeština',
-    da: 'Dansk',
-    de: 'Deutsch',
-    el: 'Ελληνικά',
-    en: 'English',
-    es: 'Español',
-    es_MX: 'Español (México)',
-    et: 'Eesti',
-    fa: 'فارسی',
-    fi: 'Suomi',
-    fr: 'Français',
-    he: 'עברית',
-    hi: 'हिन्दी',
-    hu: 'Magyar',
-    it: 'Italiano',
-    ja: '日本語',
-    ko: '한국어',
-    lt: 'Lietuvių',
-    lv: 'Latviešu',
-    nl: 'Nederlands',
-    no: 'Norsk',
-    pl: 'Polski',
-    pt: 'Português',
-    pt_BR: 'Português (Brasil)',
-    ro: 'Română',
-    ru: 'Русский',
-    sk: 'Slovenčina',
-    sl: 'Slovenščina',
-    sr: 'Српски',
-    sv: 'Svenska',
-    th: 'ไทย',
-    tr: 'Türkçe',
-    uk: 'Українська',
-    vi: 'Tiếng Việt',
-    zh_Hans: '中文（简体）',
-    zh_Hant: '中文（繁體）'
-  };
+  return supportedLanguages;
 };
+
+export function normalizeLocale(locale: string | null | undefined): string | null {
+  if (!locale) {
+    return null;
+  }
+
+  const rawLocale = locale.trim();
+
+  if (!rawLocale) {
+    return null;
+  }
+
+  const languages = getSupportedLanguages();
+
+  if (rawLocale in languages) {
+    return rawLocale;
+  }
+
+  const normalizedLocale = rawLocale.replaceAll('_', '-').toLowerCase();
+
+  if (normalizedLocale in localeAliases) {
+    return localeAliases[normalizedLocale];
+  }
+
+  const supportedLocale = Object.keys(languages).find((key) => {
+    return (
+      key.toLowerCase() === rawLocale.toLowerCase() ||
+      key.replaceAll('_', '-').toLowerCase() === normalizedLocale
+    );
+  });
+
+  if (supportedLocale) {
+    return supportedLocale;
+  }
+
+  const baseLocale = normalizedLocale.split('-')[0];
+
+  if (baseLocale in localeAliases) {
+    return localeAliases[baseLocale];
+  }
+
+  const baseMatch = Object.keys(languages).find(
+    (key) => key.toLowerCase() === baseLocale
+  );
+
+  return baseMatch || null;
+}
+
+function formatAcceptLanguage(locale: string): string {
+  return locale.replaceAll('_', '-').toLowerCase();
+}
 
 export function LanguageContext({
   children
 }: Readonly<{ children: JSX.Element }>) {
   const [language] = useLocalState(useShallow((state) => [state.language]));
   const [server] = useServerApiState(useShallow((state) => [state.server]));
+  const resolvedLanguage = normalizeLocale(language);
+  const resolvedServerLocale = normalizeLocale(server.default_locale);
 
   const [activeLocale, setActiveLocale] = useState<string | null>(null);
 
@@ -75,10 +144,10 @@ export function LanguageContext({
 
     let locale: string | null = activeLocale;
 
-    if (!!language) {
-      locale = language;
-    } else if (!!server.default_locale) {
-      locale = server.default_locale;
+    if (!!resolvedLanguage) {
+      locale = resolvedLanguage;
+    } else if (!!resolvedServerLocale) {
+      locale = resolvedServerLocale;
     } else {
       locale = defaultLocale;
     }
@@ -87,7 +156,7 @@ export function LanguageContext({
       setActiveLocale(locale);
       activateLocale(locale);
     }
-  }, [activeLocale, language, server.default_locale, defaultLocale]);
+  }, [activeLocale, resolvedLanguage, resolvedServerLocale]);
 
   const [loadedState, setLoadedState] = useState<
     'loading' | 'loaded' | 'error'
@@ -97,12 +166,7 @@ export function LanguageContext({
   useEffect(() => {
     isMounted.current = true;
 
-    let lang: string = language || defaultLocale;
-
-    // Ensure that the selected language is supported
-    if (!Object.keys(getSupportedLanguages()).includes(lang)) {
-      lang = defaultLocale;
-    }
+    const lang = resolvedLanguage || resolvedServerLocale || defaultLocale;
 
     activateLocale(lang)
       .then(() => {
@@ -117,21 +181,18 @@ export function LanguageContext({
         const locales: (string | undefined)[] = [];
 
         if (!!lang && lang != 'pseudo-LOCALE') {
-          locales.push(lang);
+          locales.push(formatAcceptLanguage(lang));
         }
 
-        if (!!server.default_locale) {
-          locales.push(server.default_locale);
+        if (!!resolvedServerLocale) {
+          locales.push(formatAcceptLanguage(resolvedServerLocale));
         }
 
         if (locales.indexOf('en-us') < 0) {
           locales.push('en-us');
         }
 
-        // Ensure that the locales are properly formatted
-        const new_locales = locales
-          .map((locale) => locale?.replaceAll('_', '-').toLowerCase())
-          .join(', ');
+        const new_locales = locales.join(', ');
 
         if (new_locales == api.defaults.headers.common['Accept-Language']) {
           return;
@@ -155,7 +216,7 @@ export function LanguageContext({
     return () => {
       isMounted.current = false;
     };
-  }, [language]);
+  }, [resolvedLanguage, resolvedServerLocale]);
 
   if (loadedState === 'loading') {
     return <LoadingOverlay visible={true} />;
@@ -178,8 +239,10 @@ export function LanguageContext({
 
 // This function is used to determine the locale to activate based on the prioritization rules.
 export function getPriorityLocale(): string {
-  const serverDefault = useServerApiState.getState().server.default_locale;
-  const userDefault = useLocalState.getState().language;
+  const serverDefault = normalizeLocale(
+    useServerApiState.getState().server.default_locale
+  );
+  const userDefault = normalizeLocale(useLocalState.getState().language);
 
   return userDefault || serverDefault || defaultLocale;
 }
@@ -189,13 +252,15 @@ export async function activateLocale(locale: string | null) {
     locale = getPriorityLocale();
   }
 
-  const localeDir = locale.split('-')[0]; // Extract the base locale (e.g., 'en' from 'en-US')
+  const normalizedLocale = normalizeLocale(locale) || defaultLocale;
 
   try {
-    const { messages } = await import(`../locales/${localeDir}/messages.ts`);
-    i18n.load(locale, messages);
-    i18n.activate(locale);
+    const { messages } = await import(
+      `../locales/${normalizedLocale}/messages.ts`
+    );
+    i18n.load(normalizedLocale, messages);
+    i18n.activate(normalizedLocale);
   } catch (err) {
-    console.error(`Failed to load locale ${locale}:`, err);
+    console.error(`Failed to load locale ${normalizedLocale}:`, err);
   }
 }

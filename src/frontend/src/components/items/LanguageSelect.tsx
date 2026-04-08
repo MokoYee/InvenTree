@@ -5,7 +5,8 @@ import { t } from '@lingui/core/macro';
 import { useShallow } from 'zustand/react/shallow';
 import {
   activateLocale,
-  getSupportedLanguages
+  getSupportedLanguages,
+  normalizeLocale
 } from '../../contexts/LanguageContext';
 import { useLocalState } from '../../states/LocalState';
 
@@ -31,7 +32,7 @@ export function LanguageSelect({ width = 80 }: Readonly<{ width?: number }>) {
       label: languages[key as string]
     }));
     setLangOptions(newLangOptions);
-    setValue(locale);
+    setValue(normalizeLocale(locale));
     activateLocale(locale); // Ensure the locale is activated on component load
   }, [locale]);
 
