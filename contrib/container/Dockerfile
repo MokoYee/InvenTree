@@ -134,7 +134,7 @@ COPY src ${INVENTREE_HOME}/src
 COPY tasks.py ${INVENTREE_HOME}/tasks.py
 
 RUN cd "${INVENTREE_HOME}" \
-    && INVENTREE_DB_ENGINE=sqlite3 INVENTREE_DB_NAME=/tmp/inventree.db invoke backend-trans \
+    && INVENTREE_DB_ENGINE=sqlite3 INVENTREE_DB_NAME=/tmp/inventree.db INVENTREE_SITE_URL=http://localhost invoke backend-trans \
     && invoke int.frontend-compile --extract
 
 # InvenTree production image:
