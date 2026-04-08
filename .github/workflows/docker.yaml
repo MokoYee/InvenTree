@@ -25,6 +25,7 @@ permissions:
 env:
   DOCKERHUB_REGISTRY: docker.io
   RELEASE_BRANCH: moko-hui
+  DOCKER_PLATFORMS: ${{ vars.DOCKER_PLATFORMS != '' && vars.DOCKER_PLATFORMS || 'linux/amd64' }}
   DOCKERHUB_IMAGE_NAME: ${{ vars.DOCKERHUB_IMAGE_NAME != '' && vars.DOCKERHUB_IMAGE_NAME || 'mokoyee/inventree' }}
 
 jobs:
@@ -49,6 +50,7 @@ jobs:
           fi
 
       - name: Set up QEMU
+        if: contains(env.DOCKER_PLATFORMS, 'arm64')
         uses: docker/setup-qemu-action@ce360397dd3f832beb865e1373c09c0e9f86d70a # pin@v4.0.0
 
       - name: Set up Docker Buildx
@@ -77,7 +79,7 @@ jobs:
           context: .
           file: ./contrib/container/Dockerfile
           target: production
-          platforms: linux/amd64,linux/arm64
+          platforms: ${{ env.DOCKER_PLATFORMS }}
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}

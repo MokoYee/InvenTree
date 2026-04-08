@@ -99,10 +99,6 @@ ENTRYPOINT ["/bin/bash", "./init.sh"]
 # Multi-stage build to compile project requirements
 FROM inventree_base AS builder_stage
 
-# Copy source files
-COPY src ${INVENTREE_HOME}/src
-COPY tasks.py ${INVENTREE_HOME}/tasks.py
-
 # Install backend build dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
     pkg-config build-essential \
@@ -126,6 +122,17 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN npm install -g n yarn --ignore-scripts && \
     yarn config set network-timeout 600000 -g
 RUN bash -c "n lts"
+
+# 先单独缓存前端依赖，避免每次源码变动都重新下载 node_modules。
+RUN mkdir -p ${INVENTREE_HOME}/src/frontend
+COPY src/frontend/package.json ${INVENTREE_HOME}/src/frontend/package.json
+COPY src/frontend/yarn.lock ${INVENTREE_HOME}/src/frontend/yarn.lock
+RUN cd "${INVENTREE_HOME}/src/frontend" && yarn install --frozen-lockfile
+
+# Copy source files after dependency installation for better cache reuse
+COPY src ${INVENTREE_HOME}/src
+COPY tasks.py ${INVENTREE_HOME}/tasks.py
+
 RUN cd "${INVENTREE_HOME}" && invoke int.frontend-compile --extract
 
 # InvenTree production image:

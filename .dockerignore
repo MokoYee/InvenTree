@@ -1,0 +1,7 @@
+*
+!src/
+!src/**
+!contrib/
+!contrib/container/
+!contrib/container/**
+!tasks.py
