@@ -57,12 +57,42 @@ cd ${INVENTREE_HOME}
 
 MANAGE_PY="${INVENTREE_BACKEND_DIR}/InvenTree/manage.py"
 FRONTEND_BUILD_INFO_DIR="${INVENTREE_BACKEND_DIR}/InvenTree/web/static/web/.vite"
-FRONTEND_RUNTIME_INFO_DIR="${INVENTREE_STATIC_ROOT}/web/.vite"
 STARTUP_MARKER="${INVENTREE_DATA_DIR}/.startup-image-sha"
+STATIC_SYNC_MARKER="${INVENTREE_DATA_DIR}/.static-image-sha"
+
+get_fingerprint_value() {
+    local filepath="$1"
+
+    if [[ -f "${filepath}" ]]; then
+        tr -d '\r\n' < "${filepath}"
+        return 0
+    fi
+
+    return 1
+}
+
+get_file_mtime() {
+    local filepath="$1"
+
+    if stat -c %Y "${filepath}" > /dev/null 2>&1; then
+        stat -c %Y "${filepath}"
+        return 0
+    fi
+
+    if stat -f %m "${filepath}" > /dev/null 2>&1; then
+        stat -f %m "${filepath}"
+        return 0
+    fi
+
+    return 1
+}
 
 get_runtime_sha() {
-    if [[ -f "${FRONTEND_BUILD_INFO_DIR}/sha.txt" ]]; then
-        tr -d '\r\n' < "${FRONTEND_BUILD_INFO_DIR}/sha.txt"
+    if get_fingerprint_value "${FRONTEND_BUILD_INFO_DIR}/sha.txt"; then
+        return
+    fi
+
+    if get_fingerprint_value "${FRONTEND_BUILD_INFO_DIR}/source.txt"; then
         return
     fi
 
@@ -75,21 +105,21 @@ get_runtime_sha() {
 }
 
 needs_static_sync() {
-    local source_sha="${FRONTEND_BUILD_INFO_DIR}/sha.txt"
-    local target_sha="${FRONTEND_RUNTIME_INFO_DIR}/sha.txt"
-    local target_manifest="${FRONTEND_RUNTIME_INFO_DIR}/manifest.json"
+    local runtime_sha
+    local synced_sha
+
+    runtime_sha="$(get_runtime_sha)"
 
     # 首次启动或静态目录不完整时，强制重新同步。
-    if [[ ! -f "${target_manifest}" ]]; then
+    if [[ ! -f "${INVENTREE_STATIC_ROOT}/web/index.html" ]]; then
         return 0
     fi
 
-    # 无法比较版本指纹时，宁可重新同步，也不要继续提供旧静态资源。
-    if [[ ! -f "${source_sha}" || ! -f "${target_sha}" ]]; then
+    if ! synced_sha="$(get_fingerprint_value "${STATIC_SYNC_MARKER}")"; then
         return 0
     fi
 
-    if cmp -s "${source_sha}" "${target_sha}"; then
+    if [[ "${runtime_sha}" == "${synced_sha}" ]]; then
         return 1
     fi
 
@@ -113,6 +143,7 @@ run_server_preflight() {
         echo "Synchronizing static files for image ${runtime_sha}"
         python3 "${MANAGE_PY}" collectstatic --noinput --verbosity 0 --clear
         python3 "${MANAGE_PY}" collectplugins
+        printf '%s' "${runtime_sha}" > "${STATIC_SYNC_MARKER}"
     else
         echo "Static files already synchronized for image ${runtime_sha}"
     fi
@@ -123,19 +154,23 @@ run_server_preflight() {
 wait_for_server_preflight() {
     local runtime_sha
     local startup_sha
+    local marker_mtime
     local attempts=0
     local max_attempts="${INVENTREE_STARTUP_WAIT_ATTEMPTS:-120}"
     local wait_seconds="${INVENTREE_STARTUP_WAIT_SECONDS:-2}"
+    local wait_started
 
     runtime_sha="$(get_runtime_sha)"
+    wait_started="$(date +%s)"
 
     echo "Waiting for server startup marker ${runtime_sha}"
 
     while true; do
         if [[ -f "${STARTUP_MARKER}" ]]; then
             startup_sha="$(tr -d '\r\n' < "${STARTUP_MARKER}")"
+            marker_mtime="$(get_file_mtime "${STARTUP_MARKER}" || printf '0')"
 
-            if [[ "${startup_sha}" == "${runtime_sha}" ]]; then
+            if [[ "${startup_sha}" == "${runtime_sha}" ]] && (( marker_mtime >= wait_started )); then
                 echo "Server startup marker confirmed for image ${runtime_sha}"
                 return 0
             fi
