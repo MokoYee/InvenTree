@@ -55,5 +55,111 @@ fi
 
 cd ${INVENTREE_HOME}
 
+MANAGE_PY="${INVENTREE_BACKEND_DIR}/InvenTree/manage.py"
+FRONTEND_BUILD_INFO_DIR="${INVENTREE_BACKEND_DIR}/InvenTree/web/static/web/.vite"
+FRONTEND_RUNTIME_INFO_DIR="${INVENTREE_STATIC_ROOT}/web/.vite"
+STARTUP_MARKER="${INVENTREE_DATA_DIR}/.startup-image-sha"
+
+get_runtime_sha() {
+    if [[ -f "${FRONTEND_BUILD_INFO_DIR}/sha.txt" ]]; then
+        tr -d '\r\n' < "${FRONTEND_BUILD_INFO_DIR}/sha.txt"
+        return
+    fi
+
+    if [[ -n "${INVENTREE_COMMIT_HASH}" ]]; then
+        printf '%s' "${INVENTREE_COMMIT_HASH}"
+        return
+    fi
+
+    printf 'unknown'
+}
+
+needs_static_sync() {
+    local source_sha="${FRONTEND_BUILD_INFO_DIR}/sha.txt"
+    local target_sha="${FRONTEND_RUNTIME_INFO_DIR}/sha.txt"
+    local target_manifest="${FRONTEND_RUNTIME_INFO_DIR}/manifest.json"
+
+    # 首次启动或静态目录不完整时，强制重新同步。
+    if [[ ! -f "${target_manifest}" ]]; then
+        return 0
+    fi
+
+    # 无法比较版本指纹时，宁可重新同步，也不要继续提供旧静态资源。
+    if [[ ! -f "${source_sha}" || ! -f "${target_sha}" ]]; then
+        return 0
+    fi
+
+    if cmp -s "${source_sha}" "${target_sha}"; then
+        return 1
+    fi
+
+    return 0
+}
+
+run_server_preflight() {
+    local runtime_sha
+    runtime_sha="$(get_runtime_sha)"
+
+    # 每次服务启动前先清掉旧标记，避免 worker 复用上一次成功启动的状态。
+    rm -f "${STARTUP_MARKER}"
+
+    echo "Waiting for database before starting server"
+    python3 "${MANAGE_PY}" wait_for_db
+
+    echo "Checking and applying pending migrations"
+    python3 "${MANAGE_PY}" runmigrations
+
+    if needs_static_sync; then
+        echo "Synchronizing static files for image ${runtime_sha}"
+        python3 "${MANAGE_PY}" collectstatic --noinput --verbosity 0 --clear
+        python3 "${MANAGE_PY}" collectplugins
+    else
+        echo "Static files already synchronized for image ${runtime_sha}"
+    fi
+
+    printf '%s' "${runtime_sha}" > "${STARTUP_MARKER}"
+}
+
+wait_for_server_preflight() {
+    local runtime_sha
+    local startup_sha
+    local attempts=0
+    local max_attempts="${INVENTREE_STARTUP_WAIT_ATTEMPTS:-120}"
+    local wait_seconds="${INVENTREE_STARTUP_WAIT_SECONDS:-2}"
+
+    runtime_sha="$(get_runtime_sha)"
+
+    echo "Waiting for server startup marker ${runtime_sha}"
+
+    while true; do
+        if [[ -f "${STARTUP_MARKER}" ]]; then
+            startup_sha="$(tr -d '\r\n' < "${STARTUP_MARKER}")"
+
+            if [[ "${startup_sha}" == "${runtime_sha}" ]]; then
+                echo "Server startup marker confirmed for image ${runtime_sha}"
+                return 0
+            fi
+        fi
+
+        attempts=$((attempts + 1))
+
+        if (( attempts >= max_attempts )); then
+            echo "Timed out waiting for server startup marker ${runtime_sha}"
+            exit 1
+        fi
+
+        sleep "${wait_seconds}"
+    done
+}
+
+case "$*" in
+    *gunicorn*)
+        run_server_preflight
+        ;;
+    "invoke worker"*)
+        wait_for_server_preflight
+        ;;
+esac
+
 # Launch the CMD *after* the ENTRYPOINT completes
 exec "$@"
