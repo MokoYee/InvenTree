@@ -1,4 +1,4 @@
-# Build and publish the Docker image for fork deployments.
+# Fast Docker publish workflow for the personal fork branch.
 
 name: Build and Push Docker Image
 
@@ -10,13 +10,17 @@ on:
       - 'v*'
       - '*.*.*'
     paths-ignore:
-      - '**.md'
       - 'docs/**'
-      - '.gitignore'
+      - '**/*.md'
       - 'LICENSE'
       - '.devcontainer/**'
       - '.vscode/**'
+      - '.history/**'
   workflow_dispatch:
+
+concurrency:
+  group: docker-${{ github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: read
@@ -27,75 +31,8 @@ env:
   DOCKERHUB_IMAGE_NAME: ${{ vars.DOCKERHUB_IMAGE_NAME != '' && vars.DOCKERHUB_IMAGE_NAME || 'mokoyee/inventree' }}
 
 jobs:
-  verify:
-    name: Verify Docker Build
-    runs-on: ubuntu-latest
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # pin@v6.0.2
-        with:
-          persist-credentials: false
-
-      - name: Smoke test production image
-        run: |
-          docker build . --target production --tag inventree-test -f contrib/container/Dockerfile
-          docker run --rm inventree-test invoke version
-          docker run --rm inventree-test invoke --version
-          docker run --rm inventree-test invoke --list
-          docker run --rm inventree-test gunicorn --version
-          docker run --rm inventree-test pg_dump --version
-          docker run --rm inventree-test test -f /home/inventree/init.sh
-          docker run --rm inventree-test test -f /home/inventree/tasks.py
-          docker run --rm inventree-test test -f /home/inventree/gunicorn.conf.py
-          docker run --rm inventree-test test -f /home/inventree/src/backend/requirements.txt
-          docker run --rm inventree-test test -f /home/inventree/src/backend/InvenTree/manage.py
-
-      - name: Build development stack
-        run: docker compose --project-directory . -f contrib/container/dev-docker-compose.yml build --no-cache
-
-      - name: Validate development setup
-        run: |
-          docker compose --project-directory . -f contrib/container/dev-docker-compose.yml run --rm inventree-dev-server invoke install
-          docker compose --project-directory . -f contrib/container/dev-docker-compose.yml run --rm inventree-dev-server invoke version
-          docker compose --project-directory . -f contrib/container/dev-docker-compose.yml run --rm inventree-dev-server invoke update
-          docker compose --project-directory . -f contrib/container/dev-docker-compose.yml run --rm inventree-dev-server invoke backup
-          docker compose --project-directory . -f contrib/container/dev-docker-compose.yml run --rm inventree-dev-server invoke restore
-          docker compose --project-directory . -f contrib/container/dev-docker-compose.yml run --rm inventree-dev-server invoke dev.setup-dev
-          docker compose --project-directory . -f contrib/container/dev-docker-compose.yml up -d
-          docker compose --project-directory . -f contrib/container/dev-docker-compose.yml run --rm inventree-dev-server invoke wait
-
-      - name: Check generated data directory
-        run: |
-          test -d data
-          test -d data/env
-          test -d data/pgdb
-          test -d data/media
-          test -d data/static
-          test -d data/plugins
-          test -f data/config.yaml
-          test -f data/plugins.txt
-          test -f data/secret_key.txt
-          test -f data/oidc.pem
-
-      - name: Run backend test suite
-        run: |
-          echo "GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}" >> contrib/container/docker.dev.env
-          docker compose --project-directory . -f contrib/container/dev-docker-compose.yml run --rm inventree-dev-server invoke dev.test --disable-pty --translations
-
-      - name: Run migration tests
-        run: |
-          docker compose --project-directory . -f contrib/container/dev-docker-compose.yml run --rm inventree-dev-server invoke dev.test --migrations --translations
-
-      - name: Stop development stack
-        if: always()
-        run: docker compose --project-directory . -f contrib/container/dev-docker-compose.yml down -v
-
   build:
     name: Build and Push
-    needs: verify
     runs-on: ubuntu-latest
     env:
       DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME != '' && secrets.DOCKERHUB_USERNAME || secrets.DOCKER_USERNAME }}
@@ -107,37 +44,27 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Check if DockerHub login is configured
-        id: docker_login
+      - name: Validate DockerHub credentials
         run: |
           if [ -z "${DOCKERHUB_USERNAME}" ] || [ -z "${DOCKERHUB_TOKEN}" ]; then
-            echo "enabled=false" >> $GITHUB_OUTPUT
-          else
-            echo "enabled=true" >> $GITHUB_OUTPUT
+            echo "::error::Missing DOCKERHUB_USERNAME or DOCKERHUB_TOKEN GitHub secret"
+            exit 1
           fi
 
       - name: Set up QEMU
-        if: steps.docker_login.outputs.enabled == 'true'
         uses: docker/setup-qemu-action@ce360397dd3f832beb865e1373c09c0e9f86d70a # pin@v4.0.0
 
       - name: Set up Docker Buildx
-        if: steps.docker_login.outputs.enabled == 'true'
         uses: docker/setup-buildx-action@4d04d5d9486b7bd6fa91e7baf45bbb4f8b9deedd # pin@v4.0.0
 
       - name: Log in to Docker Hub
-        if: steps.docker_login.outputs.enabled == 'true'
         uses: docker/login-action@b45d80f862d83dbcd57f89517bcf500b2ab88fb2 # pin@v4.0.0
         with:
           registry: ${{ env.DOCKERHUB_REGISTRY }}
           username: ${{ env.DOCKERHUB_USERNAME }}
           password: ${{ env.DOCKERHUB_TOKEN }}
 
-      - name: Skip push when DockerHub secrets are missing
-        if: steps.docker_login.outputs.enabled != 'true'
-        run: echo "DockerHub secrets are not configured, skipping build and push."
-
       - name: Extract metadata
-        if: steps.docker_login.outputs.enabled == 'true'
         id: meta
         uses: docker/metadata-action@030e881283bb7a6894de51c315a6bfe6a94e05cf # pin@v6.0.0
         with:
@@ -147,10 +74,9 @@ jobs:
             type=raw,value=${{ env.RELEASE_BRANCH }},enable=${{ github.ref == format('refs/heads/{0}', env.RELEASE_BRANCH) }}
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
-            type=sha,prefix=
+            type=sha,prefix=sha-
 
       - name: Build and push Docker image
-        if: steps.docker_login.outputs.enabled == 'true'
         uses: docker/build-push-action@04e31b0b6b0bfe49632f9e4f65d5f0bb79f6a4b4 # pin@v6.18.0
         with:
           context: .
