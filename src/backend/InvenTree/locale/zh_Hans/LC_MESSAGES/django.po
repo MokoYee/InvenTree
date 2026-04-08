@@ -995,7 +995,7 @@ msgstr "存在已分配物料时无法部分完成生产输出"
 
 #: build/models.py:1740
 msgid "Build Order Line Item"
-msgstr "生产订单行项目"
+msgstr "生产订单明细"
 
 #: build/models.py:1765
 msgid "Build object"
@@ -1267,7 +1267,7 @@ msgstr "生产产出必须指向相同的生产"
 
 #: build/serializers.py:908
 msgid "Build Line Item"
-msgstr "生产行项目"
+msgstr "生产明细"
 
 #: build/serializers.py:926
 msgid "bom_item.part must point to the same part as the build order"
@@ -1448,15 +1448,15 @@ msgstr "重复的生产物料项分配"
 
 #: build/serializers.py:1806
 msgid "Build line must point to the correct build order"
-msgstr "订单行项目必须关联到正确的生产订单"
+msgstr "订单明细必须关联到正确的生产订单"
 
 #: build/serializers.py:1811
 msgid "Duplicate build line allocation"
-msgstr "重复的订单行项目分配"
+msgstr "重复的订单明细分配"
 
 #: build/serializers.py:1823
 msgid "At least one item or line must be provided"
-msgstr "必须提供至少一个物料项或行项目"
+msgstr "至少需要提供一个物料项或一条明细"
 
 #: build/status_codes.py:11 generic/states/tests.py:21
 #: generic/states/tests.py:131 order/status_codes.py:12
@@ -3321,7 +3321,7 @@ msgstr "自动完成采购订单"
 
 #: common/setting/system.py:925
 msgid "Automatically mark purchase orders as complete when all line items are received"
-msgstr "当收到所有行项目时，自动将采购订单标记为完成"
+msgstr "所有明细收货完成后，自动将采购订单标记为完成"
 
 #: common/setting/system.py:932
 msgid "Enable password forgot"
@@ -4968,11 +4968,11 @@ msgstr "产品供应商必须与采购订单供应商匹配"
 
 #: order/models.py:1008
 msgid "Line item does not match purchase order"
-msgstr "行项目与采购订单不匹配"
+msgstr "明细行与采购订单不匹配"
 
 #: order/models.py:1011
 msgid "Line item is missing a linked part"
-msgstr "行项目缺少关联产品"
+msgstr "明细行缺少关联产品"
 
 #: order/models.py:1025
 msgid "Quantity must be a positive number"
@@ -5035,7 +5035,7 @@ msgstr "由于缺货，订单无法完成"
 
 #: order/models.py:1464
 msgid "Order cannot be completed as there are incomplete line items"
-msgstr "订单无法完成，因为行项目不完整"
+msgstr "订单仍有未完成明细，无法完成"
 
 #: order/models.py:1759 order/models.py:1775
 msgid "The order is locked and cannot be modified"
@@ -5047,19 +5047,19 @@ msgstr "项目数量"
 
 #: order/models.py:1800
 msgid "Line item reference"
-msgstr "行项目参考"
+msgstr "明细行参考"
 
 #: order/models.py:1807
 msgid "Line item notes"
-msgstr "行项目注释"
+msgstr "明细行备注"
 
 #: order/models.py:1822
 msgid "Target date for this line item (leave blank to use the target date from the order)"
-msgstr "此行项目的目标日期 (留空以使用订单中的目标日期)"
+msgstr "此明细行的目标日期（留空则沿用订单目标日期）"
 
 #: order/models.py:1852
 msgid "Line item description (optional)"
-msgstr "行项目描述 (可选)"
+msgstr "明细行说明（可选）"
 
 #: order/models.py:1859
 msgid "Additional context for this line"
@@ -5071,7 +5071,7 @@ msgstr "单位价格"
 
 #: order/models.py:1888
 msgid "Purchase Order Line Item"
-msgstr "采购订单行项目"
+msgstr "采购订单明细"
 
 #: order/models.py:1917
 msgid "Supplier part must match supplier"
@@ -5087,7 +5087,7 @@ msgstr "生产订单仅可关联至装配产品"
 
 #: order/models.py:1935
 msgid "Build order part must match line item part"
-msgstr "生产订单产品必须与行项目产品一致"
+msgstr "生产订单产品必须与明细行产品一致"
 
 #: order/models.py:1970
 msgid "Supplier part"
@@ -5111,7 +5111,7 @@ msgstr "每单位的采购价格"
 
 #: order/models.py:2003
 msgid "External Build Order to be fulfilled by this line item"
-msgstr "外部生产订单需由此行项目履行"
+msgstr "由此明细行执行的外部生产订单"
 
 #: order/models.py:2065
 msgid "Purchase Order Extra Line"
@@ -5119,7 +5119,7 @@ msgstr "采购订单附加行"
 
 #: order/models.py:2094
 msgid "Sales Order Line Item"
-msgstr "销售订单行项目"
+msgstr "销售订单明细"
 
 #: order/models.py:2121
 msgid "Only salable parts can be assigned to a sales order"
@@ -5285,7 +5285,7 @@ msgstr "退货订单状态"
 
 #: order/models.py:2993
 msgid "Return Order Line Item"
-msgstr "退货订单行项目"
+msgstr "退货订单明细"
 
 #: order/models.py:3006
 msgid "Stock item must be specified"
@@ -5321,11 +5321,11 @@ msgstr "结果"
 
 #: order/models.py:3065
 msgid "Outcome for this line item"
-msgstr "该行项目的结果"
+msgstr "此明细行的处理结果"
 
 #: order/models.py:3072
 msgid "Cost associated with return or repair for this line item"
-msgstr "与此行项目的退货或维修相关的成本"
+msgstr "此明细行退货或维修关联的成本"
 
 #: order/models.py:3082
 msgid "Return Order Extra Line"
@@ -5345,7 +5345,7 @@ msgstr "复制行"
 
 #: order/serializers.py:82
 msgid "Copy line items from the original order"
-msgstr "从原始订单复制行项目"
+msgstr "从原订单复制明细"
 
 #: order/serializers.py:88
 msgid "Copy Extra Lines"
@@ -5353,7 +5353,7 @@ msgstr "复制额外行"
 
 #: order/serializers.py:89
 msgid "Copy extra line items from the original order"
-msgstr "从原始订单复制额外的行项目"
+msgstr "从原订单复制附加明细"
 
 #: order/serializers.py:95 part/serializers.py:413
 msgid "Copy Parameters"
@@ -5368,11 +5368,11 @@ msgstr "从原订单复制订单参数"
 #: report/templates/report/inventree_return_order_report.html:19
 #: report/templates/report/inventree_sales_order_report.html:22
 msgid "Line Items"
-msgstr "行项目"
+msgstr "明细"
 
 #: order/serializers.py:116
 msgid "Completed Lines"
-msgstr "已完成行项目"
+msgstr "已完成明细"
 
 #: order/serializers.py:172
 msgid "Duplicate Order"
@@ -5396,11 +5396,11 @@ msgstr "订单不能取消"
 
 #: order/serializers.py:490 order/serializers.py:1584
 msgid "Allow order to be closed with incomplete line items"
-msgstr "允许关闭行项目不完整的订单"
+msgstr "允许订单在明细未全部完成时关闭"
 
 #: order/serializers.py:500 order/serializers.py:1594
 msgid "Order has incomplete line items"
-msgstr "订单中的行项目不完整"
+msgstr "订单仍有未完成明细"
 
 #: order/serializers.py:620
 msgid "Order is not open"
@@ -5424,7 +5424,7 @@ msgstr "合并项目"
 
 #: order/serializers.py:689
 msgid "Merge items with the same part, destination and target date into one line item"
-msgstr "将具有相同产品、目的地和目标日期的项目合并到一个行项目中"
+msgstr "将相同产品、目的地和目标日期的项目合并为一条明细行"
 
 #: order/serializers.py:696 part/serializers.py:482
 msgid "SKU"
@@ -5456,7 +5456,7 @@ msgstr "采购订单必须与供应商匹配"
 
 #: order/serializers.py:794 order/serializers.py:1664
 msgid "Line Item"
-msgstr "行项目"
+msgstr "明细行"
 
 #: order/serializers.py:803 order/serializers.py:943 order/serializers.py:2027
 msgid "Select destination location for received items"
@@ -5501,7 +5501,7 @@ msgstr "条形码已被使用"
 
 #: order/serializers.py:960 order/serializers.py:2051
 msgid "Line items must be provided"
-msgstr "必须提供行项目"
+msgstr "必须提供明细行"
 
 #: order/serializers.py:979
 msgid "Destination location must be specified"
@@ -5537,7 +5537,7 @@ msgstr "未提供装运详细信息"
 
 #: order/serializers.py:1527 order/serializers.py:1673
 msgid "Line item is not associated with this order"
-msgstr "行项目与此订单不关联"
+msgstr "明细行与此订单不关联"
 
 #: order/serializers.py:1546
 msgid "Quantity must be positive"
@@ -5565,15 +5565,15 @@ msgstr "以下序列号不可用"
 
 #: order/serializers.py:1993
 msgid "Return order line item"
-msgstr "退货订单行项目"
+msgstr "退货订单明细"
 
 #: order/serializers.py:2003
 msgid "Line item does not match return order"
-msgstr "行项目与退货订单不匹配"
+msgstr "明细行与退货订单不匹配"
 
 #: order/serializers.py:2006
 msgid "Line item has already been received"
-msgstr "行项目已收到"
+msgstr "明细行已收货"
 
 #: order/serializers.py:2043
 msgid "Items can only be received against orders which are in progress"
@@ -6918,11 +6918,11 @@ msgstr "没有匹配供应商条形码的插件"
 
 #: plugin/base/barcodes/api.py:626
 msgid "Multiple matching line items found"
-msgstr "找到多个匹配的行项目"
+msgstr "找到多条匹配明细"
 
 #: plugin/base/barcodes/api.py:629
 msgid "No matching line item found"
-msgstr "未找到匹配的行项目"
+msgstr "未找到匹配明细"
 
 #: plugin/base/barcodes/api.py:675
 msgid "No sales order provided"
@@ -6934,7 +6934,7 @@ msgstr "条形码与现有的库存项不匹配"
 
 #: plugin/base/barcodes/api.py:700
 msgid "Stock item does not match line item"
-msgstr "库存项与行项目不匹配"
+msgstr "库存项与明细行不匹配"
 
 #: plugin/base/barcodes/api.py:730
 msgid "Insufficient stock available"
@@ -6955,23 +6955,23 @@ msgstr "找到匹配的项目"
 
 #: plugin/base/barcodes/mixins.py:375
 msgid "Supplier part does not match line item"
-msgstr "供应商产品与行项目不匹配"
+msgstr "供应商产品与明细行不匹配"
 
 #: plugin/base/barcodes/mixins.py:378
 msgid "Line item is already completed"
-msgstr "行项目已完成"
+msgstr "明细行已完成"
 
 #: plugin/base/barcodes/mixins.py:415
 msgid "Further information required to receive line item"
-msgstr "需要更多信息以接收行项目"
+msgstr "接收该明细行前还需补充信息"
 
 #: plugin/base/barcodes/mixins.py:423
 msgid "Received purchase order line item"
-msgstr "已收到采购订单行项目"
+msgstr "已收货采购订单明细"
 
 #: plugin/base/barcodes/mixins.py:430
 msgid "Failed to receive line item"
-msgstr "接收行项目失败"
+msgstr "接收明细行失败"
 
 #: plugin/base/barcodes/serializers.py:53
 msgid "Scanned barcode data"
@@ -7015,7 +7015,7 @@ msgstr "无法选择一个结构性位置"
 
 #: plugin/base/barcodes/serializers.py:196
 msgid "Purchase order line item to receive items against"
-msgstr "按采购订单行项目进行物料接收"
+msgstr "按采购订单明细执行收货"
 
 #: plugin/base/barcodes/serializers.py:202
 msgid "Automatically allocate stock items to the purchase order"
@@ -7031,7 +7031,7 @@ msgstr "销售订单未打开"
 
 #: plugin/base/barcodes/serializers.py:229
 msgid "Sales order line item to allocate items against"
-msgstr "根据销售订单行项目分配项目"
+msgstr "按销售订单明细分配库存"
 
 #: plugin/base/barcodes/serializers.py:236
 msgid "Sales order shipment to allocate items against"
@@ -8198,7 +8198,7 @@ msgstr "单位价格"
 #: report/templates/report/inventree_return_order_report.html:48
 #: report/templates/report/inventree_sales_order_report.html:55
 msgid "Extra Line Items"
-msgstr "额外行项目"
+msgstr "附加明细"
 
 #: report/templates/report/inventree_purchase_order_report.html:79
 #: report/templates/report/inventree_sales_order_report.html:72
