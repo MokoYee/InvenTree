@@ -78,6 +78,7 @@ class InvenTreeConfig(AppConfig):
         if InvenTree.ready.canAppAccessDatabase() or settings.TESTING_ENV:
             self.add_user_on_startup()
             self.add_user_from_file()
+            self.run_hui_bootstrap()
 
         # register event receiver and connect signal for SSO group sync. The connected signal is
         # used for account updates whereas the receiver is used for the initial account creation.
@@ -326,6 +327,26 @@ class InvenTreeConfig(AppConfig):
 
         # do not try again
         settings.USER_ADDED_FILE = True
+
+    @ignore_ready_warning
+    def run_hui_bootstrap(self):
+        """Run Hui deployment bootstrap when explicitly enabled."""
+        if hasattr(settings, 'HUI_BOOTSTRAP_DONE') and settings.HUI_BOOTSTRAP_DONE:
+            return
+
+        if not get_setting(
+            'INVENTREE_HUI_BOOTSTRAP',
+            'hui.bootstrap',
+            False,
+            typecast=bool,
+        ):
+            return
+
+        from InvenTree.hui import bootstrap_hui
+
+        summary = bootstrap_hui(force=False)
+        logger.info('Hui bootstrap summary: %s', summary.describe())
+        settings.HUI_BOOTSTRAP_DONE = True
 
     def ensure_migrations_done(self=None):
         """Ensures there are no open migrations, stop if inconsistent state."""
