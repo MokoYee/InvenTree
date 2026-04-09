@@ -5009,37 +5009,37 @@ msgstr "总计"
 #: src/forms/StockForms.tsx:1295
 #: src/hooks/UseStockAdjustActions.tsx:112
 msgid "Add Stock"
-msgstr "添加库存"
+msgstr "库存入库"
 
 #: src/forms/StockForms.tsx:1296
 msgid "Stock added"
-msgstr "库存已添加"
+msgstr "库存已入库"
 
 #: src/forms/StockForms.tsx:1299
 msgid "Increase the quantity of the selected stock items by a given amount."
-msgstr "按指定数量增加选定库存物料的存量。"
+msgstr "按指定数量对选定库存执行入库增加。"
 
 #: src/forms/StockForms.tsx:1310
 #: src/hooks/UseStockAdjustActions.tsx:122
 msgid "Remove Stock"
-msgstr "移除库存"
+msgstr "库存出库"
 
 #: src/forms/StockForms.tsx:1311
 msgid "Stock removed"
-msgstr "库存已移除"
+msgstr "库存已出库"
 
 #: src/forms/StockForms.tsx:1314
 msgid "Decrease the quantity of the selected stock items by a given amount."
-msgstr "按指定数量减少选定库存物料的存量。"
+msgstr "按指定数量对选定库存执行出库扣减。"
 
 #: src/forms/StockForms.tsx:1325
 #: src/hooks/UseStockAdjustActions.tsx:132
 msgid "Transfer Stock"
-msgstr "转移库存"
+msgstr "库存调拨"
 
 #: src/forms/StockForms.tsx:1326
 msgid "Stock transferred"
-msgstr "库存已转移"
+msgstr "库存已调拨"
 
 #: src/forms/StockForms.tsx:1329
 msgid "Transfer selected items to the specified location."
@@ -5061,11 +5061,11 @@ msgstr "将选定物料退回库存至指定位置。"
 #: src/forms/StockForms.tsx:1355
 #: src/hooks/UseStockAdjustActions.tsx:102
 msgid "Count Stock"
-msgstr "库存数量"
+msgstr "库存盘点"
 
 #: src/forms/StockForms.tsx:1356
 msgid "Stock counted"
-msgstr "库存计数"
+msgstr "库存已盘点"
 
 #: src/forms/StockForms.tsx:1359
 msgid "Count the selected stock items, and adjust the quantity accordingly."
@@ -5073,15 +5073,15 @@ msgstr "统计选定库存物料数量并按需调整。"
 
 #: src/forms/StockForms.tsx:1370
 msgid "Change Stock Status"
-msgstr "更改库存状态"
+msgstr "调整库存状态"
 
 #: src/forms/StockForms.tsx:1371
 msgid "Stock status changed"
-msgstr "库存状态已改变"
+msgstr "库存状态已调整"
 
 #: src/forms/StockForms.tsx:1374
 msgid "Change the status of the selected stock items."
-msgstr "变更选定库存物料的状态。"
+msgstr "调整选定库存的处理状态。"
 
 #: src/forms/StockForms.tsx:1397
 #: src/hooks/UseStockAdjustActions.tsx:162
@@ -5127,7 +5127,7 @@ msgstr "库存已分配给客户"
 
 #: src/forms/StockForms.tsx:1453
 msgid "Delete Stock Items"
-msgstr "删除库存项"
+msgstr "删除库存记录"
 
 #: src/forms/StockForms.tsx:1454
 msgid "Stock deleted"
@@ -5135,7 +5135,7 @@ msgstr "库存已删除"
 
 #: src/forms/StockForms.tsx:1457
 msgid "This operation will permanently delete the selected stock items."
-msgstr "此操作将永久删除选定的库存物料。"
+msgstr "此操作会永久删除所选库存记录，仅适用于误建或测试数据清理。"
 
 #: src/forms/StockForms.tsx:1466
 msgid "Parent stock location"
@@ -5424,15 +5424,15 @@ msgstr "统计选中的库存物料数量"
 
 #: src/hooks/UseStockAdjustActions.tsx:114
 msgid "Add to selected stock items"
-msgstr "添加到选中库存物料"
+msgstr "对选中库存执行入库增加"
 
 #: src/hooks/UseStockAdjustActions.tsx:124
 msgid "Remove from selected stock items"
-msgstr "从选中库存物料中移除"
+msgstr "对选中库存执行出库"
 
 #: src/hooks/UseStockAdjustActions.tsx:134
 msgid "Transfer selected stock items"
-msgstr "转移选中库存物料"
+msgstr "调拨选中库存"
 
 #: src/hooks/UseStockAdjustActions.tsx:144
 msgid "Merge selected stock items"
@@ -5440,7 +5440,7 @@ msgstr "合并选中库存物料"
 
 #: src/hooks/UseStockAdjustActions.tsx:154
 msgid "Change status of selected stock items"
-msgstr "修改选中库存物料状态"
+msgstr "调整选中库存状态"
 
 #: src/hooks/UseStockAdjustActions.tsx:164
 msgid "Change batch code of selected stock items"
@@ -5448,15 +5448,15 @@ msgstr "修改所选库存项的批次号"
 
 #: src/hooks/UseStockAdjustActions.tsx:172
 msgid "Assign Stock"
-msgstr "分配库存"
+msgstr "指定客户"
 
 #: src/hooks/UseStockAdjustActions.tsx:174
 msgid "Assign selected stock items to a customer"
-msgstr "将选中的库存物料分配给客户"
+msgstr "将选中库存指定给客户"
 
 #: src/hooks/UseStockAdjustActions.tsx:184
 msgid "Return selected items into stock"
-msgstr "将选中物料退回库存"
+msgstr "将选中物料退回入库"
 
 #: src/hooks/UseStockAdjustActions.tsx:192
 msgid "Delete Stock"
@@ -5464,12 +5464,12 @@ msgstr "删除库存"
 
 #: src/hooks/UseStockAdjustActions.tsx:194
 msgid "Delete selected stock items"
-msgstr "删除选中的库存物料"
+msgstr "删除选中的库存记录"
 
 #: src/hooks/UseStockAdjustActions.tsx:219
 #: src/pages/part/PartDetail.tsx:1161
 msgid "Stock Actions"
-msgstr "库存操作"
+msgstr "库存处理"
 
 #: src/pages/Auth/ChangePassword.tsx:32
 #: src/pages/Auth/Reset.tsx:14
@@ -8950,7 +8950,7 @@ msgstr "已创建 {n} 个库存物料"
 
 #: src/pages/stock/StockDetail.tsx:722
 msgid "Delete Stock Item"
-msgstr "删除库存项"
+msgstr "删除库存记录"
 
 #: src/pages/stock/StockDetail.tsx:762
 #~ msgid "Return Stock Item"

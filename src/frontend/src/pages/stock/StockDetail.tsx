@@ -1,6 +1,7 @@
 import { t } from '@lingui/core/macro';
 import {
   Accordion,
+  Alert,
   Button,
   Grid,
   Group,
@@ -711,9 +712,18 @@ export default function StockDetail() {
   });
 
   const preDeleteContent = useMemo(() => {
-    // TODO: Fill this out with information on the stock item.
-    // e.g. list of child items which would be deleted, etc
-    return undefined;
+    return (
+      <Alert color='red' title='删除库存说明'>
+        <Stack gap={4}>
+          <Text size='sm'>
+            删除库存只用于清理误建、重复或测试数据，不作为正常出库使用。
+          </Text>
+          <Text size='sm'>
+            当前记录删除后将无法恢复；如是实际业务发货、样品寄送或报损，请使用“库存出库”。
+          </Text>
+        </Stack>
+      </Alert>
+    );
   }, [stockitem]);
 
   const deleteStockItem = useDeleteApiFormModal({

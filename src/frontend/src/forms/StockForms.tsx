@@ -63,6 +63,50 @@ import useStatusCodes from '../hooks/UseStatusCodes';
 import { useGlobalSettingsState } from '../states/SettingsStates';
 import { StatusFilterOptions } from '../tables/Filter';
 
+const STOCK_REMOVE_REASON_CHOICES: ApiFormFieldChoice[] = [
+  {
+    value: 'sales_delivery',
+    display_name: '销售发货'
+  },
+  {
+    value: 'sample_delivery',
+    display_name: '样品寄送'
+  },
+  {
+    value: 'after_sales_replacement',
+    display_name: '售后补发'
+  },
+  {
+    value: 'loss_or_damage',
+    display_name: '损耗报损'
+  },
+  {
+    value: 'warehouse_adjustment',
+    display_name: '仓库调整'
+  },
+  {
+    value: 'other',
+    display_name: '其他'
+  }
+];
+
+const STOCK_REMOVE_REASON_LABELS = Object.fromEntries(
+  STOCK_REMOVE_REASON_CHOICES.map((choice) => [choice.value, choice.display_name])
+);
+
+function buildStockRemoveNotes(reason: string, notes: string): string {
+  const fallbackReason = reason.trim();
+  const reasonLabel =
+    STOCK_REMOVE_REASON_LABELS[reason] ?? (fallbackReason || '未分类');
+  const normalizedNotes = notes.trim();
+
+  if (normalizedNotes) {
+    return `出库原因：${reasonLabel}\n补充说明：${normalizedNotes}`;
+  }
+
+  return `出库原因：${reasonLabel}`;
+}
+
 /**
  * Construct a set of fields for creating / editing a StockItem instance
  */
@@ -906,7 +950,18 @@ function stockRemoveFields(items: any[]): ApiFormFieldSet {
         { title: t`Actions` }
       ]
     },
-    notes: {}
+    reason: {
+      field_type: 'choice',
+      label: '出库原因',
+      description: '请选择本次库存扣减的业务原因，系统会自动写入库存流水',
+      required: true,
+      value: STOCK_REMOVE_REASON_CHOICES[0]?.value,
+      choices: STOCK_REMOVE_REASON_CHOICES
+    },
+    notes: {
+      label: '补充说明',
+      description: '可填写订单号、客户名、责任人或其他说明，便于后续追溯'
+    }
   };
 
   return fields;
@@ -1217,6 +1272,7 @@ function useStockOperationModal({
   title,
   preFormContent,
   successMessage,
+  processFormData,
   modalFunc = useCreateApiFormModal
 }: {
   items?: object;
@@ -1229,6 +1285,7 @@ function useStockOperationModal({
   title: string;
   preFormContent?: JSX.Element;
   successMessage?: string;
+  processFormData?: ApiFormModalProps['processFormData'];
   modalFunc?: apiModalFunc;
 }) {
   const baseParams: any = {
@@ -1281,6 +1338,7 @@ function useStockOperationModal({
     url: endpoint,
     fields: fields,
     preFormContent: preFormContent,
+    processFormData: processFormData,
     title: title,
     size: '80%',
     successMessage: successMessage,
@@ -1312,9 +1370,26 @@ export function useRemoveStockItem(props: StockOperationProps) {
     endpoint: ApiEndpoints.stock_remove,
     title: t`Remove Stock`,
     successMessage: t`Stock removed`,
+    processFormData: (data) => {
+      const reason = `${data.reason ?? ''}`.trim();
+      const notes = `${data.notes ?? ''}`.trim();
+      const { reason: _reason, ...rest } = data;
+
+      return {
+        ...rest,
+        notes: buildStockRemoveNotes(reason, notes)
+      };
+    },
     preFormContent: (
-      <Alert color='blue'>
-        {t`Decrease the quantity of the selected stock items by a given amount.`}
+      <Alert color='blue' title='库存出库说明'>
+        <Stack gap={4}>
+          <Text size='sm'>
+            用于真实业务出库，会按填写数量扣减库存，并自动记录出库原因和备注。
+          </Text>
+          <Text size='sm'>
+            如需清理误建或测试数据，请不要在这里操作，请改用“删除库存”。
+          </Text>
+        </Stack>
       </Alert>
     )
   });
@@ -1456,8 +1531,13 @@ export function useDeleteStockItem(props: StockOperationProps) {
     title: t`Delete Stock Items`,
     successMessage: t`Stock deleted`,
     preFormContent: (
-      <Alert color='red'>
-        {t`This operation will permanently delete the selected stock items.`}
+      <Alert color='red' title='删除库存说明'>
+        <Stack gap={4}>
+          <Text size='sm'>
+            删除库存只用于清理误建、重复或测试数据，不会视为正常出库。
+          </Text>
+          <Text size='sm'>删除后数据不可恢复，请确认当前记录不需要保留业务流水。</Text>
+        </Stack>
       </Alert>
     )
   });
