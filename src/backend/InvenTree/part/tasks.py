@@ -41,8 +41,8 @@ def notify_low_stock(part: Model):
 
     name = _('Low stock notification')
     message = _(
-        f'The available stock for {part.name} has fallen below the configured minimum level'
-    )
+        'The available stock for {part_name} has fallen below the configured minimum level'
+    ).format(part_name=part.name)
     context = {
         'part': part,
         'name': name,
@@ -77,7 +77,9 @@ def notify_stale_stock(user, stale_items):
     if item_count == 1:
         message = _('You have 1 stock item approaching its expiry date')
     else:
-        message = _(f'You have {item_count} stock items approaching their expiry dates')
+        message = _(
+            'You have {item_count} stock items approaching their expiry dates'
+        ).format(item_count=item_count)
 
     # Add absolute URLs and days until expiry for each stock item
     stale_items_enhanced = []
@@ -93,13 +95,17 @@ def notify_stale_stock(user, stale_items):
 
             if days_diff < 0:
                 days_until_expiry = days_diff  # Keep negative value for template logic
-                expiry_status = _(f'Expired {abs(days_diff)} days ago')
+                expiry_status = _('Expired {days_overdue} days ago').format(
+                    days_overdue=abs(days_diff)
+                )
             elif days_diff == 0:
                 days_until_expiry = 0
                 expiry_status = _('Expires today')
             else:
                 days_until_expiry = days_diff
-                expiry_status = _(f'{days_until_expiry} days')
+                expiry_status = _('{days_until_expiry} days').format(
+                    days_until_expiry=days_until_expiry
+                )
 
         item_data = {
             'stock_item': stock_item,

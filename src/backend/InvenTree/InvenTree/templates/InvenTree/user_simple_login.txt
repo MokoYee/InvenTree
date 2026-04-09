@@ -1,8 +1,8 @@
-Hello {{username}},
+您好，{{ username }}：
 
-You requested that we send you a link to log in to our app:
+您刚刚申请了登录链接，请点击以下地址完成登录：
 
-    {{link}}
+    {{ link }}
 
-Regards,
-{{site_name}}
+如非本人操作，请忽略本邮件。
+此邮件由系统自动发送，请勿直接回复。

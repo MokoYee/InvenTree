@@ -197,7 +197,7 @@ msgstr "提供的 URL 不是一个有效的图片文件"
 
 #: InvenTree/magic_login.py:31
 msgid "Log in to the app"
-msgstr "登录应用程序"
+msgstr "登录链接"
 
 #: InvenTree/magic_login.py:41 company/models.py:175 users/serializers.py:201
 msgid "Email"
@@ -946,7 +946,7 @@ msgstr "生产订单 {build} 已完成"
 
 #: build/models.py:742
 msgid "A build order has been completed"
-msgstr "生产订单已完成"
+msgstr "生产订单已完成，请及时确认。"
 
 #: build/models.py:924 build/serializers.py:395
 msgid "Serial numbers must be provided for trackable parts"
@@ -1486,21 +1486,21 @@ msgstr "完成"
 
 #: build/tasks.py:218
 msgid "Stock required for build order"
-msgstr "生产订单所需库存"
+msgstr "生产订单缺料提醒"
 
 #: build/tasks.py:228
 #, python-brace-format
 msgid "Build order {build} requires additional stock"
-msgstr "生产订单{build}需补充库存"
+msgstr "生产订单 {build} 所需库存不足，请及时补料。"
 
 #: build/tasks.py:252
 msgid "Overdue Build Order"
-msgstr "逾期的生产订单"
+msgstr "生产订单逾期提醒"
 
 #: build/tasks.py:257
 #, python-brace-format
 msgid "Build order {bo} is now overdue"
-msgstr "生产订单 {bo} 现已逾期"
+msgstr "生产订单 {bo} 已超过计划日期，请尽快处理。"
 
 #: common/api.py:723
 msgid "Is Link"
@@ -2336,7 +2336,7 @@ msgstr "新建{verbose_name}"
 
 #: common/notifications.py:59
 msgid "A new order has been created and assigned to you"
-msgstr "新订单已创建并分配给您"
+msgstr "有一张新订单已分配给您，请及时处理。"
 
 #: common/notifications.py:65
 #, python-brace-format
@@ -2345,19 +2345,19 @@ msgstr "{verbose_name} 已取消"
 
 #: common/notifications.py:67
 msgid "A order that is assigned to you was canceled"
-msgstr "分配给您的订单已取消"
+msgstr "您负责的订单已取消。"
 
 #: common/notifications.py:73 common/notifications.py:80 order/api.py:605
 msgid "Items Received"
-msgstr "收到的物品"
+msgstr "已收货"
 
 #: common/notifications.py:75
 msgid "Items have been received against a purchase order"
-msgstr "已根据采购订单收到物品"
+msgstr "采购订单已有到货，请及时核对。"
 
 #: common/notifications.py:82
 msgid "Items have been received against a return order"
-msgstr "已收到退货订单中的物品"
+msgstr "退货单已有收货记录，请及时核对。"
 
 #: common/serializers.py:125
 msgid "Indicates if changing this setting requires confirmation"
@@ -5621,30 +5621,30 @@ msgstr "拒绝"
 
 #: order/tasks.py:48
 msgid "Overdue Purchase Order"
-msgstr "逾期采购订单"
+msgstr "采购订单逾期提醒"
 
 #: order/tasks.py:53
 #, python-brace-format
 msgid "Purchase order {po} is now overdue"
-msgstr "采购订单 {po} 已逾期"
+msgstr "采购订单 {po} 已超过计划日期，请尽快处理。"
 
 #: order/tasks.py:118
 msgid "Overdue Sales Order"
-msgstr "逾期销售订单"
+msgstr "销售订单逾期提醒"
 
 #: order/tasks.py:123
 #, python-brace-format
 msgid "Sales order {so} is now overdue"
-msgstr "销售订单 {so} 已逾期"
+msgstr "销售订单 {so} 已超过计划日期，请尽快处理。"
 
 #: order/tasks.py:185
 msgid "Overdue Return Order"
-msgstr "逾期退货订单"
+msgstr "退货订单逾期提醒"
 
 #: order/tasks.py:190
 #, python-brace-format
 msgid "Return order {ro} is now overdue"
-msgstr "退货订单 {ro} 现已逾期"
+msgstr "退货订单 {ro} 已超过计划日期，请尽快处理。"
 
 #: part/api.py:88
 msgid "Starred"
@@ -6803,42 +6803,43 @@ msgstr "复制物料清单项目时复制替代品产品"
 
 #: part/tasks.py:42
 msgid "Low stock notification"
-msgstr "低库存通知"
+msgstr "低库存提醒"
 
 #: part/tasks.py:44
 #, python-brace-format
-msgid "The available stock for {part.name} has fallen below the configured minimum level"
-msgstr "可用的 {part.name}库存已经跌到设置的最低值"
+msgid "The available stock for {part_name} has fallen below the configured minimum level"
+msgstr "产品 {part_name} 的可用库存已低于安全库存，请及时补货。"
 
 #: part/tasks.py:74
 msgid "Stale stock notification"
-msgstr "到期库存通知"
+msgstr "临期库存提醒"
 
 #: part/tasks.py:78
 msgid "You have 1 stock item approaching its expiry date"
-msgstr "您有1个库存项即将到期"
+msgstr "您有 1 条库存记录即将到期，请及时处理。"
 
 #: part/tasks.py:80
 #, python-brace-format
 msgid "You have {item_count} stock items approaching their expiry dates"
-msgstr "您有{item_count}个库存项即将到期"
+msgstr "您有 {item_count} 条库存记录即将到期，请及时处理。"
 
 #: part/tasks.py:89
 msgid "No expiry date"
-msgstr "永久有效"
+msgstr "未设置有效期"
 
 #: part/tasks.py:96
-msgid "Expired {abs(days_diff)} days ago"
-msgstr "已过期 {abs(days_diff)} 天"
+#, python-brace-format
+msgid "Expired {days_overdue} days ago"
+msgstr "已过期 {days_overdue} 天"
 
 #: part/tasks.py:99
 msgid "Expires today"
-msgstr "今天到期"
+msgstr "今日到期"
 
 #: part/tasks.py:102
 #, python-brace-format
 msgid "{days_until_expiry} days"
-msgstr "{days_until_expiry}天"
+msgstr "剩余 {days_until_expiry} 天"
 
 #: plugin/api.py:80
 msgid "Builtin"
@@ -7389,19 +7390,19 @@ msgstr "已集成用户界面通知方法"
 
 #: plugin/builtin/integration/core_notifications.py:67
 msgid "InvenTree Email Notifications"
-msgstr "InvenTree电子邮件通知"
+msgstr "邮件通知"
 
 #: plugin/builtin/integration/core_notifications.py:70
 msgid "Integrated email notification methods"
-msgstr "已集成电子邮件通知方法"
+msgstr "系统已接入邮件通知"
 
 #: plugin/builtin/integration/core_notifications.py:75
 msgid "Allow email notifications"
-msgstr "允许电子邮件通知"
+msgstr "接收邮件通知"
 
 #: plugin/builtin/integration/core_notifications.py:76
 msgid "Allow email notifications to be sent to this user"
-msgstr "允许向该用户发送电子邮件通知"
+msgstr "允许向我发送邮件通知"
 
 #: plugin/builtin/integration/core_notifications.py:123
 msgid "InvenTree Slack Notifications"
@@ -7457,12 +7458,12 @@ msgstr "向订阅用户发送产品变更通知"
 
 #: plugin/builtin/integration/part_notifications.py:45
 msgid "Changed part notification"
-msgstr "产品变更通知"
+msgstr "产品资料变更提醒"
 
 #: plugin/builtin/integration/part_notifications.py:55
 #, python-brace-format
-msgid "The part `{part.name}` has been triggered with a `{part_action}` event"
-msgstr "产品 `{part.name}`已触发 `{part_action}`事件"
+msgid "Product {part_name} details have been updated. Please review the latest information."
+msgstr "产品 {part_name} 的资料已更新，请查看最新信息。"
 
 #: plugin/builtin/labels/inventree_label.py:23
 msgid "InvenTree PDF label printer"
@@ -9289,7 +9290,7 @@ msgstr "点击以下链接查看此订单"
 
 #: templates/email/build_order_required_stock.html:7
 msgid "Stock is required for the following build order"
-msgstr "以下生产订单需要库存"
+msgstr "以下生产订单所需库存不足"
 
 #: templates/email/build_order_required_stock.html:8
 #, python-format
@@ -9302,7 +9303,7 @@ msgstr "点击以下链接查看此生产订单"
 
 #: templates/email/build_order_required_stock.html:14
 msgid "The following parts are low on required stock"
-msgstr "以下产品所需库存不足"
+msgstr "以下产品库存不足，可能影响生产"
 
 #: templates/email/build_order_required_stock.html:18
 msgid "Required Quantity"
@@ -9316,7 +9317,7 @@ msgstr "您收到此邮件是因为您订阅了此产品的通知 "
 #: templates/email/low_stock_notification.html:9
 #: templates/email/part_event_notification.html:9
 msgid "Click on the following link to view this part"
-msgstr "点击以下链接查看此产品"
+msgstr "点击以下链接查看该产品"
 
 #: templates/email/low_stock_notification.html:18
 #: templates/email/part_event_notification.html:19
@@ -9329,11 +9330,11 @@ msgstr "您收到此邮件是因为您订阅了该产品或其所属类别的通
 
 #: templates/email/stale_stock_notification.html:10
 msgid "The following stock items are approaching their expiry dates:"
-msgstr "以下库存项即将到期："
+msgstr "以下库存记录临近有效期，请及时处理："
 
 #: templates/email/stale_stock_notification.html:23
 msgid "Days Until Expiry"
-msgstr "距离到期天数"
+msgstr "距到期剩余天数"
 
 #: templates/email/stale_stock_notification.html:57
 msgid "You are receiving this email because you are subscribed to notifications for these parts"

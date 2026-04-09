@@ -40,7 +40,6 @@ class PartNotificationsPlugin(SettingsMixin, EventMixin, InvenTreePlugin):
         if not self.get_setting('ENABLE_PART_NOTIFICATIONS'):
             return
         part = Part.objects.get(pk=kwargs['id'])
-        part_action = event.split('.')[-1]
 
         name = _('Changed part notification')
         common.notifications.trigger_notification(
@@ -52,8 +51,8 @@ class PartNotificationsPlugin(SettingsMixin, EventMixin, InvenTreePlugin):
                 'part': part,
                 'name': name,
                 'message': _(
-                    f'The part `{part.name}` has been triggered with a `{part_action}` event'
-                ),
+                    'Product {part_name} details have been updated. Please review the latest information.'
+                ).format(part_name=part.name),
                 'link': InvenTree.helpers_model.construct_absolute_url(
                     part.get_absolute_url()
                 ),

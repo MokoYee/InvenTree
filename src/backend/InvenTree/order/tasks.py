@@ -50,7 +50,7 @@ def notify_overdue_purchase_order(po: order.models.PurchaseOrder) -> None:
     context = {
         'order': po,
         'name': name,
-        'message': _(f'Purchase order {po} is now overdue'),
+        'message': _('Purchase order {po} is now overdue').format(po=po),
         'link': InvenTree.helpers_model.construct_absolute_url(po.get_absolute_url()),
         'template': {'html': 'email/overdue_purchase_order.html', 'subject': name},
     }
@@ -120,7 +120,7 @@ def notify_overdue_sales_order(so: order.models.SalesOrder) -> None:
     context = {
         'order': so,
         'name': name,
-        'message': _(f'Sales order {so} is now overdue'),
+        'message': _('Sales order {so} is now overdue').format(so=so),
         'link': InvenTree.helpers_model.construct_absolute_url(so.get_absolute_url()),
         'template': {'html': 'email/overdue_sales_order.html', 'subject': name},
     }
@@ -187,7 +187,7 @@ def notify_overdue_return_order(ro: order.models.ReturnOrder) -> None:
     context = {
         'order': ro,
         'name': name,
-        'message': _(f'Return order {ro} is now overdue'),
+        'message': _('Return order {ro} is now overdue').format(ro=ro),
         'link': InvenTree.helpers_model.construct_absolute_url(ro.get_absolute_url()),
         'template': {'html': 'email/overdue_return_order.html', 'subject': name},
     }

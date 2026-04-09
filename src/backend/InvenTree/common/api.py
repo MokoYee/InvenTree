@@ -1253,8 +1253,8 @@ class TestEmail(CreateAPI):
         data = serializer.validated_data
 
         delivered, reason = send_email(
-            subject='Test email from InvenTree',
-            body='This is a test email from InvenTree.',
+            subject='邮件服务测试',
+            body='这是一封系统测试邮件，用于确认邮件发送配置已生效。若您收到此邮件，说明邮件发送功能工作正常。',
             recipients=[data['email']],
         )
         if not delivered:

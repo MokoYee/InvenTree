@@ -12,7 +12,6 @@ from rest_framework import serializers
 from rest_framework.generics import GenericAPIView
 from rest_framework.response import Response
 
-import InvenTree.version
 from InvenTree.helpers_email import send_email
 
 logger = structlog.get_logger('inventree')
@@ -20,15 +19,13 @@ logger = structlog.get_logger('inventree')
 
 def send_simple_login_email(user, link):
     """Send an email with the login link to this user."""
-    site_name = InvenTree.version.inventreeInstanceName()
-
-    context = {'username': user.username, 'site_name': site_name, 'link': link}
+    context = {'username': user.username, 'link': link}
     email_plaintext_message = render_to_string(
         'InvenTree/user_simple_login.txt', context
     )
 
     send_email(
-        f'[{site_name}] ' + _('Log in to the app'),
+        _('Log in to the app'),
         email_plaintext_message,
         [user.email],
         settings.DEFAULT_FROM_EMAIL,

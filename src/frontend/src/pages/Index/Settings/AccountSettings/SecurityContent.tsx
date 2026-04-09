@@ -24,8 +24,7 @@ import { ErrorBoundary } from '@sentry/react';
 import {
   IconAlertCircle,
   IconAt,
-  IconRefresh,
-  IconX
+  IconRefresh
 } from '@tabler/icons-react';
 import { useQuery } from '@tanstack/react-query';
 import { useCallback, useMemo, useState } from 'react';
@@ -172,11 +171,26 @@ function EmailSection() {
     return data == undefined || data.length == 0;
   }, [data]);
 
+  function extractEmailErrorMessage(err: any) {
+    const errors = err?.response?.data?.errors;
+
+    if (Array.isArray(errors) && errors.length > 0) {
+      return errors
+        .map((error: any) => error.message)
+        .filter(Boolean)
+        .join('\n');
+    }
+
+    return t`Error while updating email`;
+  }
+
   function runServerAction(
     action: 'patch' | 'post' | 'put' | 'delete' = 'post',
-    data?: any
+    data?: any,
+    errorTitle?: string
   ) {
     const vals: any = data || { email: selectedEmail };
+
     return authApi(apiUrl(ApiEndpoints.auth_email), undefined, action, vals)
       .then(() => {
         refetch();
@@ -186,10 +200,12 @@ function EmailSection() {
 
         showNotification({
           id: 'email-error',
-          title: t`Error`,
-          message: t`Error while updating email`,
+          title: errorTitle || t`Error`,
+          message: extractEmailErrorMessage(err),
           color: 'red'
         });
+
+        throw err;
       });
   }
 
@@ -284,18 +300,11 @@ function EmailSection() {
         <Button
           aria-label='email-address-submit'
           onClick={() =>
-            runServerAction('post', { email: newEmailValue }).catch((err) => {
-              if (err.status == 400) {
-                showNotification({
-                  title: t`Error while adding email`,
-                  message: err.response.data.errors
-                    .map((error: any) => error.message)
-                    .join('\n'),
-                  color: 'red',
-                  icon: <IconX />
-                });
-              }
-            })
+            runServerAction(
+              'post',
+              { email: newEmailValue },
+              t`Error while adding email`
+            ).catch(() => null)
           }
         >
           <Trans>Add Email</Trans>

@@ -13,7 +13,9 @@ from django.utils.translation import gettext_lazy as _
 import structlog
 from allauth.account.adapter import DefaultAccountAdapter
 from allauth.account.forms import LoginForm, SignupForm, set_form_field_order
+from allauth.account.models import EmailAddress
 from allauth.headless.adapter import DefaultHeadlessAdapter
+from allauth.headless.account.views import ManageEmailView
 from allauth.socialaccount.adapter import DefaultSocialAccountAdapter
 
 from common.settings import get_global_setting
@@ -169,6 +171,10 @@ class RegistrationMixin:
 class CustomAccountAdapter(RegistrationMixin, DefaultAccountAdapter):
     """Override of adapter to use dynamic settings."""
 
+    def format_email_subject(self, subject):
+        """Do not prepend upstream brand information to account emails."""
+        return str(subject).strip()
+
     def send_mail(self, template_prefix, email, context):
         """Only send mail if backend configured."""
         if settings.EMAIL_HOST:
@@ -243,3 +249,42 @@ class CustomHeadlessAdapter(DefaultHeadlessAdapter):
         return self.request.build_absolute_uri(
             f'/{settings.FRONTEND_URL_BASE}/{HEADLESS_FRONTEND_URLS[urlname].format(**kwargs)}'
         )
+
+
+def sync_user_account_email(user):
+    """Ensure the current account email is visible in the email security settings."""
+    email = (user.email or '').strip().lower()
+
+    if not email:
+        return None
+
+    email_address = EmailAddress.objects.filter(user=user, email__iexact=email).first()
+
+    if email_address:
+        return email_address
+
+    if EmailAddress.objects.filter(email__iexact=email).exclude(user=user).exists():
+        logger.warning(
+            'Skipped syncing account email because it belongs to another user',
+            user_id=user.pk,
+            email=email,
+        )
+        return None
+
+    has_primary_email = EmailAddress.objects.filter(user=user, primary=True).exists()
+
+    return EmailAddress.objects.create(
+        user=user,
+        email=email,
+        primary=not has_primary_email,
+        verified=False,
+    )
+
+
+class CustomManageEmailView(ManageEmailView):
+    """Synchronize the current account email before listing configured email addresses."""
+
+    def get(self, request, *args, **kwargs):
+        """Ensure the current account email is available in the security view."""
+        sync_user_account_email(self.user)
+        return super().get(request, *args, **kwargs)

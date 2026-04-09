@@ -41,6 +41,7 @@ from .api import (
     VersionView,
 )
 from .config import get_setting
+from .auth_overrides import CustomManageEmailView
 from .magic_login import GetSimpleLoginView
 from .views import auth_request
 
@@ -106,6 +107,11 @@ apipatterns = [
                 'login-redirect/',
                 users.api.LoginRedirect.as_view(),
                 name='api-login-redirect',
+            ),
+            path(
+                'account/email',
+                CustomManageEmailView.as_api_view(client=Client.BROWSER),
+                name='api-auth-account-email',
             ),
             path(
                 '',

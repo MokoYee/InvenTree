@@ -1631,7 +1631,7 @@ class MagicLoginTest(InvenTreeTestCase):
         self.assertEqual(resp.status_code, 200)
         self.assertEqual(resp.data, {'status': 'ok'})
         self.assertEqual(len(mail.outbox), 1)
-        self.assertEqual(mail.outbox[0].subject, '[InvenTree] Log in to the app')
+        self.assertEqual(mail.outbox[0].subject, 'Log in to the app')
 
         # Check that the token is in the email
         self.assertIn('http://testserver/api/email/login/', mail.outbox[0].body)

@@ -254,7 +254,7 @@ def notify_overdue_build_order(bo):
     context = {
         'order': bo,
         'name': name,
-        'message': _(f'Build order {bo} is now overdue'),
+        'message': _('Build order {bo} is now overdue').format(bo=bo),
         'link': InvenTree.helpers_model.construct_absolute_url(bo.get_absolute_url()),
         'template': {'html': 'email/overdue_build_order.html', 'subject': name},
     }

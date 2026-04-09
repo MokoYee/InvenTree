@@ -733,7 +733,7 @@ class Build(
             targets.append(self.sales_order.responsible)
 
         build = self
-        name = _(f'Build order {build} has been completed')
+        name = _('Build order {build} has been completed').format(build=build)
 
         context = {
             'build': build,

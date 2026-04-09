@@ -977,7 +977,7 @@ if INTERNAL_EMAIL_BACKEND.startswith('anymail.backends.'):
     ANYMAIL = get_setting('INVENTREE_ANYMAIL', 'email.anymail', None, dict)
 
 EMAIL_SUBJECT_PREFIX = get_setting(
-    'INVENTREE_EMAIL_PREFIX', 'email.prefix', '[InvenTree] '
+    'INVENTREE_EMAIL_PREFIX', 'email.prefix', ''
 )
 DEFAULT_FROM_EMAIL = get_setting('INVENTREE_EMAIL_SENDER', 'email.sender', '')
 

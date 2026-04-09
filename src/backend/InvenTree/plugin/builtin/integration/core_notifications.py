@@ -3,13 +3,13 @@
 from django.contrib.auth.models import User
 from django.db.models import Model
 from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 from django.utils.translation import gettext_lazy as _
 
 import requests
 import structlog
 
 import InvenTree.helpers_email
-from common.settings import get_global_setting
 from plugin import InvenTreePlugin
 from plugin.mixins import NotificationMixin, SettingsMixin
 
@@ -88,13 +88,8 @@ class InvenTreeEmailNotifications(NotificationMixin, SettingsMixin, InvenTreePlu
             return False
 
         html_message = render_to_string(context['template']['html'], context)
-
-        # Prefix the 'instance title' to the email subject
-        instance_title = get_global_setting('INVENTREE_INSTANCE')
         subject = context['template'].get('subject', '')
-
-        if instance_title:
-            subject = f'[{instance_title}] {subject}'
+        plain_message = strip_tags(html_message).strip()
 
         recipients = []
 
@@ -108,7 +103,7 @@ class InvenTreeEmailNotifications(NotificationMixin, SettingsMixin, InvenTreePlu
 
         if recipients:
             InvenTree.helpers_email.send_email(
-                subject, '', recipients, html_message=html_message
+                subject, plain_message, recipients, html_message=html_message
             )
             return True
 
