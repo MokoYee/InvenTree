@@ -6,18 +6,21 @@ import {
   Group,
   Loader,
   Paper,
+  SimpleGrid,
   Stack,
   Text,
   TextInput
 } from '@mantine/core';
 import { notifications } from '@mantine/notifications';
 import { IconCircleCheck, IconExclamationCircle, IconLock } from '@tabler/icons-react';
+import dayjs from 'dayjs';
 import { useEffect, useMemo, useState } from 'react';
 
 import { ApiEndpoints } from '@lib/enums/ApiEndpoints';
 import { ModelType } from '@lib/enums/ModelType';
 import { apiUrl } from '@lib/functions/Api';
 import { useApi } from '../../contexts/ApiContext';
+import { formatCurrency } from '../../defaults/formatters';
 import { showApiErrorMessage } from '../../functions/notifications';
 import { useUserState } from '../../states/UserState';
 
@@ -116,12 +119,131 @@ function validateFieldValue(
   return null;
 }
 
+function formatSummaryText(value: string | null | undefined): string {
+  return normalizeValue(value) || '未填写';
+}
+
+function formatSummaryInteger(value: string | null | undefined): string {
+  const normalized = normalizeValue(value);
+
+  if (!normalized) {
+    return '未填写';
+  }
+
+  return normalized;
+}
+
+function formatSummaryCurrency(value: string | null | undefined): string {
+  const normalized = normalizeValue(value);
+
+  if (!normalized) {
+    return '未填写';
+  }
+
+  const numericValue = Number(normalized);
+
+  if (Number.isFinite(numericValue)) {
+    return `${formatCurrency(numericValue, { currency: 'CNY' })}`;
+  }
+
+  return `${normalized} 元`;
+}
+
+function formatSummaryDate(value: string | null | undefined): string {
+  const normalized = normalizeValue(value);
+
+  if (!normalized) {
+    return '未记录';
+  }
+
+  const parsedDate = dayjs(normalized);
+
+  if (!parsedDate.isValid()) {
+    return normalized;
+  }
+
+  return parsedDate.format('YYYY-MM-DD HH:mm');
+}
+
+function formatSummaryStock(
+  quantity: number | string | null | undefined,
+  unit?: string
+): string {
+  const numericValue = Number(quantity ?? 0);
+  const displayValue = Number.isFinite(numericValue) ? numericValue : 0;
+  const normalizedUnit = normalizeValue(unit);
+
+  return normalizedUnit ? `${displayValue} ${normalizedUnit}` : `${displayValue}`;
+}
+
+function findLatestTrackingRecord(
+  records: any[],
+  deltaKey: 'added' | 'removed'
+): any | null {
+  return records.reduce<any | null>((latestRecord, record) => {
+    const deltaValue = Number(record?.deltas?.[deltaKey] ?? 0);
+
+    if (!(deltaValue > 0)) {
+      return latestRecord;
+    }
+
+    if (!latestRecord) {
+      return record;
+    }
+
+    const latestDate = dayjs(latestRecord?.date);
+    const currentDate = dayjs(record?.date);
+
+    if (!currentDate.isValid()) {
+      return latestRecord;
+    }
+
+    if (!latestDate.isValid() || currentDate.isAfter(latestDate)) {
+      return record;
+    }
+
+    return latestRecord;
+  }, null);
+}
+
+function SummaryCard({
+  label,
+  value,
+  hint
+}: Readonly<{
+  label: string;
+  value: string;
+  hint?: string;
+}>) {
+  return (
+    <Paper withBorder p='md'>
+      <Stack gap={6}>
+        <Text size='xs' c='dimmed'>
+          {label}
+        </Text>
+        <Text fw={600} lineClamp={2}>
+          {value}
+        </Text>
+        {hint && (
+          <Text size='xs' c='dimmed' lineClamp={2}>
+            {hint}
+          </Text>
+        )}
+      </Stack>
+    </Paper>
+  );
+}
+
 export default function PartOperationsPanel({
   partId,
-  partLocked
+  partLocked,
+  totalInStock,
+  unit
 }: Readonly<{
   partId: number;
   partLocked?: boolean;
+  totalInStock?: number;
+  unit?: string;
 }>) {
   const api = useApi();
   const user = useUserState();
@@ -160,6 +282,21 @@ export default function PartOperationsPanel({
     refetchOnWindowFocus: false
   });
 
+  const trackingSummaryQuery = useQuery({
+    enabled: !!partId,
+    queryKey: ['part-operation-tracking-summary', partId],
+    queryFn: async () =>
+      api
+        .get(apiUrl(ApiEndpoints.stock_tracking_list), {
+          params: {
+            part: partId,
+            limit: 50
+          }
+        })
+        .then((response) => extractList(response.data)),
+    refetchOnWindowFocus: false
+  });
+
   const templateMap = useMemo(() => {
     const map = new Map<string, any>();
 
@@ -191,6 +328,61 @@ export default function PartOperationsPanel({
   const missingTemplates = useMemo(() => {
     return OPERATION_FIELDS.filter((field) => !templateMap.has(field.templateName));
   }, [templateMap]);
+
+  const latestInboundRecord = useMemo(() => {
+    return findLatestTrackingRecord(trackingSummaryQuery.data ?? [], 'added');
+  }, [trackingSummaryQuery.data]);
+
+  const latestOutboundRecord = useMemo(() => {
+    return findLatestTrackingRecord(trackingSummaryQuery.data ?? [], 'removed');
+  }, [trackingSummaryQuery.data]);
+
+  const summaryCards = useMemo(() => {
+    return [
+      {
+        label: '样品初次到店时间',
+        value: formatSummaryText(parameterMap.get('样品初次到店时间')?.data),
+        hint: '用于确认产品第一次到店时间'
+      },
+      {
+        label: '最近一次到店时间',
+        value: formatSummaryDate(latestInboundRecord?.date),
+        hint: latestInboundRecord?.notes
+          ? `最近入库说明：${normalizeValue(latestInboundRecord.notes)}`
+          : '依据最近一次入库流水自动汇总'
+      },
+      {
+        label: '销售单价',
+        value: formatSummaryCurrency(parameterMap.get('销售单价')?.data),
+        hint: '默认按人民币展示'
+      },
+      {
+        label: '当前库存数量',
+        value: formatSummaryStock(totalInStock, unit),
+        hint: '用于快速判断当前可用货量'
+      },
+      {
+        label: '抖店上架数量',
+        value: formatSummaryInteger(parameterMap.get('抖店上架数量')?.data),
+        hint: '当前抖店在售数量'
+      },
+      {
+        label: '视频号上架数量',
+        value: formatSummaryInteger(parameterMap.get('视频号上架数量')?.data),
+        hint: '当前视频号在售数量'
+      },
+      {
+        label: '最近一次出库时间',
+        value: formatSummaryDate(latestOutboundRecord?.date),
+        hint: '用于核对最近一次扣减库存的时间'
+      },
+      {
+        label: '最近一次出库说明',
+        value: formatSummaryText(latestOutboundRecord?.notes),
+        hint: '系统读取最近一次出库流水备注'
+      }
+    ];
+  }, [latestInboundRecord, latestOutboundRecord, parameterMap, totalInStock, unit]);
 
   useEffect(() => {
     const nextValues: Record<string, string> = {};
@@ -329,6 +521,35 @@ export default function PartOperationsPanel({
 
   return (
     <Stack gap='md'>
+      <Paper withBorder p='md'>
+        <Stack gap='sm'>
+          <Group justify='space-between' align='center'>
+            <Stack gap={2}>
+              <Text fw={600}>业务摘要</Text>
+              <Text size='sm' c='dimmed'>
+                汇总产品常用运营字段和最近库存动作，便于业务快速判断。
+              </Text>
+            </Stack>
+            {trackingSummaryQuery.isFetching && <Loader size='xs' />}
+          </Group>
+
+          <SimpleGrid cols={{ base: 1, sm: 2, lg: 4 }} spacing='sm'>
+            {summaryCards.map((card) => (
+              <SummaryCard
+                key={card.label}
+                label={card.label}
+                value={card.value}
+                hint={card.hint}
+              />
+            ))}
+          </SimpleGrid>
+
+          <Text size='xs' c='dimmed'>
+            更完整的库存变动明细，请到“库存历史记录”页签查看。
+          </Text>
+        </Stack>
+      </Paper>
+
       <Text size='sm' c='dimmed'>
         维护产品常用运营信息，保存后系统会自动更新对应业务字段。
       </Text>

@@ -921,7 +921,12 @@ export default function PartDetail() {
         label: '运营信息',
         icon: <IconListCheck />,
         content: part?.pk ? (
-          <PartOperationsPanel partId={part.pk} partLocked={part.locked} />
+          <PartOperationsPanel
+            partId={part.pk}
+            partLocked={part.locked}
+            totalInStock={partRequirements?.total_stock ?? part?.total_in_stock ?? 0}
+            unit={part.units}
+          />
         ) : (
           <Skeleton />
         )
@@ -960,7 +965,7 @@ export default function PartDetail() {
         has_note: !!part?.notes
       })
     ];
-  }, [id, part, user, globalSettings, userSettings, detailsPanel]);
+  }, [id, part, partRequirements, user, globalSettings, userSettings, detailsPanel]);
 
   const breadcrumbs = useMemo(() => {
     return [
