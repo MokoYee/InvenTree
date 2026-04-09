@@ -3,7 +3,10 @@ import { IconUser, IconUsersGroup } from '@tabler/icons-react';
 import type { ReactNode } from 'react';
 
 import { t } from '@lingui/core/macro';
-import { formatUserDisplayName } from '../../functions/userDisplay';
+import {
+  getPrimaryUserLabel,
+  getSecondaryUserLabel
+} from '../../functions/userDisplay';
 import { type InstanceRenderInterface, RenderInlineModel } from './Instance';
 
 export function RenderOwner({
@@ -28,7 +31,13 @@ export function RenderOwner({
 export function RenderUser({
   instance
 }: Readonly<InstanceRenderInterface>): ReactNode {
-  const displayName = formatUserDisplayName(
+  const primaryLabel = getPrimaryUserLabel(
+    instance?.username,
+    instance?.first_name,
+    instance?.last_name
+  );
+  const secondaryLabel = getSecondaryUserLabel(
+    instance?.username,
     instance?.first_name,
     instance?.last_name
   );
@@ -36,9 +45,10 @@ export function RenderUser({
   return (
     instance && (
       <RenderInlineModel
-        primary={instance.username}
+        primary={primaryLabel}
         secondary={
           <Group gap='xs'>
+            {secondaryLabel && <Text size='xs'>{secondaryLabel}</Text>}
             {instance.is_active === false && (
               <Badge autoContrast color='red'>{t`Inactive`}</Badge>
             )}
@@ -46,7 +56,6 @@ export function RenderUser({
         }
         suffix={
           <Group gap='xs'>
-            {displayName && <Text size='xs'>{displayName}</Text>}
             <IconUser size={16} />
           </Group>
         }

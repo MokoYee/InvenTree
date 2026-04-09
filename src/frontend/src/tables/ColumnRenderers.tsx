@@ -33,7 +33,10 @@ import {
   formatDate,
   formatDecimal
 } from '../defaults/formatters';
-import { formatUserDisplayName } from '../functions/userDisplay';
+import {
+  getPrimaryUserLabel,
+  getSecondaryUserLabel
+} from '../functions/userDisplay';
 import {
   useGlobalSettingsState,
   useUserSettingsState
@@ -603,13 +606,25 @@ export function UserColumn(props: TableColumnProps): TableColumn {
     render: (record: any) => {
       const instance = resolveItem(record, props.accessor ?? 'user_detail');
       if (instance) {
-        const displayName = formatUserDisplayName(
+        const primaryLabel = getPrimaryUserLabel(
+          instance.username,
           instance.first_name,
           instance.last_name
         );
-        const extra: ReactNode[] = [
-          <Text size='sm'>{displayName}</Text>
-        ];
+        const secondaryLabel = getSecondaryUserLabel(
+          instance.username,
+          instance.first_name,
+          instance.last_name
+        );
+        const extra: ReactNode[] = [];
+
+        if (secondaryLabel) {
+          extra.push(
+            <Text size='sm'>
+              {t`Username`}: {secondaryLabel}
+            </Text>
+          );
+        }
 
         if (instance.is_active === false) {
           extra.push(
@@ -621,7 +636,7 @@ export function UserColumn(props: TableColumnProps): TableColumn {
 
         return (
           <TableHoverCard
-            value={instance.username}
+            value={primaryLabel}
             title={t`User Information`}
             icon='user'
             extra={extra}

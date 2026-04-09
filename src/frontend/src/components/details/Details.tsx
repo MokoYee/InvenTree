@@ -28,8 +28,10 @@ import type { InvenTreeIconType } from '@lib/types/Icons';
 import { useApi } from '../../contexts/ApiContext';
 import { formatDate, formatDecimal } from '../../defaults/formatters';
 import { InvenTreeIcon } from '../../functions/icons';
-import { formatUserDisplayName } from '../../functions/userDisplay';
-import { useGlobalSettingsState } from '../../states/SettingsStates';
+import {
+  getPrimaryUserLabel,
+  getSecondaryUserLabel
+} from '../../functions/userDisplay';
 import { CopyButton } from '../buttons/CopyButton';
 import { StylishText } from '../items/StylishText';
 import { getModelInfo } from '../render/ModelType';
@@ -121,9 +123,20 @@ function HoverNameBadge(data: any, type: BadgeType) {
           undefined
         ];
       case 'user':
-        return [
-          formatUserDisplayName(data.first_name, data.last_name),
+        const primaryLabel = getPrimaryUserLabel(
           data.username,
+          data.first_name,
+          data.last_name
+        );
+        const secondaryLabel = getSecondaryUserLabel(
+          data.username,
+          data.first_name,
+          data.last_name
+        );
+
+        return [
+          primaryLabel,
+          secondaryLabel || data.username,
           getDetailUrl(ModelType.user, data.pk, true),
           data?.image,
           <>
@@ -214,7 +227,6 @@ function NameBadge({
     }
   });
 
-  const settings = useGlobalSettingsState();
   const nameComp = useMemo(() => {
     if (!data) return <Skeleton height={12} radius='md' />;
     return HoverNameBadge(data, type);
@@ -228,14 +240,8 @@ function NameBadge({
   function _render_name() {
     if (!data || !data.pk) {
       return '';
-    } else if (type === 'user' && settings.isSet('DISPLAY_FULL_NAMES')) {
-      if (data.first_name || data.last_name) {
-        return formatUserDisplayName(data.first_name, data.last_name);
-      } else {
-        return data.username;
-      }
     } else if (type === 'user') {
-      return data.username;
+      return getPrimaryUserLabel(data.username, data.first_name, data.last_name);
     } else {
       return data.name;
     }

@@ -17,3 +17,25 @@ export function formatUserDisplayName(
 
   return [first, last].filter(Boolean).join(' ');
 }
+
+export function getPrimaryUserLabel(
+  username?: string | null,
+  firstName?: string | null,
+  lastName?: string | null
+): string {
+  const displayName = formatUserDisplayName(firstName, lastName);
+  const loginName = `${username ?? ''}`.trim();
+
+  return displayName || loginName;
+}
+
+export function getSecondaryUserLabel(
+  username?: string | null,
+  firstName?: string | null,
+  lastName?: string | null
+): string {
+  const displayName = formatUserDisplayName(firstName, lastName);
+  const loginName = `${username ?? ''}`.trim();
+
+  return displayName && loginName ? loginName : '';
+}
