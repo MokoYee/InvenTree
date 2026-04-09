@@ -38,6 +38,7 @@ import type {
   TemplateEditorUIFeature,
   TemplatePreviewUIFeature
 } from '../../components/plugins/PluginUIFeatureTypes';
+import { getModelTypeLabel } from '../../components/render/ModelType';
 import { useFilters } from '../../hooks/UseFilter';
 import {
   useCreateApiFormModal,
@@ -228,7 +229,8 @@ export function TemplateTable({
       {
         accessor: 'model_type',
         sortable: true,
-        switchable: false
+        switchable: false,
+        render: (record: any) => getModelTypeLabel(record.model_type)
       },
       {
         accessor: 'revision',

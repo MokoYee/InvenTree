@@ -10,6 +10,7 @@ import { apiUrl } from '@lib/functions/Api';
 import type { TableFilter } from '@lib/types/Filters';
 import type { TableColumn } from '@lib/types/Tables';
 import { AttachmentLink } from '../../components/items/AttachmentLink';
+import { getModelTypeLabel } from '../../components/render/ModelType';
 import { RenderUser } from '../../components/render/User';
 import { dataImporterSessionFields } from '../../forms/ImporterForms';
 import { useFilters } from '../../hooks/UseFilter';
@@ -57,7 +58,8 @@ export default function ImportSessionTable() {
     return [
       {
         accessor: 'model_type',
-        sortable: true
+        sortable: true,
+        render: (record: any) => getModelTypeLabel(record.model_type)
       },
       StatusColumn({ model: ModelType.importsession, accessor: 'status' }),
       {

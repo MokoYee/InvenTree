@@ -16,3 +16,22 @@ export function getModelInfo(type: ModelType): ModelInformationInterface {
     label_multiple: ModelInformationDict[type].label_multiple()
   };
 }
+
+/*
+ * Normalize backend content type values and return a user-facing model label
+ * @param type - Raw model type value, e.g. "part" or "part.part"
+ * @returns translated model label when known, otherwise the original value
+ */
+export function getModelTypeLabel(type?: string | null): string {
+  if (!type) {
+    return '-';
+  }
+
+  const normalizedType = String(type).split('.').pop() as ModelType | undefined;
+
+  if (normalizedType && normalizedType in ModelInformationDict) {
+    return ModelInformationDict[normalizedType].label();
+  }
+
+  return String(type);
+}

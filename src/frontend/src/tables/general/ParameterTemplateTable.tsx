@@ -12,6 +12,7 @@ import type { TableFilter } from '@lib/types/Filters';
 import type { RowAction, TableColumn } from '@lib/types/Tables';
 import { t } from '@lingui/core/macro';
 import { useCallback, useMemo, useState } from 'react';
+import { getModelTypeLabel } from '../../components/render/ModelType';
 import { useFilters } from '../../hooks/UseFilter';
 import {
   useCreateApiFormModal,
@@ -175,7 +176,8 @@ export default function ParameterTemplateTable() {
         sortable: true
       },
       {
-        accessor: 'model_type'
+        accessor: 'model_type',
+        render: (record: any) => getModelTypeLabel(record.model_type)
       },
       BooleanColumn({
         accessor: 'checkbox'
