@@ -21,7 +21,7 @@ import { useApi } from '../../contexts/ApiContext';
 import { showApiErrorMessage } from '../../functions/notifications';
 import { useUserState } from '../../states/UserState';
 
-type HuiFieldConfig = {
+type OperationFieldConfig = {
   key: string;
   label: string;
   templateName: string;
@@ -31,7 +31,7 @@ type HuiFieldConfig = {
   step?: string;
 };
 
-const HUI_FIELDS: HuiFieldConfig[] = [
+const OPERATION_FIELDS: OperationFieldConfig[] = [
   {
     key: 'sampleArrivalDate',
     label: '样品初次到店时间',
@@ -85,7 +85,10 @@ function normalizeValue(value: string | null | undefined): string {
   return `${value ?? ''}`.trim();
 }
 
-function validateFieldValue(field: HuiFieldConfig, value: string): string | null {
+function validateFieldValue(
+  field: OperationFieldConfig,
+  value: string
+): string | null {
   if (!value) {
     return null;
   }
@@ -113,7 +116,7 @@ function validateFieldValue(field: HuiFieldConfig, value: string): string | null
   return null;
 }
 
-export default function PartHuiPanel({
+export default function PartOperationsPanel({
   partId,
   partLocked
 }: Readonly<{
@@ -128,7 +131,7 @@ export default function PartHuiPanel({
   const [saving, setSaving] = useState(false);
 
   const templatesQuery = useQuery({
-    queryKey: ['hui-parameter-templates'],
+    queryKey: ['operation-parameter-templates'],
     queryFn: async () =>
       api
         .get(apiUrl(ApiEndpoints.parameter_template_list), {
@@ -143,7 +146,7 @@ export default function PartHuiPanel({
 
   const parametersQuery = useQuery({
     enabled: !!partId,
-    queryKey: ['hui-part-parameters', partId],
+    queryKey: ['part-operation-parameters', partId],
     queryFn: async () =>
       api
         .get(apiUrl(ApiEndpoints.parameter_list), {
@@ -186,13 +189,13 @@ export default function PartHuiPanel({
   }, [parametersQuery.data]);
 
   const missingTemplates = useMemo(() => {
-    return HUI_FIELDS.filter((field) => !templateMap.has(field.templateName));
+    return OPERATION_FIELDS.filter((field) => !templateMap.has(field.templateName));
   }, [templateMap]);
 
   useEffect(() => {
     const nextValues: Record<string, string> = {};
 
-    for (const field of HUI_FIELDS) {
+    for (const field of OPERATION_FIELDS) {
       nextValues[field.key] = normalizeValue(
         parameterMap.get(field.templateName)?.data
       );
@@ -211,7 +214,7 @@ export default function PartHuiPanel({
   const resetDraftValues = () => {
     const nextValues: Record<string, string> = {};
 
-    for (const field of HUI_FIELDS) {
+    for (const field of OPERATION_FIELDS) {
       nextValues[field.key] = normalizeValue(
         parameterMap.get(field.templateName)?.data
       );
@@ -223,14 +226,14 @@ export default function PartHuiPanel({
   const saveValues = async () => {
     if (missingTemplates.length > 0) {
       notifications.show({
-        title: '一期模板未初始化',
-        message: '请先执行 hui_bootstrap --force，再回来保存这些字段',
+        title: '字段尚未启用',
+        message: '请先启用这些字段，再保存运营信息',
         color: 'red'
       });
       return;
     }
 
-    const changedFields = HUI_FIELDS.filter((field) => {
+    const changedFields = OPERATION_FIELDS.filter((field) => {
       const currentValue = normalizeValue(
         parameterMap.get(field.templateName)?.data
       );
@@ -246,7 +249,7 @@ export default function PartHuiPanel({
     if (changedFields.length === 0) {
       notifications.show({
         title: '无需保存',
-        message: '一期运营字段没有变化',
+        message: '运营信息没有变化',
         color: 'blue'
       });
       return;
@@ -292,16 +295,16 @@ export default function PartHuiPanel({
 
       notifications.show({
         title: '保存成功',
-        message: '一期运营字段已更新',
+        message: '运营信息已更新',
         color: 'green',
         icon: <IconCircleCheck />
       });
     } catch (error: any) {
       showApiErrorMessage({
         error: error,
-        title: '保存一期运营字段失败',
+        title: '保存运营信息失败',
         message: '请检查字段内容或稍后重试',
-        id: 'hui-parameter-save-error'
+        id: 'part-operation-parameter-save-error'
       });
     } finally {
       setSaving(false);
@@ -318,21 +321,21 @@ export default function PartHuiPanel({
 
   if (templatesQuery.isError || parametersQuery.isError) {
     return (
-      <Alert color='red' icon={<IconExclamationCircle />} title='一期字段加载失败'>
-        无法读取一期运营字段，请刷新页面后重试。
+      <Alert color='red' icon={<IconExclamationCircle />} title='运营信息加载失败'>
+        无法读取运营信息，请刷新页面后重试。
       </Alert>
     );
   }
 
   return (
     <Stack gap='md'>
-      <Alert color='blue' icon={<IconCircleCheck />} title='一期运营字段'>
-        这里是 Hui 一期直接可用的 4 个业务字段，不需要再去完整参数表里手动新增。
-      </Alert>
+      <Text size='sm' c='dimmed'>
+        维护产品常用运营信息，保存后系统会自动更新对应业务字段。
+      </Text>
 
       {partLocked && (
-        <Alert color='orange' icon={<IconLock />} title='零件已锁定'>
-          当前零件已锁定，一期运营字段只能查看，不能修改。
+        <Alert color='orange' icon={<IconLock />} title='产品已锁定'>
+          当前产品已锁定，运营信息只能查看，不能修改。
         </Alert>
       )}
 
@@ -340,20 +343,20 @@ export default function PartHuiPanel({
         <Alert
           color='red'
           icon={<IconExclamationCircle />}
-          title='缺少一期参数模板'
+          title='字段尚未启用'
         >
           <Stack gap='xs'>
             <Text size='sm'>
-              未检测到以下模板：{missingTemplates.map((field) => field.label).join('、')}
+              以下字段当前未启用：{missingTemplates.map((field) => field.label).join('、')}
             </Text>
             <Text size='sm'>
-              请执行 `hui_bootstrap --force` 后刷新本页。
+              如需使用或扩展这些字段，请联系管理员在系统配置中新增并启用。
             </Text>
           </Stack>
         </Alert>
       )}
 
-      {HUI_FIELDS.map((field) => {
+      {OPERATION_FIELDS.map((field) => {
         const hasTemplate = templateMap.has(field.templateName);
         const currentValue = normalizeValue(
           parameterMap.get(field.templateName)?.data
@@ -373,7 +376,7 @@ export default function PartHuiPanel({
                       </Badge>
                     ) : (
                       <Badge color='red' variant='light'>
-                        缺少模板
+                        未启用
                       </Badge>
                     )}
                   </Group>
@@ -408,7 +411,7 @@ export default function PartHuiPanel({
           onClick={resetDraftValues}
           disabled={saving}
         >
-          恢复当前值
+          恢复已保存内容
         </Button>
         <Button
           color='green'

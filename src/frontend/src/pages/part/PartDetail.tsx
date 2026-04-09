@@ -109,7 +109,7 @@ import { ReturnOrderTable } from '../../tables/sales/ReturnOrderTable';
 import { SalesOrderTable } from '../../tables/sales/SalesOrderTable';
 import { StockItemTable } from '../../tables/stock/StockItemTable';
 import PartAllocationPanel from './PartAllocationPanel';
-import PartHuiPanel from './PartHuiPanel';
+import PartOperationsPanel from './PartOperationsPanel';
 import PartPricingPanel from './PartPricingPanel';
 import PartStockHistoryDetail from './PartStockHistoryDetail';
 import PartSupplierDetail from './PartSupplierDetail';
@@ -917,11 +917,11 @@ export default function PartDetail() {
         content: <RelatedPartTable partId={part.pk} />
       },
       {
-        name: 'hui',
-        label: 'Hui 一期',
+        name: 'operations',
+        label: '运营信息',
         icon: <IconListCheck />,
         content: part?.pk ? (
-          <PartHuiPanel partId={part.pk} partLocked={part.locked} />
+          <PartOperationsPanel partId={part.pk} partLocked={part.locked} />
         ) : (
           <Skeleton />
         )
