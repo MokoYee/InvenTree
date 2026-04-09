@@ -2,7 +2,6 @@ import { t } from '@lingui/core/macro';
 import { Trans } from '@lingui/react/macro';
 import { Button, Group, Paper, SimpleGrid, Stack, Text } from '@mantine/core';
 import {
-  IconBrandGithub,
   IconListCheck,
   IconUserPlus,
   IconUsersGroup,
@@ -80,18 +79,6 @@ export const QuickAction = () => {
   });
 
   const items = [
-    {
-      id: '0',
-      title: t`Open an Issue`,
-      description: t`Report a bug or request a feature on GitHub`,
-      icon: <IconBrandGithub />,
-      buttonText: t`Open Issue`,
-      action: () =>
-        window.open(
-          'https://github.com/inventree/inventree/issues/new',
-          '_blank'
-        )
-    },
     {
       id: '1',
       title: t`Add New Group`,

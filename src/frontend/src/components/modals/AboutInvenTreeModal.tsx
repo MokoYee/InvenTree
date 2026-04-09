@@ -23,7 +23,7 @@ import { CopyButton } from '../buttons/CopyButton';
 import { StylishText } from '../items/StylishText';
 
 import type { JSX } from 'react';
-import { OnlyStaff } from '../items/OnlyStaff';
+import { OnlySuperuser } from '../items/OnlyStaff';
 
 type AboutLookupRef = {
   ref: string;
@@ -42,9 +42,9 @@ export function AboutInvenTreeModal({
   }>
 >) {
   return (
-    <OnlyStaff>
+    <OnlySuperuser>
       <AboutContent context={context} id={id} innerProps={innerProps} />
-    </OnlyStaff>
+    </OnlySuperuser>
   );
 }
 

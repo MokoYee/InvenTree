@@ -55,7 +55,7 @@ msgid "Cancel"
 msgstr "取消"
 
 #: lib/components/RowActions.tsx:136
-#: src/components/nav/NavigationDrawer.tsx:190
+#: src/components/nav/NavigationDrawer.tsx:185
 #: src/forms/PurchaseOrderForms.tsx:891
 #: src/forms/StockForms.tsx:805
 #: src/forms/StockForms.tsx:852
@@ -347,7 +347,7 @@ msgstr "采购订单"
 
 #: lib/enums/ModelInformation.tsx:160
 #: lib/enums/Roles.tsx:39
-#: src/defaults/actions.tsx:106
+#: src/defaults/actions.tsx:101
 #: src/pages/Index/Settings/SystemSettings.tsx:301
 #: src/pages/company/CompanyDetail.tsx:204
 #: src/pages/company/SupplierPartDetail.tsx:267
@@ -380,7 +380,7 @@ msgstr "销售订单"
 
 #: lib/enums/ModelInformation.tsx:176
 #: lib/enums/Roles.tsx:43
-#: src/defaults/actions.tsx:116
+#: src/defaults/actions.tsx:111
 #: src/pages/Index/Settings/SystemSettings.tsx:317
 #: src/pages/company/CompanyDetail.tsx:224
 #: src/pages/part/PartDetail.tsx:854
@@ -405,7 +405,7 @@ msgstr "退货订单"
 
 #: lib/enums/ModelInformation.tsx:195
 #: lib/enums/Roles.tsx:41
-#: src/defaults/actions.tsx:127
+#: src/defaults/actions.tsx:122
 #: src/pages/Index/Settings/SystemSettings.tsx:334
 #: src/pages/company/CompanyDetail.tsx:231
 #: src/pages/part/PartDetail.tsx:861
@@ -592,7 +592,7 @@ msgid "Admin"
 msgstr "管理员"
 
 #: lib/enums/Roles.tsx:33
-#: src/defaults/actions.tsx:146
+#: src/defaults/actions.tsx:141
 #: src/pages/Index/Settings/SystemSettings.tsx:282
 #: src/pages/build/BuildIndex.tsx:67
 #: src/pages/part/PartDetail.tsx:871
@@ -649,7 +649,7 @@ msgstr "条形码"
 
 #: src/components/barcodes/BarcodeInput.tsx:35
 #: src/components/barcodes/BarcodeKeyboardInput.tsx:18
-#: src/defaults/actions.tsx:137
+#: src/defaults/actions.tsx:132
 msgid "Scan"
 msgstr "扫描"
 
@@ -1162,23 +1162,23 @@ msgstr "已分配的退货订单"
 msgid "Show the number of return orders which are assigned to you"
 msgstr "显示分配给您的退货订单数量"
 
-#: src/components/dashboard/DashboardWidgetLibrary.tsx:194
+#: src/components/dashboard/DashboardWidgetLibrary.tsx:200
 #: src/components/dashboard/widgets/GetStartedWidget.tsx:15
-#: src/defaults/links.tsx:86
+#: src/defaults/links.tsx:85
 msgid "Getting Started"
 msgstr "快速上手"
 
-#: src/components/dashboard/DashboardWidgetLibrary.tsx:195
-#: src/defaults/links.tsx:89
+#: src/components/dashboard/DashboardWidgetLibrary.tsx:201
+#: src/defaults/links.tsx:88
 msgid "Getting started with InvenTree"
 msgstr "InvenTree 快速入门"
 
-#: src/components/dashboard/DashboardWidgetLibrary.tsx:202
+#: src/components/dashboard/DashboardWidgetLibrary.tsx:208
 #: src/components/dashboard/widgets/NewsWidget.tsx:123
 msgid "News Updates"
 msgstr "最新消息"
 
-#: src/components/dashboard/DashboardWidgetLibrary.tsx:203
+#: src/components/dashboard/DashboardWidgetLibrary.tsx:209
 msgid "The latest news from InvenTree"
 msgstr "InvenTree 官方最新动态"
 
@@ -1634,48 +1634,48 @@ msgstr "更新"
 #~ msgid "Mail delivery successfull"
 #~ msgstr "Mail delivery successfull"
 
-#: src/components/forms/AuthenticationForm.tsx:73
+#: src/components/forms/AuthenticationForm.tsx:72
 msgid "Login successful"
 msgstr "登录成功"
 
-#: src/components/forms/AuthenticationForm.tsx:74
+#: src/components/forms/AuthenticationForm.tsx:73
 msgid "Logged in successfully"
 msgstr "登录成功"
 
-#: src/components/forms/AuthenticationForm.tsx:81
-#: src/components/forms/AuthenticationForm.tsx:89
+#: src/components/forms/AuthenticationForm.tsx:80
+#: src/components/forms/AuthenticationForm.tsx:88
 #: src/functions/auth.tsx:133
 #: src/functions/auth.tsx:142
 msgid "Login failed"
 msgstr "登录失败"
 
-#: src/components/forms/AuthenticationForm.tsx:82
-#: src/components/forms/AuthenticationForm.tsx:90
-#: src/components/forms/AuthenticationForm.tsx:106
+#: src/components/forms/AuthenticationForm.tsx:81
+#: src/components/forms/AuthenticationForm.tsx:89
+#: src/components/forms/AuthenticationForm.tsx:105
 #: src/functions/auth.tsx:134
 #: src/functions/auth.tsx:350
 msgid "Check your input and try again."
 msgstr "请检查您的输入并重试。"
 
-#: src/components/forms/AuthenticationForm.tsx:100
+#: src/components/forms/AuthenticationForm.tsx:99
 #: src/functions/auth.tsx:341
 msgid "Mail delivery successful"
 msgstr "邮件发送成功"
 
-#: src/components/forms/AuthenticationForm.tsx:101
+#: src/components/forms/AuthenticationForm.tsx:100
 msgid "Check your inbox for the login link. If you have an account, you will receive a login link. Check in spam too."
 msgstr "请检查您的收件箱以查看登录链接。如果您有账户，您将收到登录链接。如未收到，请检查邮箱垃圾箱。"
 
-#: src/components/forms/AuthenticationForm.tsx:105
+#: src/components/forms/AuthenticationForm.tsx:104
 msgid "Mail delivery failed"
 msgstr "邮件发送失败"
 
-#: src/components/forms/AuthenticationForm.tsx:125
+#: src/components/forms/AuthenticationForm.tsx:124
 msgid "Or continue with other methods"
 msgstr "或继续使用其他方法"
 
-#: src/components/forms/AuthenticationForm.tsx:136
-#: src/components/forms/AuthenticationForm.tsx:296
+#: src/components/forms/AuthenticationForm.tsx:135
+#: src/components/forms/AuthenticationForm.tsx:295
 #: src/pages/Index/Settings/AccountSettings/AccountDetailPanel.tsx:64
 #: src/pages/core/UserDetail.tsx:48
 msgid "Username"
@@ -1685,103 +1685,103 @@ msgstr "用户名"
 #~ msgid "I will use username and password"
 #~ msgstr "I will use username and password"
 
-#: src/components/forms/AuthenticationForm.tsx:138
-#: src/components/forms/AuthenticationForm.tsx:298
+#: src/components/forms/AuthenticationForm.tsx:137
+#: src/components/forms/AuthenticationForm.tsx:297
 msgid "Your username"
 msgstr "你的用户名"
 
-#: src/components/forms/AuthenticationForm.tsx:143
-#: src/components/forms/AuthenticationForm.tsx:311
+#: src/components/forms/AuthenticationForm.tsx:142
+#: src/components/forms/AuthenticationForm.tsx:310
 #: src/pages/Auth/ResetPassword.tsx:34
 #: src/pages/Index/Settings/AccountSettings/MFASettings.tsx:195
 msgid "Password"
 msgstr "密码"
 
-#: src/components/forms/AuthenticationForm.tsx:145
-#: src/components/forms/AuthenticationForm.tsx:313
+#: src/components/forms/AuthenticationForm.tsx:144
+#: src/components/forms/AuthenticationForm.tsx:312
 msgid "Your password"
 msgstr "您的密码"
 
-#: src/components/forms/AuthenticationForm.tsx:164
+#: src/components/forms/AuthenticationForm.tsx:163
 msgid "Reset password"
 msgstr "重置密码"
 
-#: src/components/forms/AuthenticationForm.tsx:173
-#: src/components/forms/AuthenticationForm.tsx:303
+#: src/components/forms/AuthenticationForm.tsx:172
+#: src/components/forms/AuthenticationForm.tsx:302
 #: src/pages/Auth/Reset.tsx:17
 #: src/pages/core/UserDetail.tsx:71
 msgid "Email"
 msgstr "邮箱"
 
-#: src/components/forms/AuthenticationForm.tsx:174
+#: src/components/forms/AuthenticationForm.tsx:173
 #: src/pages/Auth/Reset.tsx:18
 msgid "We will send you a link to login - if you are registered"
 msgstr "我们将向您发送登录链接 - 如果您已注册"
 
-#: src/components/forms/AuthenticationForm.tsx:190
+#: src/components/forms/AuthenticationForm.tsx:189
 msgid "Send me an email"
 msgstr "给我发一封电子邮件"
 
-#: src/components/forms/AuthenticationForm.tsx:192
+#: src/components/forms/AuthenticationForm.tsx:191
 msgid "Use username and password"
 msgstr "使用用户名和密码"
 
-#: src/components/forms/AuthenticationForm.tsx:201
+#: src/components/forms/AuthenticationForm.tsx:200
 msgid "Log In"
 msgstr "登录"
 
-#: src/components/forms/AuthenticationForm.tsx:203
+#: src/components/forms/AuthenticationForm.tsx:202
 #: src/pages/Auth/Reset.tsx:26
 msgid "Send Email"
 msgstr "发送电子邮件"
 
-#: src/components/forms/AuthenticationForm.tsx:239
+#: src/components/forms/AuthenticationForm.tsx:238
 msgid "Passwords do not match"
 msgstr "密码不匹配"
 
-#: src/components/forms/AuthenticationForm.tsx:256
+#: src/components/forms/AuthenticationForm.tsx:255
 msgid "Registration successful"
 msgstr "注册成功"
 
-#: src/components/forms/AuthenticationForm.tsx:257
+#: src/components/forms/AuthenticationForm.tsx:256
 msgid "Please confirm your email address to complete the registration"
 msgstr "请确认您的电子邮件地址以完成注册"
 
-#: src/components/forms/AuthenticationForm.tsx:280
+#: src/components/forms/AuthenticationForm.tsx:279
 msgid "Input error"
 msgstr "输入错误"
 
-#: src/components/forms/AuthenticationForm.tsx:281
+#: src/components/forms/AuthenticationForm.tsx:280
 msgid "Check your input and try again. "
 msgstr "请检查您的输入并重试 "
 
-#: src/components/forms/AuthenticationForm.tsx:305
+#: src/components/forms/AuthenticationForm.tsx:304
 msgid "This will be used for a confirmation"
 msgstr "此将用于确认"
 
-#: src/components/forms/AuthenticationForm.tsx:318
+#: src/components/forms/AuthenticationForm.tsx:317
 msgid "Password repeat"
 msgstr "密码重复"
 
-#: src/components/forms/AuthenticationForm.tsx:320
+#: src/components/forms/AuthenticationForm.tsx:319
 msgid "Repeat password"
 msgstr "再次输入密码"
 
-#: src/components/forms/AuthenticationForm.tsx:332
+#: src/components/forms/AuthenticationForm.tsx:331
 #: src/pages/Auth/Login.tsx:128
 #: src/pages/Auth/Register.tsx:13
 msgid "Register"
 msgstr "注册"
 
-#: src/components/forms/AuthenticationForm.tsx:338
+#: src/components/forms/AuthenticationForm.tsx:337
 msgid "Or use SSO"
 msgstr "或使用 SSO"
 
-#: src/components/forms/AuthenticationForm.tsx:348
+#: src/components/forms/AuthenticationForm.tsx:347
 msgid "Registration not active"
 msgstr "注册未激活"
 
-#: src/components/forms/AuthenticationForm.tsx:349
+#: src/components/forms/AuthenticationForm.tsx:348
 msgid "This might be related to missing mail settings or could be a deliberate decision."
 msgstr "可能原因：邮件设置缺失或人为设定。"
 
@@ -1881,13 +1881,13 @@ msgstr "版本"
 
 #: src/components/forms/InstanceOptions.tsx:137
 #: src/components/modals/AboutInvenTreeModal.tsx:119
-#: src/components/modals/ServerInfoModal.tsx:34
+#: src/components/modals/ServerInfoModal.tsx:35
 msgid "API Version"
 msgstr "API 版本"
 
 #: src/components/forms/InstanceOptions.tsx:143
-#: src/components/nav/NavigationDrawer.tsx:197
-#: src/defaults/actions.tsx:173
+#: src/components/nav/NavigationDrawer.tsx:192
+#: src/defaults/actions.tsx:168
 #: src/pages/Index/Settings/AdminCenter/Index.tsx:228
 #: src/pages/Index/Settings/AdminCenter/PluginManagementPanel.tsx:46
 msgid "Plugins"
@@ -1919,6 +1919,14 @@ msgstr "已停止"
 #: src/components/forms/InstanceOptions.tsx:151
 msgid "Running"
 msgstr "运行中"
+
+#: src/components/forms/KeepFormOpenSwitch.tsx:19
+msgid "Keep form open"
+msgstr "提交后保持表单打开"
+
+#: src/components/forms/KeepFormOpenSwitch.tsx:20
+msgid "Keep form open after submitting"
+msgstr "保存后不关闭当前表单，方便连续录入"
 
 #: src/components/forms/fields/ApiFormField.tsx:206
 msgid "Select file to upload"
@@ -2138,7 +2146,7 @@ msgstr "数据已成功导入"
 
 #: src/components/importer/ImporterDrawer.tsx:109
 #: src/components/modals/AboutInvenTreeModal.tsx:200
-#: src/components/modals/ServerInfoModal.tsx:134
+#: src/components/modals/ServerInfoModal.tsx:126
 #: src/components/wizards/ImportPartWizard.tsx:773
 #: src/forms/BomForms.tsx:137
 #: src/pages/Index/Settings/AccountSettings/MFASettings.tsx:687
@@ -2267,6 +2275,7 @@ msgstr "选择语言"
 #~ msgstr "此信息仅供员工使用"
 
 #: src/components/items/OnlyStaff.tsx:11
+#: src/components/items/OnlyStaff.tsx:20
 msgid "This information is only available for administrative users"
 msgstr "该信息仅对管理员可见"
 
@@ -2400,8 +2409,6 @@ msgstr "链接"
 #~ msgstr "View Code on GitHub"
 
 #: src/components/modals/AboutInvenTreeModal.tsx:175
-#: src/components/nav/NavigationDrawer.tsx:208
-#: src/defaults/actions.tsx:49
 msgid "Documentation"
 msgstr "文档"
 
@@ -2470,11 +2477,11 @@ msgstr "{key} 包"
 #~ msgid "Close modal"
 #~ msgstr "Close modal"
 
-#: src/components/modals/ServerInfoModal.tsx:22
+#: src/components/modals/ServerInfoModal.tsx:23
 msgid "Instance Name"
 msgstr "实例名称"
 
-#: src/components/modals/ServerInfoModal.tsx:28
+#: src/components/modals/ServerInfoModal.tsx:29
 msgid "Server Version"
 msgstr "服务器版本"
 
@@ -2482,57 +2489,57 @@ msgstr "服务器版本"
 #~ msgid "Bebug Mode"
 #~ msgstr "Bebug Mode"
 
-#: src/components/modals/ServerInfoModal.tsx:40
+#: src/components/modals/ServerInfoModal.tsx:41
 msgid "Database"
 msgstr "数据库"
 
-#: src/components/modals/ServerInfoModal.tsx:49
-#: src/components/nav/Alerts.tsx:120
+#: src/components/modals/ServerInfoModal.tsx:50
+#: src/components/nav/Alerts.tsx:112
 msgid "Debug Mode"
 msgstr "调试模式"
 
-#: src/components/modals/ServerInfoModal.tsx:54
+#: src/components/modals/ServerInfoModal.tsx:53
 msgid "Server is running in debug mode"
 msgstr "服务器以调试模式运行"
 
-#: src/components/modals/ServerInfoModal.tsx:62
+#: src/components/modals/ServerInfoModal.tsx:60
 msgid "Docker Mode"
 msgstr "停靠模式"
 
-#: src/components/modals/ServerInfoModal.tsx:65
+#: src/components/modals/ServerInfoModal.tsx:63
 msgid "Server is deployed using docker"
 msgstr "服务器是使用docker部署的"
 
-#: src/components/modals/ServerInfoModal.tsx:71
+#: src/components/modals/ServerInfoModal.tsx:69
 msgid "Plugin Support"
 msgstr "插件支持"
 
-#: src/components/modals/ServerInfoModal.tsx:76
+#: src/components/modals/ServerInfoModal.tsx:74
 msgid "Plugin support enabled"
 msgstr "插件支持已启用"
 
-#: src/components/modals/ServerInfoModal.tsx:78
+#: src/components/modals/ServerInfoModal.tsx:76
 msgid "Plugin support disabled"
 msgstr "插件支持已禁用"
 
-#: src/components/modals/ServerInfoModal.tsx:85
+#: src/components/modals/ServerInfoModal.tsx:83
 msgid "Server status"
 msgstr "服务器状态"
 
-#: src/components/modals/ServerInfoModal.tsx:91
+#: src/components/modals/ServerInfoModal.tsx:89
 msgid "Healthy"
 msgstr "健康"
 
-#: src/components/modals/ServerInfoModal.tsx:93
+#: src/components/modals/ServerInfoModal.tsx:91
 msgid "Issues detected"
 msgstr "检测到问题"
 
-#: src/components/modals/ServerInfoModal.tsx:102
-#: src/components/nav/Alerts.tsx:127
+#: src/components/modals/ServerInfoModal.tsx:100
+#: src/components/nav/Alerts.tsx:118
 msgid "Background Worker"
 msgstr "后台工作者"
 
-#: src/components/modals/ServerInfoModal.tsx:107
+#: src/components/modals/ServerInfoModal.tsx:103
 msgid "The background worker process is not running"
 msgstr "后台工作进程未运行"
 
@@ -2540,59 +2547,59 @@ msgstr "后台工作进程未运行"
 #~ msgid "The Background worker process is not running."
 #~ msgstr "The Background worker process is not running."
 
-#: src/components/modals/ServerInfoModal.tsx:115
+#: src/components/modals/ServerInfoModal.tsx:110
 #: src/pages/Index/Settings/AdminCenter/Index.tsx:129
 msgid "Email Settings"
 msgstr "电子邮件设置"
+
+#: src/components/modals/ServerInfoModal.tsx:113
+#: src/components/nav/Alerts.tsx:131
+msgid "Email settings not configured."
+msgstr "电子邮件设置未配置。"
 
 #: src/components/modals/ServerInfoModal.tsx:118
 #~ msgid "Email settings not configured"
 #~ msgstr "Email settings not configured"
 
-#: src/components/modals/ServerInfoModal.tsx:120
-#: src/components/nav/Alerts.tsx:143
-msgid "Email settings not configured."
-msgstr "电子邮件设置未配置。"
-
-#: src/components/nav/Alerts.tsx:57
+#: src/components/nav/Alerts.tsx:55
 msgid "Alerts"
 msgstr "警报"
 
-#: src/components/nav/Alerts.tsx:97
+#: src/components/nav/Alerts.tsx:90
 msgid "No issues detected"
 msgstr "未发现问题"
 
-#: src/components/nav/Alerts.tsx:122
+#: src/components/nav/Alerts.tsx:113
 msgid "The server is running in debug mode."
 msgstr "服务器正以调试模式运行。"
 
-#: src/components/nav/Alerts.tsx:129
+#: src/components/nav/Alerts.tsx:119
 msgid "The background worker process is not running."
 msgstr "后台工作进程未运行。"
 
-#: src/components/nav/Alerts.tsx:134
+#: src/components/nav/Alerts.tsx:124
 msgid "Server Restart"
 msgstr "服务器重启"
 
-#: src/components/nav/Alerts.tsx:136
+#: src/components/nav/Alerts.tsx:125
 msgid "The server requires a restart to apply changes."
 msgstr "服务器需要重新启动才能应用更改。"
 
-#: src/components/nav/Alerts.tsx:141
+#: src/components/nav/Alerts.tsx:130
 msgid "Email settings"
 msgstr "电子邮件设置"
 
-#: src/components/nav/Alerts.tsx:148
+#: src/components/nav/Alerts.tsx:136
 msgid "Database Migrations"
 msgstr "数据库迁移"
 
-#: src/components/nav/Alerts.tsx:150
+#: src/components/nav/Alerts.tsx:137
 msgid "There are pending database migrations."
 msgstr "存在待处理的数据库迁移。"
 
 #: src/components/nav/Alerts.tsx:165
-msgid "Learn more about {code}"
-msgstr "了解更多关于{code}的信息"
+#~ msgid "Learn more about {code}"
+#~ msgstr "了解更多关于{code}的信息"
 
 #: src/components/nav/Header.tsx:198
 #: src/components/nav/NavigationDrawer.tsx:134
@@ -2626,7 +2633,7 @@ msgstr "无结果..."
 #~ msgstr "Profile"
 
 #: src/components/nav/MainMenu.tsx:54
-#: src/components/nav/NavigationDrawer.tsx:185
+#: src/components/nav/NavigationDrawer.tsx:180
 #: src/pages/Index/Settings/AdminCenter/EmailManagementPanel.tsx:21
 #: src/pages/Index/Settings/AdminCenter/UserManagementPanel.tsx:39
 msgid "Settings"
@@ -2640,7 +2647,7 @@ msgstr "设置"
 #: src/components/nav/MainMenu.tsx:61
 #: src/components/nav/NavigationDrawer.tsx:140
 #: src/components/nav/SettingsHeader.tsx:40
-#: src/defaults/actions.tsx:86
+#: src/defaults/actions.tsx:56
 #: src/pages/Index/Settings/UserSettings.tsx:142
 #: src/pages/Index/Settings/UserSettings.tsx:146
 msgid "User Settings"
@@ -2658,7 +2665,7 @@ msgstr "用户设置"
 #: src/components/nav/MainMenu.tsx:69
 #: src/components/nav/NavigationDrawer.tsx:146
 #: src/components/nav/SettingsHeader.tsx:41
-#: src/defaults/actions.tsx:155
+#: src/defaults/actions.tsx:150
 #: src/pages/Index/Settings/SystemSettings.tsx:366
 #: src/pages/Index/Settings/SystemSettings.tsx:371
 msgid "System Settings"
@@ -2671,20 +2678,20 @@ msgstr "系统设置"
 #: src/components/nav/MainMenu.tsx:78
 #: src/components/nav/NavigationDrawer.tsx:153
 #: src/components/nav/SettingsHeader.tsx:42
-#: src/defaults/actions.tsx:164
+#: src/defaults/actions.tsx:159
 #: src/pages/Index/Settings/AdminCenter/Index.tsx:293
 #: src/pages/Index/Settings/AdminCenter/Index.tsx:298
 msgid "Admin Center"
 msgstr "管理中心"
 
-#: src/components/nav/MainMenu.tsx:99
-#: src/defaults/actions.tsx:58
-#: src/defaults/links.tsx:140
-#: src/defaults/links.tsx:186
+#: src/components/nav/MainMenu.tsx:100
+#: src/defaults/actions.tsx:67
+#: src/defaults/links.tsx:139
+#: src/defaults/links.tsx:189
 msgid "About InvenTree"
 msgstr "关于 InvenTree"
 
-#: src/components/nav/MainMenu.tsx:108
+#: src/components/nav/MainMenu.tsx:110
 msgid "Logout"
 msgstr "登出"
 
@@ -2747,11 +2754,11 @@ msgstr "采购"
 msgid "Sales"
 msgstr "销售"
 
-#: src/components/nav/NavigationDrawer.tsx:180
+#: src/components/nav/NavigationDrawer.tsx:175
 msgid "Navigation"
 msgstr "导航栏"
 
-#: src/components/nav/NavigationDrawer.tsx:214
+#: src/components/nav/NavigationDrawer.tsx:203
 msgid "About"
 msgstr "关于"
 
@@ -3219,73 +3226,73 @@ msgstr "设置"
 msgid "Source"
 msgstr "来源"
 
-#: src/components/settings/QuickAction.tsx:47
+#: src/components/settings/QuickAction.tsx:46
 msgid "Act"
 msgstr "行动"
 
-#: src/components/settings/QuickAction.tsx:73
-#: src/components/settings/QuickAction.tsx:113
+#: src/components/settings/QuickAction.tsx:72
+#: src/components/settings/QuickAction.tsx:100
 #: src/tables/settings/ProjectCodeTable.tsx:46
 msgid "Add Project Code"
 msgstr "添加项目编码"
 
-#: src/components/settings/QuickAction.tsx:78
-#: src/components/settings/QuickAction.tsx:124
+#: src/components/settings/QuickAction.tsx:77
+#: src/components/settings/QuickAction.tsx:111
 #: src/tables/settings/CustomStateTable.tsx:133
 #: src/tables/settings/CustomStateTable.tsx:140
 #: src/tables/settings/CustomStateTable.tsx:202
 msgid "Add State"
 msgstr "添加状态"
 
-#: src/components/settings/QuickAction.tsx:85
-msgid "Open an Issue"
-msgstr "查看问题"
-
-#: src/components/settings/QuickAction.tsx:86
-msgid "Report a bug or request a feature on GitHub"
-msgstr "在GitHub上报告错误或请求功能"
-
-#: src/components/settings/QuickAction.tsx:88
-msgid "Open Issue"
-msgstr "查看问题"
-
-#: src/components/settings/QuickAction.tsx:97
+#: src/components/settings/QuickAction.tsx:84
 msgid "Add New Group"
 msgstr "添加新组"
 
-#: src/components/settings/QuickAction.tsx:98
+#: src/components/settings/QuickAction.tsx:85
 msgid "Create a new group to manage your users"
 msgstr "创建一个新的组来管理您的用户"
 
-#: src/components/settings/QuickAction.tsx:100
+#: src/components/settings/QuickAction.tsx:85
+#~ msgid "Open an Issue"
+#~ msgstr "查看问题"
+
+#: src/components/settings/QuickAction.tsx:86
+#~ msgid "Report a bug or request a feature on GitHub"
+#~ msgstr "在GitHub上报告错误或请求功能"
+
+#: src/components/settings/QuickAction.tsx:87
 msgid "New Group"
 msgstr "新组"
 
-#: src/components/settings/QuickAction.tsx:105
+#: src/components/settings/QuickAction.tsx:88
+#~ msgid "Open Issue"
+#~ msgstr "查看问题"
+
+#: src/components/settings/QuickAction.tsx:92
 msgid "Add New User"
 msgstr "添加新用户"
 
-#: src/components/settings/QuickAction.tsx:106
+#: src/components/settings/QuickAction.tsx:93
 msgid "Create a new user to manage your groups"
 msgstr "创建一个新用户来管理您的组"
 
-#: src/components/settings/QuickAction.tsx:108
+#: src/components/settings/QuickAction.tsx:95
 msgid "New User"
 msgstr "新用户"
 
-#: src/components/settings/QuickAction.tsx:114
+#: src/components/settings/QuickAction.tsx:101
 msgid "Create a new project code to organize your items"
 msgstr "创建一个新的项目编码来管理您的项目"
 
-#: src/components/settings/QuickAction.tsx:116
+#: src/components/settings/QuickAction.tsx:103
 msgid "Add Code"
 msgstr "添加编码"
 
-#: src/components/settings/QuickAction.tsx:121
+#: src/components/settings/QuickAction.tsx:108
 msgid "Add Custom State"
 msgstr "添加自定义状态"
 
-#: src/components/settings/QuickAction.tsx:122
+#: src/components/settings/QuickAction.tsx:109
 msgid "Create a new custom state for your workflow"
 msgstr "为您的工作流程创建一个新的自定义状态"
 
@@ -4146,82 +4153,82 @@ msgstr "订购产品"
 msgid "Go to the InvenTree dashboard"
 msgstr "跳转到 InvenTree 仪表板"
 
-#: src/defaults/actions.tsx:50
-msgid "Visit the documentation to learn more about InvenTree"
-msgstr "访问文档以了解更多关于 InvenTree"
-
-#: src/defaults/actions.tsx:59
-msgid "About the InvenTree org"
-msgstr "关于 InvenTree 组织"
-
-#: src/defaults/actions.tsx:65
-msgid "Server Information"
-msgstr "服务器信息"
-
-#: src/defaults/actions.tsx:66
-#: src/defaults/links.tsx:169
-msgid "About this InvenTree instance"
-msgstr "关于 InvenTree 实例"
-
-#: src/defaults/actions.tsx:72
-#: src/defaults/links.tsx:153
-#: src/defaults/links.tsx:175
-msgid "License Information"
-msgstr "许可信息"
-
-#: src/defaults/actions.tsx:73
-msgid "Licenses for dependencies of the service"
-msgstr "服务依赖关系许可"
-
-#: src/defaults/actions.tsx:79
+#: src/defaults/actions.tsx:49
 msgid "Open Navigation"
 msgstr "打开导航"
 
-#: src/defaults/actions.tsx:80
+#: src/defaults/actions.tsx:50
 msgid "Open the main navigation menu"
 msgstr "打开主导航菜单"
 
-#: src/defaults/actions.tsx:87
+#: src/defaults/actions.tsx:50
+#~ msgid "Visit the documentation to learn more about InvenTree"
+#~ msgstr "访问文档以了解更多关于 InvenTree"
+
+#: src/defaults/actions.tsx:57
 msgid "Go to your user settings"
 msgstr "前往您的用户设置"
 
-#: src/defaults/actions.tsx:96
+#: src/defaults/actions.tsx:68
+msgid "About the InvenTree org"
+msgstr "关于 InvenTree 组织"
+
+#: src/defaults/actions.tsx:74
+msgid "Server Information"
+msgstr "服务器信息"
+
+#: src/defaults/actions.tsx:75
+#: src/defaults/links.tsx:172
+msgid "About this InvenTree instance"
+msgstr "关于 InvenTree 实例"
+
+#: src/defaults/actions.tsx:81
+#: src/defaults/links.tsx:152
+#: src/defaults/links.tsx:178
+msgid "License Information"
+msgstr "许可信息"
+
+#: src/defaults/actions.tsx:82
+msgid "Licenses for dependencies of the service"
+msgstr "服务依赖关系许可"
+
+#: src/defaults/actions.tsx:91
 msgid "Import Data"
 msgstr "导入数据"
 
-#: src/defaults/actions.tsx:97
+#: src/defaults/actions.tsx:92
 msgid "Import data from a file"
 msgstr "从文件导入数据"
 
-#: src/defaults/actions.tsx:107
+#: src/defaults/actions.tsx:102
 msgid "Go to Purchase Orders"
 msgstr "跳转到采购订单"
 
-#: src/defaults/actions.tsx:117
+#: src/defaults/actions.tsx:112
 msgid "Go to Sales Orders"
 msgstr "转到销售订单"
 
-#: src/defaults/actions.tsx:128
+#: src/defaults/actions.tsx:123
 msgid "Go to Return Orders"
 msgstr "跳转到退货订单"
 
-#: src/defaults/actions.tsx:138
+#: src/defaults/actions.tsx:133
 msgid "Scan a barcode or QR code"
 msgstr "扫描条形码或二维码"
 
-#: src/defaults/actions.tsx:147
+#: src/defaults/actions.tsx:142
 msgid "Go to Build Orders"
 msgstr "前往生产订单"
 
-#: src/defaults/actions.tsx:156
+#: src/defaults/actions.tsx:151
 msgid "Go to System Settings"
 msgstr "跳转到系统设置"
 
-#: src/defaults/actions.tsx:165
+#: src/defaults/actions.tsx:160
 msgid "Go to the Admin Center"
 msgstr "转到管理中心"
 
-#: src/defaults/actions.tsx:174
+#: src/defaults/actions.tsx:169
 msgid "Manage InvenTree plugins"
 msgstr "管理InvenTree插件"
 
@@ -4299,35 +4306,35 @@ msgstr "当前服务器"
 #~ msgid "InvenTree"
 #~ msgstr "InvenTree"
 
-#: src/defaults/links.tsx:93
+#: src/defaults/links.tsx:92
 msgid "API"
 msgstr "API"
 
-#: src/defaults/links.tsx:96
+#: src/defaults/links.tsx:95
 msgid "InvenTree API documentation"
 msgstr "InvenTree API 文档"
 
-#: src/defaults/links.tsx:100
+#: src/defaults/links.tsx:99
 msgid "Developer Manual"
 msgstr "开发者手册"
 
-#: src/defaults/links.tsx:103
+#: src/defaults/links.tsx:102
 msgid "InvenTree developer manual"
 msgstr "InvenTree 开发者手册"
 
-#: src/defaults/links.tsx:107
+#: src/defaults/links.tsx:106
 msgid "FAQ"
 msgstr "FAQ"
 
-#: src/defaults/links.tsx:110
+#: src/defaults/links.tsx:109
 msgid "Frequently asked questions"
 msgstr "常见问题"
 
-#: src/defaults/links.tsx:114
+#: src/defaults/links.tsx:113
 msgid "GitHub Repository"
 msgstr "GitHub 存储库"
 
-#: src/defaults/links.tsx:117
+#: src/defaults/links.tsx:116
 msgid "InvenTree source code on GitHub"
 msgstr "GitHub 上的 InvenTree 源代码"
 
@@ -4335,8 +4342,8 @@ msgstr "GitHub 上的 InvenTree 源代码"
 #~ msgid "Licenses for packages used by InvenTree"
 #~ msgstr "Licenses for packages used by InvenTree"
 
-#: src/defaults/links.tsx:127
-#: src/defaults/links.tsx:168
+#: src/defaults/links.tsx:126
+#: src/defaults/links.tsx:171
 msgid "System Information"
 msgstr "系统信息"
 
@@ -4344,11 +4351,11 @@ msgstr "系统信息"
 #~ msgid "Licenses"
 #~ msgstr "Licenses"
 
-#: src/defaults/links.tsx:176
+#: src/defaults/links.tsx:179
 msgid "Licenses for dependencies of the InvenTree software"
 msgstr "InvenTree软件依赖许可"
 
-#: src/defaults/links.tsx:187
+#: src/defaults/links.tsx:190
 msgid "About the InvenTree Project"
 msgstr "关于InvenTree项目"
 
@@ -6846,7 +6853,7 @@ msgstr "附加到模型"
 #~ msgid "Stocktake Reports"
 #~ msgstr "Stocktake Reports"
 
-#: src/pages/Index/Settings/AdminCenter/TaskManagementPanel.tsx:32
+#: src/pages/Index/Settings/AdminCenter/TaskManagementPanel.tsx:31
 msgid "Background worker running"
 msgstr "后台程序正在运行"
 
@@ -6854,26 +6861,26 @@ msgstr "后台程序正在运行"
 #~ msgid "Background Worker Not Running"
 #~ msgstr "Background Worker Not Running"
 
-#: src/pages/Index/Settings/AdminCenter/TaskManagementPanel.tsx:38
+#: src/pages/Index/Settings/AdminCenter/TaskManagementPanel.tsx:37
 msgid "Background worker not running"
 msgstr "后台worker未运行"
 
-#: src/pages/Index/Settings/AdminCenter/TaskManagementPanel.tsx:42
+#: src/pages/Index/Settings/AdminCenter/TaskManagementPanel.tsx:41
 msgid "The background task manager service is not running. Contact your system administrator."
 msgstr "后台任务管理器服务未运行。请联系系统管理员。"
 
-#: src/pages/Index/Settings/AdminCenter/TaskManagementPanel.tsx:49
-#: src/pages/Index/Settings/AdminCenter/TaskManagementPanel.tsx:58
+#: src/pages/Index/Settings/AdminCenter/TaskManagementPanel.tsx:47
+#: src/pages/Index/Settings/AdminCenter/TaskManagementPanel.tsx:56
 msgid "Pending Tasks"
 msgstr "待完成任务"
 
-#: src/pages/Index/Settings/AdminCenter/TaskManagementPanel.tsx:50
-#: src/pages/Index/Settings/AdminCenter/TaskManagementPanel.tsx:66
+#: src/pages/Index/Settings/AdminCenter/TaskManagementPanel.tsx:48
+#: src/pages/Index/Settings/AdminCenter/TaskManagementPanel.tsx:64
 msgid "Scheduled Tasks"
 msgstr "计划任务"
 
-#: src/pages/Index/Settings/AdminCenter/TaskManagementPanel.tsx:51
-#: src/pages/Index/Settings/AdminCenter/TaskManagementPanel.tsx:74
+#: src/pages/Index/Settings/AdminCenter/TaskManagementPanel.tsx:49
+#: src/pages/Index/Settings/AdminCenter/TaskManagementPanel.tsx:72
 msgid "Failed Tasks"
 msgstr "失败任务"
 
@@ -12704,22 +12711,30 @@ msgstr "没有用户信息"
 #~ msgid "Total"
 #~ msgstr "Total"
 
-#: src/views/MobileAppView.tsx:25
-msgid "Mobile viewport detected"
-msgstr "检测到手机视图"
+#: src/views/MobileAppView.tsx:24
+msgid "Mobile access notice"
+msgstr "手机端使用提示"
 
 #: src/views/MobileAppView.tsx:25
 #~ msgid "Platform UI is optimized for Tablets and Desktops, you can use the official app for a mobile experience."
 #~ msgstr "Platform UI is optimized for Tablets and Desktops, you can use the official app for a mobile experience."
 
-#: src/views/MobileAppView.tsx:28
-msgid "InvenTree UI is optimized for Tablets and Desktops, you can use the official app for a mobile experience."
-msgstr "当前页面更适合平板和桌面端使用，如需手机端体验，请使用官方应用。"
+#: src/views/MobileAppView.tsx:27
+msgid "You can handle daily lookup and simple data entry on your phone. For bulk maintenance or complex setup, a computer is recommended for a smoother workflow."
+msgstr "手机上可以完成日常查询和简单录入；如需批量维护资料或处理复杂配置，建议使用平板或桌面端操作更顺手。"
+
+#: src/views/MobileAppView.tsx:27
+#~ msgid "InvenTree UI is optimized for Tablets and Desktops, you can use the official app for a mobile experience."
+#~ msgstr "当前页面更适合平板和桌面端使用，如需手机端体验，请使用官方应用。"
 
 #: src/views/MobileAppView.tsx:34
-msgid "Read the docs"
-msgstr "阅读文档"
+#~ msgid "Read the docs"
+#~ msgstr "阅读文档"
 
-#: src/views/MobileAppView.tsx:42
-msgid "Ignore and continue to Desktop view"
-msgstr "忽略并继续到桌面视图"
+#: src/views/MobileAppView.tsx:38
+#~ msgid "Ignore and continue to Desktop view"
+#~ msgstr "忽略并继续到桌面视图"
+
+#: src/views/MobileAppView.tsx:39
+msgid "Continue to the system"
+msgstr "继续进入系统"

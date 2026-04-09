@@ -40,7 +40,7 @@ import {
 import { useUserState } from '../../states/UserState';
 import { ScanButton } from '../buttons/ScanButton';
 import { SpotlightButton } from '../buttons/SpotlightButton';
-import { Alerts, errorCodeLink } from './Alerts';
+import { Alerts } from './Alerts';
 import { MainMenu } from './MainMenu';
 import { NavHoverMenu } from './NavHoverMenu';
 import { NavigationDrawer } from './NavigationDrawer';
@@ -219,7 +219,6 @@ export function Header() {
         >
           <Text>
             {t`The current user has elevated privileges and should not be used for regular usage.`}
-            {errorCodeLink('INVE-W14')}
           </Text>
         </Alert>
       )}

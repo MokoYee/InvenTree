@@ -1,9 +1,8 @@
 import { Trans } from '@lingui/react/macro';
-import { Anchor, Center, Container, Stack, Text, Title } from '@mantine/core';
+import { Center, Container, Stack, Text, Title } from '@mantine/core';
 
 import { useShallow } from 'zustand/react/shallow';
 import { ThemeContext } from '../contexts/ThemeContext';
-import { docLinks } from '../defaults/links';
 import { IS_DEV } from '../main';
 import { useLocalState } from '../states/LocalState';
 
@@ -22,24 +21,22 @@ export default function MobileAppView() {
         <Container>
           <Stack>
             <Title c='red'>
-              <Trans>Mobile viewport detected</Trans>
+              <Trans>Mobile access notice</Trans>
             </Title>
             <Text>
               <Trans>
-                InvenTree UI is optimized for Tablets and Desktops, you can use
-                the official app for a mobile experience.
+                You can handle daily lookup and simple data entry on your
+                phone. For bulk maintenance or complex setup, a computer is
+                recommended for a smoother workflow.
               </Trans>
             </Text>
-            <Anchor href={docLinks.app}>
-              <Trans>Read the docs</Trans>
-            </Anchor>
             {(IS_DEV ||
               window.INVENTREE_SETTINGS.mobile_mode === 'allow-ignore') && (
               <Text
                 onClick={ignore}
                 style={{ cursor: 'pointer', textDecoration: 'underline' }}
               >
-                <Trans>Ignore and continue to Desktop view</Trans>
+                <Trans>Continue to the system</Trans>
               </Text>
             )}
           </Stack>

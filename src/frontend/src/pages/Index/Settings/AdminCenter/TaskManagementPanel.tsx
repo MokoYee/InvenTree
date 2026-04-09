@@ -5,7 +5,6 @@ import { lazy } from 'react';
 import { ApiEndpoints } from '@lib/enums/ApiEndpoints';
 import { IconCircleCheck, IconExclamationCircle } from '@tabler/icons-react';
 import { StylishText } from '../../../../components/items/StylishText';
-import { errorCodeLink } from '../../../../components/nav/Alerts';
 import { FactCollection } from '../../../../components/settings/FactCollection';
 import { Loadable } from '../../../../functions/loading';
 import { useInstance } from '../../../../hooks/UseInstance';
@@ -40,7 +39,6 @@ export default function TaskManagementPanel() {
           icon={<IconExclamationCircle />}
         >
           <Text>{t`The background task manager service is not running. Contact your system administrator.`}</Text>
-          {errorCodeLink('INVE-W5')}
         </Alert>
       )}
       <Stack gap='xs'>

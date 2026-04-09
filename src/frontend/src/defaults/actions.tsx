@@ -19,7 +19,7 @@ import { useShallow } from 'zustand/react/shallow';
 import { useLocalState } from '../states/LocalState';
 import { useGlobalSettingsState } from '../states/SettingsStates';
 import { useUserState } from '../states/UserState';
-import { aboutInvenTree, docLinks, licenseInfo, serverInfo } from './links';
+import { aboutInvenTree, licenseInfo, serverInfo } from './links';
 
 export function openQrModal(navigate: NavigateFunction) {
   return openContextModal({
@@ -45,36 +45,6 @@ export function getActions(navigate: NavigateFunction) {
         leftSection: <IconLink size='1.2rem' />
       },
       {
-        id: 'documentation',
-        label: t`Documentation`,
-        description: t`Visit the documentation to learn more about InvenTree`,
-        onClick: () => {
-          window.location.href = docLinks.faq;
-        },
-        leftSection: <IconLink size='1.2rem' />
-      },
-      {
-        id: 'about',
-        label: t`About InvenTree`,
-        description: t`About the InvenTree org`,
-        onClick: () => aboutInvenTree(),
-        leftSection: <IconLink size='1.2rem' />
-      },
-      {
-        id: 'server-info',
-        label: t`Server Information`,
-        description: t`About this InvenTree instance`,
-        onClick: () => serverInfo(),
-        leftSection: <IconLink size='1.2rem' />
-      },
-      {
-        id: 'license-info',
-        label: t`License Information`,
-        description: t`Licenses for dependencies of the service`,
-        onClick: () => licenseInfo(),
-        leftSection: <IconLink size='1.2rem' />
-      },
-      {
         id: 'navigation',
         label: t`Open Navigation`,
         description: t`Open the main navigation menu`,
@@ -89,6 +59,31 @@ export function getActions(navigate: NavigateFunction) {
         leftSection: <IconUserCog size='1.2rem' />
       }
     ];
+
+    user?.isSuperuser() &&
+      _actions.push(
+        {
+          id: 'about',
+          label: t`About InvenTree`,
+          description: t`About the InvenTree org`,
+          onClick: () => aboutInvenTree(),
+          leftSection: <IconLink size='1.2rem' />
+        },
+        {
+          id: 'server-info',
+          label: t`Server Information`,
+          description: t`About this InvenTree instance`,
+          onClick: () => serverInfo(),
+          leftSection: <IconLink size='1.2rem' />
+        },
+        {
+          id: 'license-info',
+          label: t`License Information`,
+          description: t`Licenses for dependencies of the service`,
+          onClick: () => licenseInfo(),
+          leftSection: <IconLink size='1.2rem' />
+        }
+      );
 
     user?.isStaff() &&
       _actions.push({

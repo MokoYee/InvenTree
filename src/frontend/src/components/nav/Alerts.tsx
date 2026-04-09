@@ -5,7 +5,6 @@ import { useMemo, useState } from 'react';
 import type { SettingsStateProps } from '@lib/types/Settings';
 import { t } from '@lingui/core/macro';
 import { useShallow } from 'zustand/react/shallow';
-import { docLinks } from '../../defaults/links';
 import { useServerApiState } from '../../states/ServerApiState';
 import { useGlobalSettingsState } from '../../states/SettingsStates';
 import { useUserState } from '../../states/UserState';
@@ -14,7 +13,6 @@ import type { ServerAPIProps } from '../../states/states';
 interface AlertInfo {
   key: string;
   title: string;
-  code?: string;
   message: string;
   error?: boolean;
 }
@@ -85,18 +83,12 @@ export function ServerAlert({
       withCloseButton={!!closeAlert}
       color={alert.condition ? (alert.error ? 'red' : 'orange') : 'green'}
       icon={alert.condition ? <IconExclamationCircle /> : <IconCircleCheck />}
-      title={
-        <Group gap='xs'>
-          {alert.code && `${alert.code}: `}
-          {alert.title}
-        </Group>
-      }
+      title={<Group gap='xs'>{alert.title}</Group>}
       onClose={closeAlert ? () => closeAlert(alert.key) : undefined}
     >
       <Stack gap='xs'>
         {!alert.condition && t`No issues detected`}
         {alert.condition && alert.message}
-        {alert.condition && alert.code && errorCodeLink(alert.code)}
       </Stack>
     </Alert>
   );
@@ -118,51 +110,34 @@ export function getAlerts(
     {
       key: 'debug',
       title: t`Debug Mode`,
-      code: 'INVE-W4',
       message: t`The server is running in debug mode.`,
       condition: server?.debug_mode || false
     },
     {
       key: 'worker',
       title: t`Background Worker`,
-      code: 'INVE-W5',
       message: t`The background worker process is not running.`,
       condition: !server?.worker_running
     },
     {
       key: 'restart',
       title: t`Server Restart`,
-      code: 'INVE-W6',
       message: t`The server requires a restart to apply changes.`,
       condition: globalSettings.isSet('SERVER_RESTART_REQUIRED')
     },
     {
       key: 'email',
       title: t`Email settings`,
-      code: 'INVE-W7',
       message: t`Email settings not configured.`,
       condition: !server?.email_configured
     },
     {
       key: 'migrations',
       title: t`Database Migrations`,
-      code: 'INVE-W8',
       message: t`There are pending database migrations.`,
       condition: n_migrations > 0
     }
   ];
 
   return allAlerts.filter((alert) => inactive || alert.condition);
-}
-
-export function errorCodeLink(code: string) {
-  return (
-    <a
-      href={`${docLinks.errorcodes}#${code.toLowerCase()}`}
-      target='_blank'
-      rel='noreferrer'
-    >
-      {t`Learn more about ${code}`}
-    </a>
-  );
 }

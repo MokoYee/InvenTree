@@ -94,6 +94,7 @@ window.INVENTREE_SETTINGS = {
       ? 'server-demo'
       : 'server-current',
   show_server_selector: IS_DEV_OR_DEMO,
+  mobile_mode: 'allow-always',
 
   // Merge in settings that are already set via django's spa_view or for development
   ...loaded_vals

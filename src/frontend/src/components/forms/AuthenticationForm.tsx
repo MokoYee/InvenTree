@@ -32,7 +32,6 @@ import { showLoginNotification } from '../../functions/notifications';
 import { useServerApiState } from '../../states/ServerApiState';
 import { useUserState } from '../../states/UserState';
 import { SsoButton } from '../buttons/SSOButton';
-import { errorCodeLink } from '../nav/Alerts';
 
 export function AuthenticationForm() {
   const classicForm = useForm({
@@ -347,7 +346,6 @@ export function RegistrationForm() {
       {!registration_enabled() && !sso_registration() && (
         <Alert title={t`Registration not active`} color='orange'>
           <Text>{t`This might be related to missing mail settings or could be a deliberate decision.`}</Text>
-          {errorCodeLink('INVE-W11')}
         </Alert>
       )}
     </>

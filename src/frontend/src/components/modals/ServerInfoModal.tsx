@@ -4,7 +4,7 @@ import type { ContextModalProps } from '@mantine/modals';
 
 import { useShallow } from 'zustand/react/shallow';
 import { useServerApiState } from '../../states/ServerApiState';
-import { OnlyStaff } from '../items/OnlyStaff';
+import { OnlyStaff, OnlySuperuser } from '../items/OnlyStaff';
 
 export function ServerInfoModal({
   context,
@@ -13,127 +13,120 @@ export function ServerInfoModal({
   const [server] = useServerApiState(useShallow((state) => [state.server]));
 
   return (
-    <Stack>
-      <Divider />
-      <Table striped>
-        <Table.Tbody>
-          <Table.Tr>
-            <Table.Td>
-              <Trans>Instance Name</Trans>
-            </Table.Td>
-            <Table.Td>{server.instance}</Table.Td>
-          </Table.Tr>
-          <Table.Tr>
-            <Table.Td>
-              <Trans>Server Version</Trans>
-            </Table.Td>
-            <Table.Td>{server.version}</Table.Td>
-          </Table.Tr>
-          <Table.Tr>
-            <Table.Td>
-              <Trans>API Version</Trans>
-            </Table.Td>
-            <Table.Td>{server.apiVersion}</Table.Td>
-          </Table.Tr>
-          <Table.Tr>
-            <Table.Td>
-              <Trans>Database</Trans>
-            </Table.Td>
-            <Table.Td>
-              <OnlyStaff>{server.database}</OnlyStaff>
-            </Table.Td>
-          </Table.Tr>
-          {server.debug_mode && (
+    <OnlySuperuser>
+      <Stack>
+        <Divider />
+        <Table striped>
+          <Table.Tbody>
             <Table.Tr>
               <Table.Td>
-                <Trans>Debug Mode</Trans>
+                <Trans>Instance Name</Trans>
+              </Table.Td>
+              <Table.Td>{server.instance}</Table.Td>
+            </Table.Tr>
+            <Table.Tr>
+              <Table.Td>
+                <Trans>Server Version</Trans>
+              </Table.Td>
+              <Table.Td>{server.version}</Table.Td>
+            </Table.Tr>
+            <Table.Tr>
+              <Table.Td>
+                <Trans>API Version</Trans>
+              </Table.Td>
+              <Table.Td>{server.apiVersion}</Table.Td>
+            </Table.Tr>
+            <Table.Tr>
+              <Table.Td>
+                <Trans>Database</Trans>
               </Table.Td>
               <Table.Td>
-                <Group justify='space-between'>
-                  <Badge color='red'>INVE-W4</Badge>
+                <OnlyStaff>{server.database}</OnlyStaff>
+              </Table.Td>
+            </Table.Tr>
+            {server.debug_mode && (
+              <Table.Tr>
+                <Table.Td>
+                  <Trans>Debug Mode</Trans>
+                </Table.Td>
+                <Table.Td>
                   <Trans>Server is running in debug mode</Trans>
-                </Group>
-              </Table.Td>
-            </Table.Tr>
-          )}
-          {server.docker_mode && (
+                </Table.Td>
+              </Table.Tr>
+            )}
+            {server.docker_mode && (
+              <Table.Tr>
+                <Table.Td>
+                  <Trans>Docker Mode</Trans>
+                </Table.Td>
+                <Table.Td>
+                  <Trans>Server is deployed using docker</Trans>
+                </Table.Td>
+              </Table.Tr>
+            )}
             <Table.Tr>
               <Table.Td>
-                <Trans>Docker Mode</Trans>
+                <Trans>Plugin Support</Trans>
               </Table.Td>
               <Table.Td>
-                <Trans>Server is deployed using docker</Trans>
-              </Table.Td>
-            </Table.Tr>
-          )}
-          <Table.Tr>
-            <Table.Td>
-              <Trans>Plugin Support</Trans>
-            </Table.Td>
-            <Table.Td>
-              <Badge color={server.plugins_enabled ? 'green' : 'red'}>
-                {server.plugins_enabled ? (
-                  <Trans>Plugin support enabled</Trans>
-                ) : (
-                  <Trans>Plugin support disabled</Trans>
-                )}
-              </Badge>
-            </Table.Td>
-          </Table.Tr>
-          <Table.Tr>
-            <Table.Td>
-              <Trans>Server status</Trans>
-            </Table.Td>
-            <Table.Td>
-              <OnlyStaff>
-                <Badge color={server.system_health ? 'green' : 'yellow'}>
-                  {server.system_health ? (
-                    <Trans>Healthy</Trans>
+                <Badge color={server.plugins_enabled ? 'green' : 'red'}>
+                  {server.plugins_enabled ? (
+                    <Trans>Plugin support enabled</Trans>
                   ) : (
-                    <Trans>Issues detected</Trans>
+                    <Trans>Plugin support disabled</Trans>
                   )}
                 </Badge>
-              </OnlyStaff>
-            </Table.Td>
-          </Table.Tr>
-          {server?.worker_running == false && (
+              </Table.Td>
+            </Table.Tr>
             <Table.Tr>
               <Table.Td>
-                <Trans>Background Worker</Trans>
+                <Trans>Server status</Trans>
               </Table.Td>
               <Table.Td>
-                <Group justify='space-between'>
-                  <Badge color='red'>INVE-W5</Badge>
+                <OnlyStaff>
+                  <Badge color={server.system_health ? 'green' : 'yellow'}>
+                    {server.system_health ? (
+                      <Trans>Healthy</Trans>
+                    ) : (
+                      <Trans>Issues detected</Trans>
+                    )}
+                  </Badge>
+                </OnlyStaff>
+              </Table.Td>
+            </Table.Tr>
+            {server?.worker_running == false && (
+              <Table.Tr>
+                <Table.Td>
+                  <Trans>Background Worker</Trans>
+                </Table.Td>
+                <Table.Td>
                   <Trans>The background worker process is not running</Trans>
-                </Group>
-              </Table.Td>
-            </Table.Tr>
-          )}
-          {!server?.email_configured && (
-            <Table.Tr>
-              <Table.Td>
-                <Trans>Email Settings</Trans>
-              </Table.Td>
-              <Table.Td>
-                <Group justify='space-between'>
-                  <Badge color='red'>INVE-W7</Badge>
+                </Table.Td>
+              </Table.Tr>
+            )}
+            {!server?.email_configured && (
+              <Table.Tr>
+                <Table.Td>
+                  <Trans>Email Settings</Trans>
+                </Table.Td>
+                <Table.Td>
                   <Trans>Email settings not configured.</Trans>
-                </Group>
-              </Table.Td>
-            </Table.Tr>
-          )}
-        </Table.Tbody>
-      </Table>
-      <Divider />
-      <Group justify='right'>
-        <Button
-          onClick={() => {
-            context.closeModal(id);
-          }}
-        >
-          <Trans>Close</Trans>
-        </Button>
-      </Group>
-    </Stack>
+                </Table.Td>
+              </Table.Tr>
+            )}
+          </Table.Tbody>
+        </Table>
+        <Divider />
+        <Group justify='right'>
+          <Button
+            onClick={() => {
+              context.closeModal(id);
+            }}
+          >
+            <Trans>Close</Trans>
+          </Button>
+        </Group>
+      </Stack>
+    </OnlySuperuser>
   );
 }

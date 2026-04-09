@@ -188,6 +188,12 @@ function BuiltinQueryCountWidgets(): DashboardWidgetProps[] {
 }
 
 function BuiltinGettingStartedWidgets(): DashboardWidgetProps[] {
+  const user = useUserState.getState();
+
+  if (!user.isSuperuser()) {
+    return [];
+  }
+
   return [
     {
       label: 'gstart',
