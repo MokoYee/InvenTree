@@ -143,6 +143,18 @@ export function constructField({
     ...field
   };
 
+  /*
+   * If the frontend explicitly provides a default value, it should take
+   * precedence over any value injected from the backend OPTIONS metadata.
+   * Otherwise boolean fields such as "component" end up checked on create
+   * forms even when the frontend intentionally sets default: false.
+   */
+  if (field.value !== undefined) {
+    def.value = field.value;
+  } else if (field.default !== undefined) {
+    delete def.value;
+  }
+
   switch (def.field_type) {
     case 'nested object':
       def.children = {};

@@ -136,10 +136,8 @@ export function OptionsApiForm({
       });
 
       // If the user has specified initial data, use that value here
-      const value = _props?.initialData?.[k];
-
-      if (value) {
-        _props.fields[k].value = value;
+      if (_props.initialData && k in _props.initialData) {
+        _props.fields[k].value = _props.initialData[k];
       }
     }
 
