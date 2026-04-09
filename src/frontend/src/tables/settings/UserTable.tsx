@@ -171,8 +171,8 @@ export function UserDrawer({
                 pk: id,
                 fields: {
                   username: {},
-                  first_name: {},
                   last_name: {},
+                  first_name: {},
                   email: {},
                   is_active: {
                     label: t`Is Active`,
@@ -465,8 +465,8 @@ export function userFields(table?: TableState): ApiFormModalProps {
     fields: {
       username: {},
       email: {},
-      first_name: {},
-      last_name: {}
+      last_name: {},
+      first_name: {}
     },
     table: table ?? undefined,
     successMessage: t`Added user`

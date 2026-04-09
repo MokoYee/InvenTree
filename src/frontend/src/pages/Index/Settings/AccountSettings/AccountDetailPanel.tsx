@@ -24,8 +24,8 @@ export function AccountDetailPanel() {
 
   const userFields: ApiFormFieldSet = useMemo(() => {
     return {
-      first_name: {},
-      last_name: {}
+      last_name: {},
+      first_name: {}
     };
   }, []);
 
@@ -62,8 +62,8 @@ export function AccountDetailPanel() {
   const accountDetailFields = useMemo(
     () => [
       { label: t`Username`, value: user?.username },
-      { label: t`First Name`, value: user?.first_name },
       { label: t`Last Name`, value: user?.last_name },
+      { label: t`First Name`, value: user?.first_name },
       {
         label: t`Active`,
         value: <YesNoUndefinedButton value={user?.profile?.active} />

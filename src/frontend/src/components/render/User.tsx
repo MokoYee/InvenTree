@@ -3,6 +3,7 @@ import { IconUser, IconUsersGroup } from '@tabler/icons-react';
 import type { ReactNode } from 'react';
 
 import { t } from '@lingui/core/macro';
+import { formatUserDisplayName } from '../../functions/userDisplay';
 import { type InstanceRenderInterface, RenderInlineModel } from './Instance';
 
 export function RenderOwner({
@@ -27,6 +28,11 @@ export function RenderOwner({
 export function RenderUser({
   instance
 }: Readonly<InstanceRenderInterface>): ReactNode {
+  const displayName = formatUserDisplayName(
+    instance?.first_name,
+    instance?.last_name
+  );
+
   return (
     instance && (
       <RenderInlineModel
@@ -40,9 +46,7 @@ export function RenderUser({
         }
         suffix={
           <Group gap='xs'>
-            <Text size='xs'>
-              {instance.first_name} {instance.last_name}
-            </Text>
+            {displayName && <Text size='xs'>{displayName}</Text>}
             <IconUser size={16} />
           </Group>
         }

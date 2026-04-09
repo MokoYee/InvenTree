@@ -1,4 +1,8 @@
 import { useEffect, useMemo } from 'react';
+import {
+  DEFAULT_SYSTEM_NAME,
+  resolveSystemDisplayName
+} from '../../defaults/branding';
 import { useGlobalSettingsState } from '../../states/SettingsStates';
 
 /**
@@ -14,9 +18,8 @@ export default function PageTitle({
   const globalSettings = useGlobalSettingsState();
 
   const pageTitle = useMemo(() => {
-    const instanceName = globalSettings.getSetting(
-      'INVENTREE_INSTANCE',
-      'InvenTree'
+    const instanceName = resolveSystemDisplayName(
+      globalSettings.getSetting('INVENTREE_INSTANCE', DEFAULT_SYSTEM_NAME)
     );
     const useInstanceName = globalSettings.isSet(
       'INVENTREE_INSTANCE_TITLE',

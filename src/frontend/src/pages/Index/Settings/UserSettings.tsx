@@ -17,6 +17,7 @@ import { SettingsHeader } from '../../../components/nav/SettingsHeader';
 import type { PanelType } from '../../../components/panels/Panel';
 import { PanelGroup } from '../../../components/panels/PanelGroup';
 import { UserSettingList } from '../../../components/settings/SettingList';
+import { formatUserDisplayName } from '../../../functions/userDisplay';
 import { Loadable } from '../../../functions/loading';
 import { useUserState } from '../../../states/UserState';
 import { SecurityContent } from './AccountSettings/SecurityContent';
@@ -144,11 +145,7 @@ export default function UserSettings() {
         <SettingsHeader
           label='user'
           title={t`User Settings`}
-          subtitle={
-            user?.first_name && user?.last_name
-              ? `${user?.first_name} ${user?.last_name}`
-              : null
-          }
+          subtitle={formatUserDisplayName(user?.first_name, user?.last_name) || null}
           shorthand={user?.username || ''}
         />
         <PanelGroup

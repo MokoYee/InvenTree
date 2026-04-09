@@ -51,19 +51,19 @@ export default function UserDetail() {
       },
       {
         type: 'text',
-        name: 'first_name',
-        label: t`First Name`,
-        icon: 'info',
-        copy: true,
-        hidden: !instance.first_name
-      },
-      {
-        type: 'text',
         name: 'last_name',
         label: t`Last Name`,
         icon: 'info',
         copy: true,
         hidden: !instance.last_name
+      },
+      {
+        type: 'text',
+        name: 'first_name',
+        label: t`First Name`,
+        icon: 'info',
+        copy: true,
+        hidden: !instance.first_name
       },
       {
         type: 'text',

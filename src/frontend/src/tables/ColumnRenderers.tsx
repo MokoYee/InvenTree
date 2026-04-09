@@ -33,6 +33,7 @@ import {
   formatDate,
   formatDecimal
 } from '../defaults/formatters';
+import { formatUserDisplayName } from '../functions/userDisplay';
 import {
   useGlobalSettingsState,
   useUserSettingsState
@@ -602,10 +603,12 @@ export function UserColumn(props: TableColumnProps): TableColumn {
     render: (record: any) => {
       const instance = resolveItem(record, props.accessor ?? 'user_detail');
       if (instance) {
+        const displayName = formatUserDisplayName(
+          instance.first_name,
+          instance.last_name
+        );
         const extra: ReactNode[] = [
-          <Text size='sm'>
-            {instance.first_name} {instance.last_name}
-          </Text>
+          <Text size='sm'>{displayName}</Text>
         ];
 
         if (instance.is_active === false) {

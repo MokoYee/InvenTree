@@ -48,7 +48,9 @@ export default function DashboardMenu({
     const username = user.username();
 
     return (
-      <StylishText size='lg'>{`${instanceName} - ${username}`}</StylishText>
+      <StylishText size='lg'>
+        {username ? `${instanceName} - ${username}` : instanceName}
+      </StylishText>
     );
   }, [user, instanceName]);
 

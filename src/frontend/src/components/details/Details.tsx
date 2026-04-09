@@ -28,6 +28,7 @@ import type { InvenTreeIconType } from '@lib/types/Icons';
 import { useApi } from '../../contexts/ApiContext';
 import { formatDate, formatDecimal } from '../../defaults/formatters';
 import { InvenTreeIcon } from '../../functions/icons';
+import { formatUserDisplayName } from '../../functions/userDisplay';
 import { useGlobalSettingsState } from '../../states/SettingsStates';
 import { CopyButton } from '../buttons/CopyButton';
 import { StylishText } from '../items/StylishText';
@@ -121,7 +122,7 @@ function HoverNameBadge(data: any, type: BadgeType) {
         ];
       case 'user':
         return [
-          `${data.first_name} ${data.last_name}`,
+          formatUserDisplayName(data.first_name, data.last_name),
           data.username,
           getDetailUrl(ModelType.user, data.pk, true),
           data?.image,
@@ -229,7 +230,7 @@ function NameBadge({
       return '';
     } else if (type === 'user' && settings.isSet('DISPLAY_FULL_NAMES')) {
       if (data.first_name || data.last_name) {
-        return `${data.first_name} ${data.last_name}`;
+        return formatUserDisplayName(data.first_name, data.last_name);
       } else {
         return data.username;
       }

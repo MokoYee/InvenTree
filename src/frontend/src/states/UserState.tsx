@@ -7,6 +7,7 @@ import { apiUrl } from '@lib/functions/Api';
 import type { UserProps, UserStateProps } from '@lib/types/User';
 import { api, setApiDefaults } from '../App';
 import { clearCsrfCookie } from '../functions/auth';
+import { formatUserDisplayName } from '../functions/userDisplay';
 
 /**
  * Global user information state, using Zustand manager
@@ -24,9 +25,13 @@ export const useUserState = create<UserStateProps>((set, get) => ({
   },
   username: () => {
     const user: UserProps = get().user as UserProps;
+    const displayName = formatUserDisplayName(
+      user?.first_name,
+      user?.last_name
+    );
 
-    if (user?.first_name || user?.last_name) {
-      return `${user.first_name} ${user.last_name}`.trim();
+    if (displayName) {
+      return displayName;
     } else {
       return user?.username ?? '';
     }
