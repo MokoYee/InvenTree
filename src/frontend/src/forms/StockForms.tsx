@@ -94,6 +94,8 @@ const STOCK_REMOVE_REASON_LABELS = Object.fromEntries(
   STOCK_REMOVE_REASON_CHOICES.map((choice) => [choice.value, choice.display_name])
 );
 
+const DEFAULT_BUSINESS_CURRENCY = 'CNY';
+
 function buildStockRemoveNotes(reason: string, notes: string): string {
   const fallbackReason = reason.trim();
   const reasonLabel =
@@ -175,12 +177,10 @@ export function useStockFields({
     if (supplierPartId && !supplierPart) setSupplierPart(supplierPartId);
   }, [partInstance, supplierPart, supplierPartId]);
 
-  // Set default currency from global settings
+  // Force RMB as the business default currency for stock entry flows
   useEffect(() => {
-    setPurchasePriceCurrency(
-      globalSettings.getSetting('INVENTREE_DEFAULT_CURRENCY', 'CNY')
-    );
-  }, [globalSettings]);
+    setPurchasePriceCurrency(DEFAULT_BUSINESS_CURRENCY);
+  }, []);
 
   const stockItemStatusCodes = useStatusCodes({
     modelType: ModelType.stockitem
@@ -308,7 +308,7 @@ export function useStockFields({
       },
       purchase_price_currency: {
         icon: <IconCoins />,
-        default: globalSettings.getSetting('INVENTREE_DEFAULT_CURRENCY', 'CNY'),
+        default: DEFAULT_BUSINESS_CURRENCY,
         value: purchasePriceCurrency,
         onValueChange: (value) => {
           setPurchasePriceCurrency(value);

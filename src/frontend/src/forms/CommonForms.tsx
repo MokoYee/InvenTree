@@ -134,6 +134,9 @@ export function useParameterFields({
         value: modelId
       },
       template: {
+        label: '字段模板',
+        description:
+          '选择要维护的业务字段。同一条记录下，同一个字段模板只能新增一次。',
         filters: {
           for_model: modelType,
           enabled: true
@@ -184,6 +187,8 @@ export function useParameterFields({
         }
       },
       data: {
+        label: '字段内容',
+        description: '填写该业务字段的实际内容或数值。',
         value: data,
         onValueChange: (value: any) => {
           setData(value);
@@ -206,7 +211,9 @@ export function useParameterFields({
           return v;
         }
       },
-      note: {}
+      note: {
+        label: '备注'
+      }
     };
   }, [data, modelType, fieldType, choices, modelId]);
 }

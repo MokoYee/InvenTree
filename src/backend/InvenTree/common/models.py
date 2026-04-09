@@ -2687,6 +2687,25 @@ class Parameter(
             except Exception:
                 InvenTree.exceptions.log_error('validate_parameter', plugin=plugin.slug)
 
+    def validate_unique(self, exclude=None):
+        """Provide a business-facing validation message for duplicate fields."""
+        if self.model_type and self.model_id and self.template:
+            queryset = self.__class__.objects.filter(
+                model_type=self.model_type,
+                model_id=self.model_id,
+                template=self.template,
+            )
+
+            if self.pk:
+                queryset = queryset.exclude(pk=self.pk)
+
+            if queryset.exists():
+                raise ValidationError({
+                    'template': '该业务字段已存在，请直接编辑当前内容，不要重复新增。'
+                })
+
+        super().validate_unique(exclude=exclude)
+
     def calculate_numeric_value(self):
         """Calculate a numeric value for the parameter data.
 

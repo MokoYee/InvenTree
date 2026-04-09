@@ -918,7 +918,7 @@ export default function PartDetail() {
       },
       {
         name: 'operations',
-        label: '运营信息',
+        label: '业务信息',
         icon: <IconListCheck />,
         content: part?.pk ? (
           <PartOperationsPanel

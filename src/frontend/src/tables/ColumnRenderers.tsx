@@ -589,6 +589,7 @@ export function StatusColumn(props: StatusColumnProps): TableColumn {
 
   return {
     accessor: 'status',
+    title: t`Status`,
     sortable: true,
     switchable: true,
     minWidth: '50px',

@@ -114,7 +114,7 @@ export function ParameterTable({
     return [
       {
         name: 'enabled',
-        label: 'Enabled',
+        label: t`Enabled`,
         description: t`Show parameters for enabled templates`,
         type: 'boolean'
       },

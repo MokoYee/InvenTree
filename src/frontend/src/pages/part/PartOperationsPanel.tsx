@@ -259,7 +259,8 @@ export default function PartOperationsPanel({
         .get(apiUrl(ApiEndpoints.parameter_template_list), {
           params: {
             for_model: ModelType.part,
-            enabled: true
+            enabled: true,
+            limit: 1000
           }
         })
         .then((response) => extractList(response.data)),
@@ -275,7 +276,8 @@ export default function PartOperationsPanel({
           params: {
             model_type: ModelType.part,
             model_id: partId,
-            template_detail: true
+            template_detail: true,
+            limit: 1000
           }
         })
         .then((response) => extractList(response.data)),
@@ -419,7 +421,7 @@ export default function PartOperationsPanel({
     if (missingTemplates.length > 0) {
       notifications.show({
         title: '字段尚未启用',
-        message: '请先启用这些字段，再保存运营信息',
+        message: '请先启用这些字段，再保存业务信息',
         color: 'red'
       });
       return;
@@ -441,7 +443,7 @@ export default function PartOperationsPanel({
     if (changedFields.length === 0) {
       notifications.show({
         title: '无需保存',
-        message: '运营信息没有变化',
+        message: '业务信息没有变化',
         color: 'blue'
       });
       return;
@@ -487,14 +489,14 @@ export default function PartOperationsPanel({
 
       notifications.show({
         title: '保存成功',
-        message: '运营信息已更新',
+        message: '业务信息已更新',
         color: 'green',
         icon: <IconCircleCheck />
       });
     } catch (error: any) {
       showApiErrorMessage({
         error: error,
-        title: '保存运营信息失败',
+        title: '保存业务信息失败',
         message: '请检查字段内容或稍后重试',
         id: 'part-operation-parameter-save-error'
       });
@@ -513,8 +515,8 @@ export default function PartOperationsPanel({
 
   if (templatesQuery.isError || parametersQuery.isError) {
     return (
-      <Alert color='red' icon={<IconExclamationCircle />} title='运营信息加载失败'>
-        无法读取运营信息，请刷新页面后重试。
+      <Alert color='red' icon={<IconExclamationCircle />} title='业务信息加载失败'>
+        无法读取业务信息，请刷新页面后重试。
       </Alert>
     );
   }
@@ -525,9 +527,9 @@ export default function PartOperationsPanel({
         <Stack gap='sm'>
           <Group justify='space-between' align='center'>
             <Stack gap={2}>
-              <Text fw={600}>业务摘要</Text>
+              <Text fw={600}>业务概览</Text>
               <Text size='sm' c='dimmed'>
-                汇总产品常用运营字段和最近库存动作，便于业务快速判断。
+                汇总产品常用业务字段和最近库存动作，便于业务快速判断。
               </Text>
             </Stack>
             {trackingSummaryQuery.isFetching && <Loader size='xs' />}
@@ -551,12 +553,12 @@ export default function PartOperationsPanel({
       </Paper>
 
       <Text size='sm' c='dimmed'>
-        维护产品常用运营信息，保存后系统会自动更新对应业务字段。
+        维护产品常用业务信息，保存后系统会自动更新对应业务字段。
       </Text>
 
       {partLocked && (
         <Alert color='orange' icon={<IconLock />} title='产品已锁定'>
-          当前产品已锁定，运营信息只能查看，不能修改。
+          当前产品已锁定，业务信息只能查看，不能修改。
         </Alert>
       )}
 

@@ -153,7 +153,7 @@ msgstr "产品"
 
 #: lib/enums/ModelInformation.tsx:39
 msgid "Parameter"
-msgstr "参数"
+msgstr "字段"
 
 #: lib/enums/ModelInformation.tsx:40
 #: src/components/panels/ParametersPanel.tsx:21
@@ -162,17 +162,17 @@ msgstr "参数"
 #: src/pages/Index/Settings/SystemSettings.tsx:191
 #: src/pages/part/PartDetail.tsx:931
 msgid "Parameters"
-msgstr "参数"
+msgstr "扩展字段"
 
 #: lib/enums/ModelInformation.tsx:45
 #: src/tables/part/PartCategoryTemplateTable.tsx:87
 msgid "Parameter Template"
-msgstr "参数模板"
+msgstr "字段模板"
 
 #: lib/enums/ModelInformation.tsx:46
 #: src/pages/Index/Settings/AdminCenter/ParameterPanel.tsx:13
 msgid "Parameter Templates"
-msgstr "参数模板"
+msgstr "字段模板"
 
 #: lib/enums/ModelInformation.tsx:52
 msgid "Part Test Template"
@@ -924,7 +924,7 @@ msgstr "下个月"
 #: src/components/calendar/Calendar.tsx:194
 #: src/tables/InvenTreeTableHeader.tsx:288
 msgid "Export data"
-msgstr "出口数据"
+msgstr "导出列表数据"
 
 #: src/components/calendar/OrderCalendar.tsx:132
 msgid "Order Updated"
@@ -3766,7 +3766,7 @@ msgstr "选择并编辑你想要给这个产品添加的参数。"
 
 #: src/components/wizards/ImportPartWizard.tsx:379
 msgid "Default category parameters"
-msgstr "默认的类别参数"
+msgstr "分类预设字段"
 
 #: src/components/wizards/ImportPartWizard.tsx:391
 msgid "Other parameters"
@@ -3782,7 +3782,7 @@ msgstr "跳过"
 
 #: src/components/wizards/ImportPartWizard.tsx:476
 msgid "Create Parameters"
-msgstr "创建参数"
+msgstr "生成字段"
 
 #: src/components/wizards/ImportPartWizard.tsx:493
 msgid "Create initial stock for the imported part."
@@ -5384,7 +5384,7 @@ msgstr "正在导出数据"
 
 #: src/hooks/UseDataExport.tsx:111
 msgid "Export Data"
-msgstr "导出数据"
+msgstr "导出列表数据"
 
 #: src/hooks/UseDataExport.tsx:114
 msgid "Export"
@@ -7409,7 +7409,7 @@ msgstr "显示外部生产订单"
 #: src/pages/sales/SalesIndex.tsx:140
 #: src/pages/stock/LocationDetail.tsx:193
 msgid "Table View"
-msgstr "表格视图"
+msgstr "标准列表"
 
 #: src/pages/build/BuildIndex.tsx:80
 #: src/pages/purchasing/PurchasingIndex.tsx:80
@@ -7430,7 +7430,7 @@ msgstr "日历视图"
 #: src/pages/sales/SalesIndex.tsx:152
 #: src/pages/stock/LocationDetail.tsx:199
 msgid "Parametric View"
-msgstr "参数视图"
+msgstr "字段列视图"
 
 #: src/pages/company/CompanyDetail.tsx:108
 msgid "Phone Number"
@@ -7712,7 +7712,7 @@ msgstr "默认位置"
 
 #: src/pages/part/CategoryDetail.tsx:173
 msgid "Top level part category"
-msgstr "顶级产品分类"
+msgstr "当前分类无上级分类"
 
 #: src/pages/part/CategoryDetail.tsx:183
 #: src/pages/part/CategoryDetail.tsx:251
@@ -7921,7 +7921,7 @@ msgstr "可装配产品"
 
 #: src/pages/part/PartDetail.tsx:614
 msgid "Component Part"
-msgstr "可作为子件"
+msgstr "可用于装配"
 
 #: src/pages/part/PartDetail.tsx:619
 #: src/tables/bom/BomTable.tsx:413
@@ -7997,7 +7997,7 @@ msgstr "物料清单"
 
 #: src/pages/part/PartDetail.tsx:816
 msgid "Used In"
-msgstr "被哪些产品使用"
+msgstr "关联产品"
 
 #: src/pages/part/PartDetail.tsx:823
 msgid "Part Pricing"
@@ -8748,11 +8748,11 @@ msgstr "位置类型"
 
 #: src/pages/stock/LocationDetail.tsx:166
 msgid "Top level stock location"
-msgstr "最高级库存位置"
+msgstr "当前库位无上级位置"
 
 #: src/pages/stock/LocationDetail.tsx:179
 msgid "Location Details"
-msgstr "位置详细信息"
+msgstr "库位信息"
 
 #: src/pages/stock/LocationDetail.tsx:225
 msgid "Default Parts"
@@ -10414,40 +10414,40 @@ msgstr "按最后更新参数的用户筛选"
 
 #: src/tables/general/ParameterTable.tsx:149
 msgid "Import Parameters"
-msgstr "导入参数"
+msgstr "导入字段"
 
 #: src/tables/general/ParameterTable.tsx:160
 #: src/tables/general/ParametricDataTable.tsx:271
 #: src/tables/general/ParametricDataTable.tsx:402
 msgid "Add Parameter"
-msgstr "添加参数"
+msgstr "新增字段"
 
 #: src/tables/general/ParameterTable.tsx:171
 #: src/tables/general/ParameterTable.tsx:218
 #: src/tables/general/ParametricDataTable.tsx:295
 msgid "Edit Parameter"
-msgstr "编辑参数"
+msgstr "编辑字段"
 
 #: src/tables/general/ParameterTable.tsx:179
 #: src/tables/general/ParameterTable.tsx:226
 msgid "Delete Parameter"
-msgstr "删除参数"
+msgstr "删除字段"
 
 #: src/tables/general/ParameterTable.tsx:187
 msgid "Add Parameters"
-msgstr "添加参数"
+msgstr "字段操作"
 
 #: src/tables/general/ParameterTable.tsx:193
 msgid "Create Parameter"
-msgstr "创建参数"
+msgstr "新建字段"
 
 #: src/tables/general/ParameterTable.tsx:195
 msgid "Create a new parameter"
-msgstr "创建一个新参数"
+msgstr "新建一个扩展字段"
 
 #: src/tables/general/ParameterTable.tsx:204
 msgid "Import parameters from a file"
-msgstr "从文件导入参数"
+msgstr "从文件导入扩展字段"
 
 #: src/tables/general/ParameterTemplateTable.tsx:48
 #: src/tables/general/ParameterTemplateTable.tsx:197

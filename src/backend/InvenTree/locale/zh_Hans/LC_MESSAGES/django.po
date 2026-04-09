@@ -4335,11 +4335,11 @@ msgstr "选择导出文件格式"
 
 #: data_exporter/serializers.py:81
 msgid "Export Plugin"
-msgstr "导出插件"
+msgstr "导出方式"
 
 #: data_exporter/serializers.py:82
 msgid "Select export plugin"
-msgstr "选择导出插件"
+msgstr "选择导出方式"
 
 #: generic/states/fields.py:146
 msgid "Additional status information for this item"
@@ -5664,7 +5664,7 @@ msgstr "按类别深度筛选"
 
 #: part/api.py:125 stock/api.py:305
 msgid "Top Level"
-msgstr "顶级"
+msgstr "一级分类"
 
 #: part/api.py:127
 msgid "Filter by top-level categories"
@@ -5986,7 +5986,7 @@ msgstr "该产品是否可由其他产品装配或生产得到？"
 
 #: part/models.py:1254
 msgid "Can this part be used to build other parts?"
-msgstr "该产品是否可作为子件参与装配或生产？"
+msgstr "开启后，该产品可被其他产品引用，作为装配或生产中的组成件。"
 
 #: part/models.py:1260
 msgid "Does this part have tracking for unique items?"
@@ -6630,11 +6630,11 @@ msgstr "为该产品补充初始供应商资料"
 
 #: part/serializers.py:965
 msgid "Copy Category Parameters"
-msgstr "带出分类参数"
+msgstr "自动带入分类字段"
 
 #: part/serializers.py:966
 msgid "Copy parameter templates from selected part category"
-msgstr "从所选产品分类带出参数模板"
+msgstr "根据所选产品分类，自动带入预设参数模板。"
 
 #: part/serializers.py:971
 msgid "Existing Image"
