@@ -129,3 +129,19 @@ services:
             - ${INVENTREE_EXT_VOLUME}:/var/log:z
             - ${INVENTREE_EXT_VOLUME}:/data:z
             - ${INVENTREE_EXT_VOLUME}:/config:z
+
+    # Optional Cloudflare Tunnel sidecar
+    # Enable with: docker compose --profile cloudflare up -d
+    # Host networking is required when the tunnel dashboard routes traffic to
+    # http://localhost:${INVENTREE_HTTP_PORT}, because container-local localhost
+    # would otherwise point back to the cloudflared container itself.
+    cloudflared:
+        profiles:
+            - cloudflare
+        image: cloudflare/cloudflared:latest
+        container_name: cloudflared-inventree
+        network_mode: host
+        env_file:
+            - .env
+        command: tunnel --no-autoupdate run --token ${CLOUDFLARED_TOKEN:-}
+        restart: unless-stopped
