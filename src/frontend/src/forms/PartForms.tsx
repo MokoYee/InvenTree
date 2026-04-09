@@ -63,32 +63,32 @@ export function usePartFields({
         }
       },
       component: {
-        default: globalSettings.isSet('PART_COMPONENT')
+        default: create ? false : globalSettings.isSet('PART_COMPONENT')
       },
       assembly: {
-        default: globalSettings.isSet('PART_ASSEMBLY')
+        default: create ? false : globalSettings.isSet('PART_ASSEMBLY')
       },
       is_template: {
-        default: globalSettings.isSet('PART_TEMPLATE')
+        default: create ? false : globalSettings.isSet('PART_TEMPLATE')
       },
       testable: {
         default: false
       },
       trackable: {
-        default: globalSettings.isSet('PART_TRACKABLE')
+        default: create ? false : globalSettings.isSet('PART_TRACKABLE')
       },
       purchaseable: {
         value: purchaseable,
-        default: globalSettings.isSet('PART_PURCHASEABLE'),
+        default: create ? false : globalSettings.isSet('PART_PURCHASEABLE'),
         onValueChange: (value: boolean) => {
           setPurchaseable(value);
         }
       },
       salable: {
-        default: globalSettings.isSet('PART_SALABLE')
+        default: create ? false : globalSettings.isSet('PART_SALABLE')
       },
       virtual: {
-        default: globalSettings.isSet('PART_VIRTUAL'),
+        default: create ? false : globalSettings.isSet('PART_VIRTUAL'),
         value: virtual,
         onValueChange: (value: boolean) => {
           setVirtual(value);

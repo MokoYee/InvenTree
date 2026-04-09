@@ -75,7 +75,7 @@ export function usePurchaseOrderLineItemFields({
 
   const [purchasePrice, setPurchasePrice] = useState<string>('');
   const [purchasePriceCurrency, setPurchasePriceCurrency] = useState<string>(
-    currency ?? ''
+    currency ?? globalSettings.getSetting('INVENTREE_DEFAULT_CURRENCY', 'CNY')
   );
 
   const [autoPricing, setAutoPricing] = useState(false);
@@ -248,7 +248,8 @@ export function usePurchaseOrderFields({
         icon: <IconList />
       },
       order_currency: {
-        icon: <IconCoins />
+        icon: <IconCoins />,
+        default: globalSettings.getSetting('INVENTREE_DEFAULT_CURRENCY', 'CNY')
       },
       start_date: {
         icon: <IconCalendar />

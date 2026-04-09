@@ -1374,7 +1374,7 @@ msgstr "生产"
 #: order/api.py:327 order/api.py:554 order/serializers.py:605
 #: stock/models.py:1043 stock/serializers.py:582
 msgid "Supplier Part"
-msgstr "供应商产品"
+msgstr "供应商货号"
 
 #: build/serializers.py:1304 stock/serializers.py:635
 msgid "Allocated Quantity"
@@ -2765,27 +2765,27 @@ msgstr "允许删除已在装配中使用的产品"
 
 #: common/setting/system.py:424
 msgid "IPN Regex"
-msgstr "IPN（内部产品号）正则规则"
+msgstr "产品编码匹配规则"
 
 #: common/setting/system.py:425
 msgid "Regular expression pattern for matching Part IPN"
-msgstr "用于匹配IPN（内部产品号）格式的正则表达式"
+msgstr "用于校验产品编码格式的匹配规则"
 
 #: common/setting/system.py:428
 msgid "Allow Duplicate IPN"
-msgstr "允许重复的 IPN（内部产品号）"
+msgstr "允许产品编码重复"
 
 #: common/setting/system.py:429
 msgid "Allow multiple parts to share the same IPN"
-msgstr "允许多个产品共享相同的 IPN（内部产品号）"
+msgstr "允许多个产品使用相同的产品编码"
 
 #: common/setting/system.py:434
 msgid "Allow Editing IPN"
-msgstr "允许编辑 IPN（内部产品号）"
+msgstr "允许编辑产品编码"
 
 #: common/setting/system.py:435
 msgid "Allow changing the IPN value while editing a part"
-msgstr "允许编辑产品时更改IPN（内部产品号）"
+msgstr "允许在编辑产品时修改产品编码"
 
 #: common/setting/system.py:440
 msgid "Copy Part BOM Data"
@@ -3657,19 +3657,19 @@ msgstr "在搜索预览窗口中显示产品"
 
 #: common/setting/user.py:57
 msgid "Search Supplier Parts"
-msgstr "搜索供应商产品"
+msgstr "搜索供应商货号"
 
 #: common/setting/user.py:58
 msgid "Display supplier parts in search preview window"
-msgstr "在搜索预览窗口中显示供应商产品"
+msgstr "在搜索预览窗口中显示供应商货号"
 
 #: common/setting/user.py:63
 msgid "Search Manufacturer Parts"
-msgstr "搜索制造商产品"
+msgstr "搜索厂家货号"
 
 #: common/setting/user.py:64
 msgid "Display manufacturer parts in search preview window"
-msgstr "在搜索预览窗口中显示制造商产品"
+msgstr "在搜索预览窗口中显示厂家货号"
 
 #: common/setting/user.py:69
 msgid "Hide Inactive Parts"
@@ -3960,15 +3960,15 @@ msgstr "制造商处于活动状态"
 
 #: company/api.py:250
 msgid "Supplier Part is Active"
-msgstr "供应商产品处于激活状态"
+msgstr "供应商货号已启用"
 
 #: company/api.py:252
 msgid "Primary Supplier Part"
-msgstr "主供应商部件"
+msgstr "主供应商货号"
 
 #: company/api.py:256
 msgid "Internal Part is Active"
-msgstr "内部产品已激活"
+msgstr "关联产品已启用"
 
 #: company/api.py:261
 msgid "Supplier is Active"
@@ -4168,7 +4168,7 @@ msgstr "链接地址信息 (外部)"
 #: company/models.py:507 company/models.py:802 company/serializers.py:475
 #: stock/api.py:560
 msgid "Manufacturer Part"
-msgstr "制造商产品"
+msgstr "厂家货号"
 
 #: company/models.py:524 company/models.py:764 stock/models.py:1032
 #: stock/serializers.py:418
@@ -4186,19 +4186,19 @@ msgstr "选择制造商"
 #: company/models.py:542 company/serializers.py:486 order/serializers.py:703
 #: part/serializers.py:498
 msgid "MPN"
-msgstr "制造商料号（MPN）"
+msgstr "厂家货号"
 
 #: company/models.py:543 stock/serializers.py:575
 msgid "Manufacturer Part Number"
-msgstr "制造商产品编号"
+msgstr "厂家货号"
 
 #: company/models.py:550
 msgid "URL for external manufacturer part link"
-msgstr "外部制造商产品链接的URL"
+msgstr "外部厂家货号链接地址"
 
 #: company/models.py:559
 msgid "Manufacturer part description"
-msgstr "制造商产品说明"
+msgstr "厂家货号说明"
 
 #: company/models.py:691
 msgid "Pack units must be compatible with the base part units"
@@ -4210,7 +4210,7 @@ msgstr "包装单位必须大于零"
 
 #: company/models.py:712
 msgid "Linked manufacturer part must reference the same base part"
-msgstr "链接的制造商产品必须引用相同的基础产品"
+msgstr "关联的厂家货号必须对应同一个基础产品"
 
 #: company/models.py:774 company/serializers.py:443 company/serializers.py:470
 #: order/models.py:653 part/serializers.py:472
@@ -4226,11 +4226,11 @@ msgstr "选择供应商"
 
 #: company/models.py:781 part/serializers.py:483
 msgid "Supplier stock keeping unit"
-msgstr "供应商料号（SKU）"
+msgstr "供应商货号"
 
 #: company/models.py:787
 msgid "Is this supplier part active?"
-msgstr "此供应商产品是否处于活动状态？"
+msgstr "该供应商货号是否启用？"
 
 #: company/models.py:792
 msgid "Primary"
@@ -4238,19 +4238,19 @@ msgstr "主要的"
 
 #: company/models.py:793
 msgid "Is this the primary supplier part for the linked Part?"
-msgstr "这是否为关联产品的主供应商料号？"
+msgstr "这是否为关联产品的主供应商货号？"
 
 #: company/models.py:803
 msgid "Select manufacturer part"
-msgstr "选择制造商产品"
+msgstr "选择厂家货号"
 
 #: company/models.py:810
 msgid "URL for external supplier part link"
-msgstr "外部供应商产品链接的URL"
+msgstr "外部供应商货号链接地址"
 
 #: company/models.py:819
 msgid "Supplier part description"
-msgstr "供应商产品说明"
+msgstr "供应商货号说明"
 
 #: company/models.py:835 part/models.py:2295
 msgid "base cost"
@@ -4793,7 +4793,7 @@ msgstr "订单完成"
 
 #: order/api.py:573 order/api.py:577 order/serializers.py:714
 msgid "Internal Part"
-msgstr "内部产品"
+msgstr "关联产品"
 
 #: order/api.py:595
 msgid "Order Pending"
@@ -4928,7 +4928,7 @@ msgstr "订单参考"
 #: order/models.py:638 order/models.py:1362 order/models.py:2760
 #: stock/serializers.py:562 stock/serializers.py:1003 users/models.py:542
 msgid "Status"
-msgstr "狀態"
+msgstr "状态"
 
 #: order/models.py:639
 msgid "Purchase order status"
@@ -5075,7 +5075,7 @@ msgstr "采购订单明细"
 
 #: order/models.py:1917
 msgid "Supplier part must match supplier"
-msgstr "供应商产品必须与供应商匹配"
+msgstr "供应商货号必须与供应商一致"
 
 #: order/models.py:1922
 msgid "Build order must be marked as external"
@@ -5091,7 +5091,7 @@ msgstr "生产订单产品必须与明细行产品一致"
 
 #: order/models.py:1970
 msgid "Supplier part"
-msgstr "供应商产品"
+msgstr "供应商货号"
 
 #: order/models.py:1977
 msgid "Received"
@@ -5412,7 +5412,7 @@ msgstr "自动定价"
 
 #: order/serializers.py:651
 msgid "Automatically calculate purchase price based on supplier part data"
-msgstr "根据供应商产品数据自动计算采购价格"
+msgstr "根据供应商货号资料自动计算采购价"
 
 #: order/serializers.py:665
 msgid "Purchase price currency"
@@ -5428,19 +5428,19 @@ msgstr "将相同产品、目的地和目标日期的项目合并为一条明细
 
 #: order/serializers.py:696 part/serializers.py:482
 msgid "SKU"
-msgstr "供应商料号（SKU）"
+msgstr "供应商货号"
 
 #: order/serializers.py:710 part/models.py:1151 part/serializers.py:348
 msgid "Internal Part Number"
-msgstr "内部产品编号"
+msgstr "产品编码"
 
 #: order/serializers.py:718
 msgid "Internal Part Name"
-msgstr "内部产品名称"
+msgstr "产品名称"
 
 #: order/serializers.py:734
 msgid "Supplier part must be specified"
-msgstr "必须指定供应商产品"
+msgstr "必须指定供应商货号"
 
 #: order/serializers.py:737
 msgid "Purchase order must be specified"
@@ -5857,7 +5857,7 @@ msgstr "产品 \"{parent}\" 被使用在了 \"{self}\" 的物料清单 (递归)"
 #: part/models.py:768
 #, python-brace-format
 msgid "IPN must match regex pattern {pattern}"
-msgstr "内部产品号必须匹配正则表达式 {pattern}"
+msgstr "产品编码必须符合匹配规则 {pattern}"
 
 #: part/models.py:776
 msgid "Part cannot be a revision of itself"
@@ -5885,7 +5885,7 @@ msgstr "该序列号库存项己存在"
 
 #: part/models.py:1031
 msgid "Duplicate IPN not allowed in part settings"
-msgstr "在产品设置中不允许重复的内部产品号"
+msgstr "当前产品设置不允许重复的产品编码"
 
 #: part/models.py:1044
 msgid "Duplicate part revision already exists."
@@ -5893,7 +5893,7 @@ msgstr "重复的产品修订版本已经存在。"
 
 #: part/models.py:1054
 msgid "Part with this Name, IPN and Revision already exists."
-msgstr "有这个名字，内部产品号，和修订版本的产品已经存在"
+msgstr "已存在相同产品名称、产品编码和版本号的产品。"
 
 #: part/models.py:1069
 msgid "Parts cannot be assigned to structural part categories!"
@@ -5938,7 +5938,7 @@ msgstr "产品分类"
 #: part/models.py:1150 part/serializers.py:819
 #: report/templates/report/inventree_stock_location_report.html:103
 msgid "IPN"
-msgstr "内部产品号 IPN"
+msgstr "产品编码"
 
 #: part/models.py:1158
 msgid "Part revision or version number"
@@ -6110,7 +6110,7 @@ msgstr "供应商最低价格"
 
 #: part/models.py:3367
 msgid "Minimum price of part from external suppliers"
-msgstr "外部供应商产品的最低价格"
+msgstr "外部供应商货号的最低价格"
 
 #: part/models.py:3373
 msgid "Maximum Supplier Price"
@@ -6547,7 +6547,7 @@ msgstr "选择制造商；留空则跳过"
 
 #: part/serializers.py:499
 msgid "Manufacturer part number"
-msgstr "制造商料号（MPN）"
+msgstr "厂家货号"
 
 #: part/serializers.py:506
 msgid "Selected company is not a valid supplier"
@@ -6559,11 +6559,11 @@ msgstr "所选公司不是有效的制造商"
 
 #: part/serializers.py:526
 msgid "Manufacturer part matching this MPN already exists"
-msgstr "该制造商下已存在相同的制造商料号（MPN）"
+msgstr "该厂家下已存在相同的厂家货号"
 
 #: part/serializers.py:533
 msgid "Supplier part matching this SKU already exists"
-msgstr "该供应商下已存在相同的供应商料号（SKU）"
+msgstr "该供应商下已存在相同的供应商货号"
 
 #: part/serializers.py:804
 msgid "Category Name"
@@ -6674,7 +6674,7 @@ msgstr "分配到销售订单"
 
 #: part/serializers.py:1260
 msgid "Part IPN"
-msgstr "内部产品号"
+msgstr "产品编码"
 
 #: part/serializers.py:1267
 msgid "Part Description"
@@ -6894,11 +6894,11 @@ msgstr "没有找到匹配的产品数据"
 
 #: plugin/base/barcodes/api.py:435
 msgid "No matching supplier parts found"
-msgstr "没有找到匹配的供应商产品"
+msgstr "未找到匹配的供应商货号"
 
 #: plugin/base/barcodes/api.py:438
 msgid "Multiple matching supplier parts found"
-msgstr "找到多个匹配的供应商产品"
+msgstr "找到多个匹配的供应商货号"
 
 #: plugin/base/barcodes/api.py:451 plugin/base/barcodes/api.py:678
 msgid "No matching plugin found for barcode data"
@@ -6906,7 +6906,7 @@ msgstr "没有找到匹配条形码数据的插件"
 
 #: plugin/base/barcodes/api.py:461
 msgid "Matched supplier part"
-msgstr "匹配的供应商产品"
+msgstr "匹配的供应商货号"
 
 #: plugin/base/barcodes/api.py:529
 msgid "Item has already been received"
@@ -6955,7 +6955,7 @@ msgstr "找到匹配的项目"
 
 #: plugin/base/barcodes/mixins.py:375
 msgid "Supplier part does not match line item"
-msgstr "供应商产品与明细行不匹配"
+msgstr "供应商货号与明细行不匹配"
 
 #: plugin/base/barcodes/mixins.py:378
 msgid "Line item is already completed"
@@ -7298,12 +7298,12 @@ msgstr "供应商 {n}"
 #: plugin/builtin/exporter/bom_exporter.py:131
 #, python-brace-format
 msgid "Supplier {n} SKU"
-msgstr "供应商 {n} SKU"
+msgstr "供应商 {n} 货号"
 
 #: plugin/builtin/exporter/bom_exporter.py:132
 #, python-brace-format
 msgid "Supplier {n} MPN"
-msgstr "供应商 {n} MPN"
+msgstr "供应商 {n} 对应厂家货号"
 
 #: plugin/builtin/exporter/bom_exporter.py:138
 #, python-brace-format
@@ -7313,7 +7313,7 @@ msgstr "制造商 {n}"
 #: plugin/builtin/exporter/bom_exporter.py:139
 #, python-brace-format
 msgid "Manufacturer {n} MPN"
-msgstr "制造商 {n} MPN"
+msgstr "厂家 {n} 货号"
 
 #: plugin/builtin/exporter/inventree_exporter.py:14
 msgid "InvenTree Generic Exporter"
@@ -8328,15 +8328,15 @@ msgstr "产品名称 (正则表达式)"
 
 #: stock/api.py:621
 msgid "Part IPN (case insensitive)"
-msgstr "内部产品号 (不区分大小写)"
+msgstr "产品编码（忽略大小写）"
 
 #: stock/api.py:627
 msgid "Part IPN contains (case insensitive)"
-msgstr "内部产品号 (不区分大小写)"
+msgstr "产品编码包含（忽略大小写）"
 
 #: stock/api.py:633
 msgid "Part IPN (regex)"
-msgstr "内部产品号 (正则表达式)"
+msgstr "产品编码（按匹配规则）"
 
 #: stock/api.py:645
 msgid "Minimum stock"
@@ -8420,11 +8420,11 @@ msgstr "必须提供有效的产品"
 
 #: stock/api.py:1123
 msgid "The given supplier part does not exist"
-msgstr "给定的供应商产品不存在"
+msgstr "指定的供应商货号不存在"
 
 #: stock/api.py:1133
 msgid "The supplier part has a pack size defined, but flag use_pack_size not set"
-msgstr "供应商产品有定义的包装大小，但 use_pack_size 标志未设置"
+msgstr "该供应商货号已设置包装规格，但当前未启用“按包装录入”"
 
 #: stock/api.py:1165
 msgid "Serial numbers cannot be supplied for a non-trackable part"
@@ -8563,7 +8563,7 @@ msgstr "基础产品"
 
 #: stock/models.py:1044
 msgid "Select a matching supplier part for this stock item"
-msgstr "为此库存项目选择匹配的供应商产品"
+msgstr "为该库存项选择匹配的供应商货号"
 
 #: stock/models.py:1056
 msgid "Where is this stock item located?"
@@ -8860,7 +8860,7 @@ msgstr "输入新项目的序列号"
 
 #: stock/serializers.py:568
 msgid "Supplier Part Number"
-msgstr "供应商产品编号"
+msgstr "供应商货号"
 
 #: stock/serializers.py:638 users/models.py:187
 msgid "Expired"
@@ -8951,15 +8951,15 @@ msgstr "所选产品不是有效的转换选项"
 
 #: stock/serializers.py:972
 msgid "Cannot convert stock item with assigned SupplierPart"
-msgstr "无法转换已分配供应商产品的库存项"
+msgstr "无法转换已关联供应商货号的库存项"
 
 #: stock/serializers.py:1006
 msgid "Stock item status code"
-msgstr "库存项状态代码"
+msgstr "库存状态"
 
 #: stock/serializers.py:1035
 msgid "Select stock items to change status"
-msgstr "选择要更改状态的库存项目"
+msgstr "选择要变更状态的库存物料"
 
 #: stock/serializers.py:1041
 msgid "No stock items selected"
@@ -9011,7 +9011,7 @@ msgstr "允许不匹配的供应商"
 
 #: stock/serializers.py:1474
 msgid "Allow stock items with different supplier parts to be merged"
-msgstr "允许合并具有不同供应商产品的库存项目"
+msgstr "允许合并关联不同供应商货号的库存项"
 
 #: stock/serializers.py:1479
 msgid "Allow mismatched status"
@@ -9067,11 +9067,11 @@ msgstr "上一个序列号"
 
 #: stock/status_codes.py:11
 msgid "OK"
-msgstr "OK"
+msgstr "正常"
 
 #: stock/status_codes.py:12
 msgid "Attention needed"
-msgstr "需要关注"
+msgstr "待处理"
 
 #: stock/status_codes.py:13
 msgid "Damaged"
@@ -9079,7 +9079,7 @@ msgstr "破损"
 
 #: stock/status_codes.py:14
 msgid "Destroyed"
-msgstr "销毁"
+msgstr "已销毁"
 
 #: stock/status_codes.py:15
 msgid "Rejected"

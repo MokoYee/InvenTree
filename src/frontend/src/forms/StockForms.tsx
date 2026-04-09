@@ -134,7 +134,7 @@ export function useStockFields({
   // Set default currency from global settings
   useEffect(() => {
     setPurchasePriceCurrency(
-      globalSettings.getSetting('INVENTREE_DEFAULT_CURRENCY')
+      globalSettings.getSetting('INVENTREE_DEFAULT_CURRENCY', 'CNY')
     );
   }, [globalSettings]);
 
@@ -244,6 +244,7 @@ export function useStockFields({
       },
       status_custom_key: {
         label: t`Stock Status`,
+        description: '请选择当前库存物料的处理状态',
         default: stockItemStatusCodes.OK
       },
       expiry_date: {
@@ -263,7 +264,7 @@ export function useStockFields({
       },
       purchase_price_currency: {
         icon: <IconCoins />,
-        default: globalSettings.getSetting('INVENTREE_DEFAULT_CURRENCY'),
+        default: globalSettings.getSetting('INVENTREE_DEFAULT_CURRENCY', 'CNY'),
         value: purchasePriceCurrency,
         onValueChange: (value) => {
           setPurchasePriceCurrency(value);
@@ -1032,6 +1033,8 @@ function stockChangeStatusFields(items: any[]): ApiFormFieldSet {
       ]
     },
     status: {
+      label: '库存状态',
+      description: '请选择当前库存物料的处理状态',
       value: statusValues.length === 1 ? statusValues[0] : undefined
     },
     note: {}

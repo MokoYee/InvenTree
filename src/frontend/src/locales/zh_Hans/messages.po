@@ -192,12 +192,12 @@ msgstr "产品测试模板"
 #: src/tables/purchasing/SupplierPartTable.tsx:106
 #: src/tables/stock/StockItemTable.tsx:99
 msgid "Supplier Part"
-msgstr "供应商产品"
+msgstr "供应商货号"
 
 #: lib/enums/ModelInformation.tsx:60
 #: src/pages/purchasing/PurchasingIndex.tsx:129
 msgid "Supplier Parts"
-msgstr "供应商产品"
+msgstr "供应商货号"
 
 #: lib/enums/ModelInformation.tsx:69
 #: src/pages/company/ManufacturerPartDetail.tsx:289
@@ -205,12 +205,12 @@ msgstr "供应商产品"
 #: src/tables/part/PartPurchaseOrdersTable.tsx:56
 #: src/tables/stock/StockItemTable.tsx:106
 msgid "Manufacturer Part"
-msgstr "制造商产品"
+msgstr "厂家货号"
 
 #: lib/enums/ModelInformation.tsx:70
 #: src/pages/purchasing/PurchasingIndex.tsx:179
 msgid "Manufacturer Parts"
-msgstr "制造商产品"
+msgstr "厂家货号"
 
 #: lib/enums/ModelInformation.tsx:79
 #: src/pages/part/CategoryDetail.tsx:371
@@ -3808,7 +3808,7 @@ msgstr "产品添加失败： "
 
 #: src/components/wizards/ImportPartWizard.tsx:641
 msgid "Are you sure, you want to import the supplier and manufacturer part into this part?"
-msgstr "您确定要将供应商和制造商产品引入到这个产品吗？"
+msgstr "确认将该产品对应的供应商货号和厂家货号一并导入吗？"
 
 #: src/components/wizards/ImportPartWizard.tsx:655
 msgid "Import"
@@ -3833,11 +3833,11 @@ msgstr "打开产品"
 
 #: src/components/wizards/ImportPartWizard.tsx:760
 msgid "Open Supplier Part"
-msgstr "打开供应商产品"
+msgstr "打开供应商货号"
 
 #: src/components/wizards/ImportPartWizard.tsx:767
 msgid "Open Manufacturer Part"
-msgstr "打开制造商产品"
+msgstr "打开厂家货号"
 
 #: src/components/wizards/ImportPartWizard.tsx:797
 #: src/tables/part/PartTable.tsx:499
@@ -3846,11 +3846,11 @@ msgstr "打开制造商产品"
 
 #: src/components/wizards/ImportPartWizard.tsx:803
 msgid "Import Supplier Part"
-msgstr "导入供应商产品"
+msgstr "导入供应商货号"
 
 #: src/components/wizards/ImportPartWizard.tsx:805
 msgid "Search Supplier Part"
-msgstr "搜索供应商产品"
+msgstr "搜索供应商货号"
 
 #: src/components/wizards/ImportPartWizard.tsx:807
 msgid "Confirm import"
@@ -3908,13 +3908,13 @@ msgstr "采购订单已创建"
 
 #: src/components/wizards/OrderPartsWizard.tsx:217
 msgid "New Supplier Part"
-msgstr "新增供应商产品"
+msgstr "新增供应商货号"
 
 #: src/components/wizards/OrderPartsWizard.tsx:219
 #: src/tables/purchasing/SupplierPartTable.tsx:213
 #: src/tables/purchasing/SupplierPartTable.tsx:302
 msgid "Supplier part created"
-msgstr "供应商产品已更新"
+msgstr "供应商货号已更新"
 
 #: src/components/wizards/OrderPartsWizard.tsx:247
 msgid "Add to Purchase Order"
@@ -3926,15 +3926,15 @@ msgstr "产品已添加到采购订单中"
 
 #: src/components/wizards/OrderPartsWizard.tsx:303
 msgid "Select supplier part"
-msgstr "选择供应商产品"
+msgstr "选择供应商货号"
 
 #: src/components/wizards/OrderPartsWizard.tsx:323
 msgid "Copy supplier part number"
-msgstr "复制供应商产品编号"
+msgstr "复制供应商货号"
 
 #: src/components/wizards/OrderPartsWizard.tsx:326
 msgid "New supplier part"
-msgstr "新增供应商产品"
+msgstr "新增供应商货号"
 
 #: src/components/wizards/OrderPartsWizard.tsx:350
 msgid "Select purchase order"
@@ -3971,7 +3971,7 @@ msgstr "您必须至少选择一个产品才能下单"
 
 #: src/components/wizards/OrderPartsWizard.tsx:557
 msgid "Supplier part is required"
-msgstr "供应商产品为必填项"
+msgstr "必须选择供应商货号"
 
 #: src/components/wizards/OrderPartsWizard.tsx:561
 msgid "Quantity is required"
@@ -4606,7 +4606,7 @@ msgstr "生产已完成"
 #: src/tables/ColumnRenderers.tsx:116
 #: src/tables/part/RelatedPartTable.tsx:73
 msgid "IPN"
-msgstr "内部产品编码 IPN"
+msgstr "产品编码"
 
 #: src/forms/BuildForms.tsx:671
 #: src/forms/BuildForms.tsx:836
@@ -4874,7 +4874,7 @@ msgstr "备注"
 #: src/pages/company/SupplierPartDetail.tsx:139
 #: src/tables/purchasing/SupplierPriceBreakTable.tsx:49
 msgid "SKU"
-msgstr "供应商料号（SKU）"
+msgstr "供应商货号"
 
 #: src/forms/PurchaseOrderForms.tsx:889
 #: src/tables/part/PartPurchaseOrdersTable.tsx:127
@@ -7516,11 +7516,11 @@ msgstr "公司操作"
 #: src/pages/company/ManufacturerPartDetail.tsx:77
 #: src/pages/company/SupplierPartDetail.tsx:90
 msgid "Internal Part"
-msgstr "内部产品"
+msgstr "关联产品"
 
 #: src/pages/company/ManufacturerPartDetail.tsx:111
 msgid "Manufacturer Part Number"
-msgstr "制造商产品编号"
+msgstr "厂家货号"
 
 #: src/pages/company/ManufacturerPartDetail.tsx:128
 #: src/pages/company/SupplierPartDetail.tsx:114
@@ -7531,42 +7531,42 @@ msgstr "外部链接"
 #: src/pages/company/SupplierPartDetail.tsx:233
 #: src/pages/part/PartDetail.tsx:765
 msgid "Part Details"
-msgstr "产品详情"
+msgstr "产品信息"
 
 #: src/pages/company/ManufacturerPartDetail.tsx:150
 msgid "Manufacturer Details"
-msgstr "制造商详情"
+msgstr "厂家信息"
 
 #: src/pages/company/ManufacturerPartDetail.tsx:159
 msgid "Manufacturer Part Details"
-msgstr "制造商产品详情"
+msgstr "厂家货号详情"
 
 #: src/pages/company/ManufacturerPartDetail.tsx:165
 #: src/pages/company/SupplierPartDetail.tsx:253
 #: src/pages/purchasing/PurchaseOrderDetail.tsx:391
 msgid "Received Stock"
-msgstr "接收库存"
+msgstr "已收货库存"
 
 #: src/pages/company/ManufacturerPartDetail.tsx:212
 #: src/tables/purchasing/ManufacturerPartTable.tsx:128
 msgid "Edit Manufacturer Part"
-msgstr "编辑制造商产品"
+msgstr "编辑厂家货号"
 
 #: src/pages/company/ManufacturerPartDetail.tsx:219
 #: src/tables/purchasing/ManufacturerPartTable.tsx:115
 #: src/tables/purchasing/ManufacturerPartTable.tsx:135
 #: src/tables/purchasing/ManufacturerPartTable.tsx:176
 msgid "Add Manufacturer Part"
-msgstr "添加制造商产品"
+msgstr "添加厂家货号"
 
 #: src/pages/company/ManufacturerPartDetail.tsx:231
 #: src/tables/purchasing/ManufacturerPartTable.tsx:146
 msgid "Delete Manufacturer Part"
-msgstr "删除制造商产品"
+msgstr "删除厂家货号"
 
 #: src/pages/company/ManufacturerPartDetail.tsx:246
 msgid "Manufacturer Part Actions"
-msgstr "制造商产品操作"
+msgstr "厂家货号操作"
 
 #: src/pages/company/ManufacturerPartDetail.tsx:281
 #~ msgid "ManufacturerPart"
@@ -7587,45 +7587,45 @@ msgstr "包装数量"
 
 #: src/pages/company/SupplierPartDetail.tsx:205
 msgid "Supplier Availability"
-msgstr "供应商可用性"
+msgstr "供应商可供数量"
 
 #: src/pages/company/SupplierPartDetail.tsx:213
 msgid "Availability Updated"
-msgstr "可用性已更新"
+msgstr "可供数量更新时间"
 
 #: src/pages/company/SupplierPartDetail.tsx:238
 msgid "Availability"
-msgstr "可用性"
+msgstr "供货情况"
 
 #: src/pages/company/SupplierPartDetail.tsx:247
 msgid "Supplier Part Details"
-msgstr "供应商产品详情"
+msgstr "供应商货号详情"
 
 #: src/pages/company/SupplierPartDetail.tsx:280
 #: src/pages/part/PartPricingPanel.tsx:113
 #: src/pages/part/pricing/PricingOverviewPanel.tsx:239
 msgid "Supplier Pricing"
-msgstr "供应商价格"
+msgstr "供应商报价"
 
 #: src/pages/company/SupplierPartDetail.tsx:314
 msgid "Supplier Part Actions"
-msgstr "供应商产品操作"
+msgstr "供应商货号操作"
 
 #: src/pages/company/SupplierPartDetail.tsx:338
 #: src/tables/purchasing/SupplierPartTable.tsx:283
 msgid "Edit Supplier Part"
-msgstr "编辑供应商产品"
+msgstr "编辑供应商货号"
 
 #: src/pages/company/SupplierPartDetail.tsx:346
 #: src/tables/purchasing/SupplierPartTable.tsx:308
 msgid "Delete Supplier Part"
-msgstr "删除供应商产品"
+msgstr "删除供应商货号"
 
 #: src/pages/company/SupplierPartDetail.tsx:354
 #: src/tables/purchasing/SupplierPartTable.tsx:203
 #: src/tables/purchasing/SupplierPartTable.tsx:292
 msgid "Add Supplier Part"
-msgstr "添加供应商产品"
+msgstr "添加供应商货号"
 
 #: src/pages/company/SupplierPartDetail.tsx:394
 #: src/pages/part/PartDetail.tsx:1011
@@ -10776,11 +10776,11 @@ msgstr "仅显示装配类产品"
 
 #: src/tables/part/PartBuildAllocationsTable.tsx:64
 msgid "Assembly IPN"
-msgstr "装配内部产品号"
+msgstr "装配产品编码"
 
 #: src/tables/part/PartBuildAllocationsTable.tsx:73
 msgid "Part IPN"
-msgstr "产品的内部产品号"
+msgstr "产品编码"
 
 #: src/tables/part/PartBuildAllocationsTable.tsx:91
 msgid "Required Stock"
@@ -10931,11 +10931,11 @@ msgstr "按计量单位筛选"
 
 #: src/tables/part/PartTable.tsx:252
 msgid "Has IPN"
-msgstr "已设置内部编码"
+msgstr "已设置产品编码"
 
 #: src/tables/part/PartTable.tsx:253
 msgid "Filter by parts which have an internal part number"
-msgstr "仅筛选已设置内部编码的产品"
+msgstr "仅筛选已设置产品编码的产品"
 
 #: src/tables/part/PartTable.tsx:258
 msgid "Has Stock"
@@ -11484,12 +11484,12 @@ msgstr "已安装"
 #: src/tables/purchasing/ManufacturerPartTable.tsx:100
 #: src/tables/purchasing/SupplierPartTable.tsx:122
 msgid "MPN"
-msgstr "制造商料号（MPN）"
+msgstr "厂家货号"
 
 #: src/tables/purchasing/ManufacturerPartParametricTable.tsx:43
 #: src/tables/purchasing/ManufacturerPartTable.tsx:155
 msgid "Show manufacturer parts for active internal parts."
-msgstr "仅显示启用内部产品对应的制造商料号。"
+msgstr "仅显示关联产品为启用状态的厂家货号。"
 
 #: src/tables/purchasing/ManufacturerPartParametricTable.tsx:48
 #: src/tables/purchasing/ManufacturerPartTable.tsx:160
@@ -11499,7 +11499,7 @@ msgstr "制造商已启用"
 #: src/tables/purchasing/ManufacturerPartParametricTable.tsx:49
 #: src/tables/purchasing/ManufacturerPartTable.tsx:162
 msgid "Show manufacturer parts for active manufacturers."
-msgstr "仅显示启用制造商的产品料号。"
+msgstr "仅显示所属厂家已启用的厂家货号。"
 
 #: src/tables/purchasing/ManufacturerPartTable.tsx:63
 #~ msgid "Create Manufacturer Part"
@@ -11570,23 +11570,23 @@ msgstr "基础计量单位"
 
 #: src/tables/purchasing/SupplierPartTable.tsx:226
 msgid "Add supplier part"
-msgstr "新增供应商产品"
+msgstr "新增供应商货号"
 
 #: src/tables/purchasing/SupplierPartTable.tsx:234
 msgid "Import supplier part"
-msgstr "导入供应商产品资料"
+msgstr "导入供应商货号资料"
 
 #: src/tables/purchasing/SupplierPartTable.tsx:250
 msgid "Show active supplier parts"
-msgstr "仅显示启用供应商产品"
+msgstr "仅显示启用供应商货号"
 
 #: src/tables/purchasing/SupplierPartTable.tsx:255
 msgid "Show primary supplier parts"
-msgstr "仅显示主供应商料号"
+msgstr "仅显示主供应商货号"
 
 #: src/tables/purchasing/SupplierPartTable.tsx:260
 msgid "Show active internal parts"
-msgstr "仅显示启用内部产品"
+msgstr "仅显示关联产品为启用状态"
 
 #: src/tables/purchasing/SupplierPartTable.tsx:264
 msgid "Active Supplier"
@@ -11598,7 +11598,7 @@ msgstr "仅显示启用供应商"
 
 #: src/tables/purchasing/SupplierPartTable.tsx:270
 msgid "Show supplier parts with stock"
-msgstr "仅显示有库存的供应商产品"
+msgstr "仅显示有库存的供应商货号"
 
 #: src/tables/sales/ReturnOrderLineItemTable.tsx:157
 msgid "Received Date"

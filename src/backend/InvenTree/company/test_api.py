@@ -105,7 +105,7 @@ class CompanyTest(InvenTreeAPITestCase):
         self.assertFalse(response.data['is_customer'])
         self.assertFalse(response.data['is_manufacturer'])
 
-        self.assertEqual(response.data['currency'], 'USD')
+        self.assertEqual(response.data['currency'], 'CNY')
 
         # Maximal example, specify values
         response = self.post(

@@ -250,7 +250,7 @@ SYSTEM_SETTINGS: dict[str, InvenTreeSettingsKeyType] = {
     'INVENTREE_DEFAULT_CURRENCY': {
         'name': _('Default Currency'),
         'description': _('Select base currency for pricing calculations'),
-        'default': 'USD',
+        'default': 'CNY',
         'choices': common.currency.currency_code_mappings,
         'after_save': common.currency.after_change_currency,
     },
@@ -476,13 +476,13 @@ SYSTEM_SETTINGS: dict[str, InvenTreeSettingsKeyType] = {
     'PART_COMPONENT': {
         'name': _('Component'),
         'description': _('Parts can be used as sub-components by default'),
-        'default': True,
+        'default': False,
         'validator': bool,
     },
     'PART_PURCHASEABLE': {
         'name': _('Purchaseable'),
         'description': _('Parts are purchaseable by default'),
-        'default': True,
+        'default': False,
         'validator': bool,
     },
     'PART_SALABLE': {
