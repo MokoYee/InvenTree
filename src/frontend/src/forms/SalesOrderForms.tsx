@@ -52,7 +52,9 @@ export function useSalesOrderFields({
       },
       customer_reference: {},
       project_code: {},
-      order_currency: {},
+      order_currency: {
+        default: globalSettings.getSetting('INVENTREE_DEFAULT_CURRENCY', 'CNY')
+      },
       start_date: {
         icon: <IconCalendar />
       },
@@ -117,8 +119,11 @@ export function useSalesOrderLineItemFields({
   create?: boolean;
   currency?: string;
 }): ApiFormFieldSet {
+  const globalSettings = useGlobalSettingsState();
   const [salePrice, setSalePrice] = useState<string | undefined>(undefined);
-  const [partCurrency, setPartCurrency] = useState<string>(currency ?? '');
+  const [partCurrency, setPartCurrency] = useState<string>(
+    currency ?? globalSettings.getSetting('INVENTREE_DEFAULT_CURRENCY', 'CNY')
+  );
   const [part, setPart] = useState<any>({});
   const [quantity, setQuantity] = useState<string>('1');
 

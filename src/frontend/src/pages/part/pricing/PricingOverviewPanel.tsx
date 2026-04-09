@@ -111,12 +111,12 @@ export default function PricingOverviewPanel({
       override_min: {},
       override_min_currency: {
         default:
-          globalSettings.getSetting('INVENTREE_DEFAULT_CURRENCY') ?? 'USD'
+          globalSettings.getSetting('INVENTREE_DEFAULT_CURRENCY') ?? 'CNY'
       },
       override_max: {},
       override_max_currency: {
         default:
-          globalSettings.getSetting('INVENTREE_DEFAULT_CURRENCY') ?? 'USD'
+          globalSettings.getSetting('INVENTREE_DEFAULT_CURRENCY') ?? 'CNY'
       },
       update: {
         hidden: true,

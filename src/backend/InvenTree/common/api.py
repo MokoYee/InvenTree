@@ -184,7 +184,7 @@ class CurrencyExchangeView(APIView):
 
         response = {
             'base_currency': get_global_setting(
-                'INVENTREE_DEFAULT_CURRENCY', backup_value='USD'
+                'INVENTREE_DEFAULT_CURRENCY', backup_value='CNY'
             ),
             'exchange_rates': {},
             'updated': updated,

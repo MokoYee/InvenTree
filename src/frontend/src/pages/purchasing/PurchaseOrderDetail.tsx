@@ -74,7 +74,7 @@ export default function PurchaseOrderDetail() {
     return (
       order.order_currency ||
       order.supplier_detail?.currency ||
-      globalSettings.getSetting('INVENTREE_DEFAULT_CURRENCY')
+      globalSettings.getSetting('INVENTREE_DEFAULT_CURRENCY', 'CNY')
     );
   }, [order, globalSettings]);
 

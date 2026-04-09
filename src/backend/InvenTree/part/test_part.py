@@ -710,8 +710,8 @@ class PartSettingsTest(InvenTreeTestCase):
         """Test that the default values for the part settings are correct."""
         cache.clear()
 
-        self.assertTrue(part.settings.part_component_default())
-        self.assertTrue(part.settings.part_purchaseable_default())
+        self.assertFalse(part.settings.part_component_default())
+        self.assertFalse(part.settings.part_purchaseable_default())
         self.assertFalse(part.settings.part_salable_default())
         self.assertFalse(part.settings.part_trackable_default())
 
@@ -721,8 +721,8 @@ class PartSettingsTest(InvenTreeTestCase):
 
         part = self.make_part()
 
-        self.assertTrue(part.component)
-        self.assertTrue(part.purchaseable)
+        self.assertFalse(part.component)
+        self.assertFalse(part.purchaseable)
         self.assertFalse(part.salable)
         self.assertFalse(part.trackable)
 

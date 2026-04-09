@@ -44,7 +44,9 @@ export function useReturnOrderFields({
       },
       customer_reference: {},
       project_code: {},
-      order_currency: {},
+      order_currency: {
+        default: globalSettings.getSetting('INVENTREE_DEFAULT_CURRENCY', 'CNY')
+      },
       start_date: {
         icon: <IconCalendar />
       },

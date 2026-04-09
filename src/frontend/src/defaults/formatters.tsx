@@ -19,7 +19,7 @@ export function formatCurrency(
   options: FormatCurrencyOptionsInterface = {
     digits: 6,
     minDigits: 0,
-    currency: 'USD',
+    currency: 'CNY',
     multiplier: 1
   }
 ) {
@@ -33,7 +33,7 @@ export function formatCurrency(
     (Number(global_settings.PRICING_DECIMAL_PLACES_MIN) ?? 0);
 
   options.currency =
-    options?.currency || global_settings.INVENTREE_DEFAULT_CURRENCY || 'USD';
+    options?.currency || global_settings.INVENTREE_DEFAULT_CURRENCY || 'CNY';
 
   return formatCurrencyValue(value, options);
 }
