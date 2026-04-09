@@ -7516,7 +7516,7 @@ msgstr "公司操作"
 #: src/pages/company/ManufacturerPartDetail.tsx:77
 #: src/pages/company/SupplierPartDetail.tsx:90
 msgid "Internal Part"
-msgstr "关联产品"
+msgstr "内部产品"
 
 #: src/pages/company/ManufacturerPartDetail.tsx:111
 msgid "Manufacturer Part Number"
@@ -7997,7 +7997,7 @@ msgstr "物料清单"
 
 #: src/pages/part/PartDetail.tsx:816
 msgid "Used In"
-msgstr "关联产品"
+msgstr "组成哪些产品"
 
 #: src/pages/part/PartDetail.tsx:823
 msgid "Part Pricing"
@@ -8009,7 +8009,7 @@ msgstr "测试模板"
 
 #: src/pages/part/PartDetail.tsx:915
 msgid "Related Parts"
-msgstr "关联产品"
+msgstr "相关产品"
 
 #: src/pages/part/PartDetail.tsx:937
 #: src/tables/ColumnRenderers.tsx:73
