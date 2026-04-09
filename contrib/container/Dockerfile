@@ -151,6 +151,7 @@ ENV INVENTREE_COMMIT_DATE="${commit_date}"
 # Copy source code
 COPY src/backend/InvenTree ${INVENTREE_BACKEND_DIR}/InvenTree
 COPY src/backend/requirements.txt ${INVENTREE_BACKEND_DIR}/requirements.txt
+COPY --from=builder_stage ${INVENTREE_BACKEND_DIR}/InvenTree/locale ${INVENTREE_BACKEND_DIR}/InvenTree/locale
 
 # Copy compiled dependencies from prebuild image
 ENV PATH=/root/.local/bin:$PATH

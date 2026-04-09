@@ -126,6 +126,35 @@ needs_static_sync() {
     return 0
 }
 
+backend_translations_need_compile() {
+    local locale_dir="${INVENTREE_BACKEND_DIR}/InvenTree/locale"
+    local po_file
+    local mo_file
+
+    if [[ ! -d "${locale_dir}" ]]; then
+        return 1
+    fi
+
+    while IFS= read -r -d '' po_file; do
+        mo_file="${po_file%.po}.mo"
+
+        if [[ ! -f "${mo_file}" ]] || [[ "${po_file}" -nt "${mo_file}" ]]; then
+            return 0
+        fi
+    done < <(find "${locale_dir}" -type f -name '*.po' -print0)
+
+    return 1
+}
+
+ensure_backend_translations() {
+    if backend_translations_need_compile; then
+        echo "Compiling backend translations"
+        python3 "${MANAGE_PY}" compilemessages
+    else
+        echo "Backend translations already up to date"
+    fi
+}
+
 run_server_preflight() {
     local runtime_sha
     runtime_sha="$(get_runtime_sha)"
@@ -138,6 +167,8 @@ run_server_preflight() {
 
     echo "Checking and applying pending migrations"
     python3 "${MANAGE_PY}" runmigrations
+
+    ensure_backend_translations
 
     if needs_static_sync; then
         echo "Synchronizing static files for image ${runtime_sha}"
