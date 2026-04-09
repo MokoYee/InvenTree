@@ -1,8 +1,4 @@
-import { ActionIcon, Center, Group, Text, Tooltip } from '@mantine/core';
-import { IconServer } from '@tabler/icons-react';
-
-import { useShallow } from 'zustand/react/shallow';
-import { useServerApiState } from '../../states/ServerApiState';
+import { Center, Group } from '@mantine/core';
 import { ColorToggle } from '../items/ColorToggle';
 import { LanguageToggle } from '../items/LanguageToggle';
 
@@ -13,13 +9,15 @@ export function AuthFormOptions({
   hostname: string;
   toggleHostEdit: () => void;
 }>) {
-  const [server] = useServerApiState(useShallow((state) => [state.server]));
+  void hostname;
+  void toggleHostEdit;
 
   return (
     <Center mx={'md'}>
       <Group>
         <ColorToggle />
         <LanguageToggle />
+        {/* 登录页不展示服务器切换入口，避免暴露实例信息给业务用户。
         {window.INVENTREE_SETTINGS.show_server_selector && (
           <Tooltip label={hostname}>
             <ActionIcon
@@ -34,6 +32,7 @@ export function AuthFormOptions({
         <Text c={'dimmed'}>
           {server.version} | {server.apiVersion}
         </Text>
+        */}
       </Group>
     </Center>
   );

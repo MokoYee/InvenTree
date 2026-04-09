@@ -128,6 +128,61 @@ def generate_permission_dict(permissions) -> dict:
     return perms
 
 
+SUPERUSER_ACCESS_FIELDS = {'is_active', 'is_staff', 'is_superuser'}
+
+
+def is_effective_superuser(user: User) -> bool:
+    """判断用户当前是否具备可接管系统的超级管理员能力。"""
+    return bool(user.is_superuser and user.is_staff and user.is_active)
+
+
+def effective_superusers():
+    """返回当前所有可用的超级管理员账号。"""
+    return User.objects.filter(is_superuser=True, is_staff=True, is_active=True)
+
+
+def ensure_effective_superuser_remains(
+    user: User,
+    *,
+    is_superuser: bool | None = None,
+    is_staff: bool | None = None,
+    is_active: bool | None = None,
+):
+    """校验变更后系统中仍至少保留一个可用的超级管理员。"""
+    if not is_effective_superuser(user):
+        return
+
+    next_is_superuser = user.is_superuser if is_superuser is None else is_superuser
+    next_is_staff = user.is_staff if is_staff is None else is_staff
+    next_is_active = user.is_active if is_active is None else is_active
+
+    if next_is_superuser and next_is_staff and next_is_active:
+        return
+
+    if effective_superusers().exclude(pk=user.pk).exists():
+        return
+
+    raise serializers.ValidationError(
+        _('At least one active administrator with superuser access must remain')
+    )
+
+
+def ensure_superuser_delete_allowed(request_user: User, target_user: User):
+    """校验是否允许删除目标用户。"""
+    if request_user.pk == target_user.pk:
+        raise PermissionDenied(_('You cannot delete your own user account'))
+
+    if target_user.is_superuser and not request_user.is_superuser:
+        raise PermissionDenied(_('Only a superuser can delete a superuser account'))
+
+    ensure_effective_superuser_remains(
+        target_user,
+        is_superuser=False,
+        is_staff=False,
+        is_active=False,
+    )
+
+
 class GetAuthTokenSerializer(serializers.Serializer):
     """Serializer for the GetAuthToken API endpoint."""
 
@@ -345,6 +400,34 @@ class ExtendedUserSerializer(UserSerializer):
                 })
 
         return value
+
+    def validate(self, attrs):
+        """对超级管理员账号的关键权限变更执行额外保护。"""
+        attrs = super().validate(attrs)
+
+        request_user = self.context['request'].user
+        instance = getattr(self, 'instance', None)
+
+        if not instance:
+            return attrs
+
+        touched_fields = {
+            field for field in SUPERUSER_ACCESS_FIELDS if field in self.initial_data
+        }
+
+        if instance.is_superuser and touched_fields and not request_user.is_superuser:
+            raise PermissionDenied(
+                _('Only a superuser can modify superuser access fields')
+            )
+
+        ensure_effective_superuser_remains(
+            instance,
+            is_superuser=attrs.get('is_superuser'),
+            is_staff=attrs.get('is_staff'),
+            is_active=attrs.get('is_active'),
+        )
+
+        return attrs
 
     def update(self, instance, validated_data):
         """Update the user instance with the provided data."""

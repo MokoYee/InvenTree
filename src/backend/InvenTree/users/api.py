@@ -47,6 +47,7 @@ from users.serializers import (
     UserCreateSerializer,
     UserProfileSerializer,
     UserSetPasswordSerializer,
+    ensure_superuser_delete_allowed,
 )
 
 logger = structlog.get_logger('inventree')
@@ -186,6 +187,8 @@ class UserDetail(RetrieveUpdateDestroyAPI):
 
     def perform_destroy(self, instance):
         """Override destroy method to ensure sessions are deleted first."""
+        ensure_superuser_delete_allowed(self.request.user, instance)
+
         # Remove all sessions for this user
         if sessions := instance.usersession_set.all():
             sessions.delete()
